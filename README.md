@@ -1,2 +1,8 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+# Subsystems (Dart)
+
+This repository contains the code for the Subsystems program, which is responsible for sending CAN messages over UDP and vice-versa, integrating the Dashboard with the various subsystems. 
+
+To run: 
+```bash
+dart run
+```
