@@ -1,0 +1,44 @@
+name: Generate Dart Documentation
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Git Setup
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git branch --all
+          git switch --track origin/documentation
+          git reset --hard origin/main
+
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Analyze Dart code
+        run: dart analyze --fatal-infos
+        
+      - name: Output error
+        if: failure()
+        run: echo "::error The code or is missing documentation. Run flutter analyze --dartdocs"
+
+      - name: Generate documentation
+        run: dart pub global run dartdoc --exclude 'dart:async,dart:collection,dart:convert,dart:core,dart:developer,dart:io,dart:isolate,dart:math,dart:typed_data,dart:ui,dart:html,dart:js,dart:ffi,dart:js_util' --quiet --output docs --no-validate-links --no-verbose-warnings --no-allow-non-local-warnings --json
+
+      - name: Commit and push files
+        run: |
+          cd docs
+          cd ..
+          git status
+          git stage --force docs
+          git commit -a -m "Generated documentation"
+          git push --force      
