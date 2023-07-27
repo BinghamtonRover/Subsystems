@@ -11,12 +11,6 @@ class SubsystemsServer extends ServerSocket {
 	SubsystemsServer({required super.port}) : super(device: Device.SUBSYSTEMS);
 
 	@override
-	void onHeartbeat(Connect heartbeat, SocketInfo source) {
-		super.onHeartbeat(heartbeat, source);
-		print("Heartbeat from ${source.address}:${source.port}");
-	}
-
-	@override
 	void onMessage(WrappedMessage wrapper) {
 		collection.can.sendWrapper(wrapper);
 	}
