@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:io";
 import "dart:ffi";
 import "package:burt_network/burt_network.dart";
@@ -17,11 +18,23 @@ const Map<String, int> commandCanIDs = {"ScienceCommand": 0x1234};
 /// When a new message is received, its ID is looked up in [dataCanIDs] and sent over UDP.
 /// When a UDP message is received, its ID is looked up in [commandCanIDs] and sent over CAN.
 class CanService {
-	late final can = Platform.isLinux ? Can(onMessage: onMessage) : CanStub();
+	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
+	final can = Platform.isLinux ? Can() : CanStub();
 
-	void init() => can.init();
-	void dispose() => can.dispose();
+	late final StreamSubscription<CanMessage> _subscription;
 
+	/// Initializes the CAN library.
+	void init() {
+		_subscription = can.incomingMessages.listen(onMessage);
+	}
+
+	/// Disposes the native CAN library and any resources it holds.
+	void dispose() {
+		_subscription.cancel();
+		can.dispose();
+	}
+
+	/// Handles an incoming CAN message.
 	void onMessage(CanMessage message) {
 		logger.debug("Received CAN message (${message.id.toRadixString(16)}): ${message.data}");
 		final name = dataCanIDs[message.id];
