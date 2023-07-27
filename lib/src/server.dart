@@ -1,6 +1,6 @@
 import "package:burt_network/burt_network.dart";
 
-import "collection.dart";
+import "package:subsystems/subsystems.dart";
 
 /// A UDP server to connect to the dashboard.
 /// 
@@ -11,7 +11,13 @@ class SubsystemsServer extends ServerSocket {
 	SubsystemsServer({required super.port}) : super(device: Device.SUBSYSTEMS);
 
 	@override
+	void onHeartbeat(Connect heartbeat, SocketInfo source) {
+		super.onHeartbeat(heartbeat, source);
+		print("Heartbeat from ${source.address}:${source.port}");
+	}
+
+	@override
 	void onMessage(WrappedMessage wrapper) {
-		collection.can.sendMessage(wrapper);
+		collection.can.sendWrapper(wrapper);
 	}
 }
