@@ -1,5 +1,4 @@
 import "dart:async";
-import "dart:io";
 import "package:burt_network/burt_network.dart";
 
 import "package:subsystems/subsystems.dart";
@@ -17,7 +16,7 @@ const Map<String, int> commandCanIDs = {"ScienceCommand": 0x1234};
 /// When a UDP message is received, its ID is looked up in [commandCanIDs] and sent over CAN.
 class CanService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
-	final CanSocket can = Platform.isLinux ? CanFFI() : CanStub();
+	final can = CanSocket();
 
 	late final StreamSubscription<CanMessage> _subscription;
 

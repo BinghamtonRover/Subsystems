@@ -1,4 +1,8 @@
+import "dart:io";
+
 import "message.dart";
+import "socket.dart";
+import "stub.dart";
 
 /// A CAN socket that supports reading and writing CAN messages.
 /// 
@@ -10,6 +14,9 @@ import "message.dart";
 /// - Use [sendMessage] to send a message to all devices on the bus
 /// - Listen to [incomingMessages] to receive messages from other devices on the bus
 abstract class CanSocket {
+	/// Chooses the right implementation for the platform. Uses a stub on non-Linux platforms.
+	factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
+
   /// Starts listening for CAN messages.
 	void init() { }
 

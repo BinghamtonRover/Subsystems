@@ -22,7 +22,7 @@ typedef CanHandler = void Function(CanMessage message);
 /// Note that [CanMessage]s are natively allocated and need to be manually disposed of. Since this
 /// class sends them through the [incomingMessages] stream, you are responsible for disposing them
 /// if you listen to it. The stream gives you pointers so you can call [CanMessage.dispose].
-class CanFFI extends CanSocket {
+class CanFFI implements CanSocket {
   /// How often to poll CAN messages.
   /// 
   /// This should be small enough to catch incoming messages but large enough to
