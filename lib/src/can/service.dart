@@ -1,11 +1,9 @@
 import "dart:async";
 import "dart:io";
-import "dart:ffi";
 import "package:burt_network/burt_network.dart";
 
 import "package:subsystems/subsystems.dart";
-import "ffi.dart";
-import "stub.dart";
+import "package:subsystems/can.dart";
 
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
 const Map<int, String> dataCanIDs = {1234: "ScienceData"};
@@ -19,12 +17,13 @@ const Map<String, int> commandCanIDs = {"ScienceCommand": 0x1234};
 /// When a UDP message is received, its ID is looked up in [commandCanIDs] and sent over CAN.
 class CanService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
-	final can = Platform.isLinux ? Can() : CanStub();
+	final CanSocket can = Platform.isLinux ? CanFFI() : CanStub();
 
 	late final StreamSubscription<CanMessage> _subscription;
 
 	/// Initializes the CAN library.
 	void init() {
+		can.init();
 		_subscription = can.incomingMessages.listen(onMessage);
 	}
 
@@ -42,8 +41,11 @@ class CanService {
 			logger.warning("Unknown CAN ID: ${message.id}");
 			return; 
 		}
-		final wrapper = WrappedMessage(name: name, data: message.data);
+		// We must copy the data since we'll be disposing the pointer.
+		final copy = List<int>.from(message.data);
+		final wrapper = WrappedMessage(name: name, data: copy);
 		collection.server.sendWrapper(wrapper);
+		message.dispose();
 	}
 
 	/// Sends a [WrappedMessage] to the appropriate subsystem, using [commandCanIDs].
@@ -53,7 +55,6 @@ class CanService {
 			logger.warning("Received unknown WrappedMessage: ${wrapper.name}");
 			return;
 		}
-		final Pointer<CanMessage> canMessage = createCanMessage(id: id, data: wrapper.data);
-		can.sendMessage(canMessage);
+		can.sendMessage(id: id, data: wrapper.data);
 	}
 }

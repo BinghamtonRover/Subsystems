@@ -15,7 +15,7 @@ class SubsystemsCollection {
 
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
-		// can.init();
+		can.init();
 		await server.init();
 		logger.info("Subsystems initialized");
 	}

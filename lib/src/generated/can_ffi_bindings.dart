@@ -23,20 +23,6 @@ class CanBindings {
           lookup)
       : _lookup = lookup;
 
-  void can_message_free(
-    ffi.Pointer<CanMessage> message,
-  ) {
-    return _can_message_free(
-      message,
-    );
-  }
-
-  late final _can_message_freePtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<CanMessage>)>>(
-          'can_message_free');
-  late final _can_message_free =
-      _can_message_freePtr.asFunction<void Function(ffi.Pointer<CanMessage>)>();
-
   ffi.Pointer<BurtCan> can_init() {
     return _can_init();
   }
@@ -46,9 +32,23 @@ class CanBindings {
   late final _can_init =
       _can_initPtr.asFunction<ffi.Pointer<BurtCan> Function()>();
 
+  void can_free(
+    ffi.Pointer<BurtCan> message,
+  ) {
+    return _can_free(
+      message,
+    );
+  }
+
+  late final _can_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<BurtCan>)>>(
+          'can_free');
+  late final _can_free =
+      _can_freePtr.asFunction<void Function(ffi.Pointer<BurtCan>)>();
+
   void can_send(
     ffi.Pointer<BurtCan> can,
-    ffi.Pointer<CanMessage> message,
+    ffi.Pointer<NativeCanMessage> message,
   ) {
     return _can_send(
       can,
@@ -58,12 +58,12 @@ class CanBindings {
 
   late final _can_sendPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(
-              ffi.Pointer<BurtCan>, ffi.Pointer<CanMessage>)>>('can_send');
+          ffi.Void Function(ffi.Pointer<BurtCan>,
+              ffi.Pointer<NativeCanMessage>)>>('can_send');
   late final _can_send = _can_sendPtr.asFunction<
-      void Function(ffi.Pointer<BurtCan>, ffi.Pointer<CanMessage>)>();
+      void Function(ffi.Pointer<BurtCan>, ffi.Pointer<NativeCanMessage>)>();
 
-  ffi.Pointer<CanMessage> can_read(
+  ffi.Pointer<NativeCanMessage> can_read(
     ffi.Pointer<BurtCan> can,
   ) {
     return _can_read(
@@ -73,28 +73,41 @@ class CanBindings {
 
   late final _can_readPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<CanMessage> Function(ffi.Pointer<BurtCan>)>>('can_read');
-  late final _can_read = _can_readPtr
-      .asFunction<ffi.Pointer<CanMessage> Function(ffi.Pointer<BurtCan>)>();
+          ffi.Pointer<NativeCanMessage> Function(
+              ffi.Pointer<BurtCan>)>>('can_read');
+  late final _can_read = _can_readPtr.asFunction<
+      ffi.Pointer<NativeCanMessage> Function(ffi.Pointer<BurtCan>)>();
 
-  void can_destroy(
-    ffi.Pointer<BurtCan> can,
+  void can_message_free(
+    ffi.Pointer<NativeCanMessage> message,
   ) {
-    return _can_destroy(
-      can,
+    return _can_message_free(
+      message,
     );
   }
 
-  late final _can_destroyPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<BurtCan>)>>(
-          'can_destroy');
-  late final _can_destroy =
-      _can_destroyPtr.asFunction<void Function(ffi.Pointer<BurtCan>)>();
+  late final _can_message_freePtr = _lookup<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<NativeCanMessage>)>>(
+      'can_message_free');
+  late final _can_message_free = _can_message_freePtr
+      .asFunction<void Function(ffi.Pointer<NativeCanMessage>)>();
+
+  late final addresses = _SymbolAddresses(this);
+}
+
+class _SymbolAddresses {
+  final CanBindings _library;
+  _SymbolAddresses(this._library);
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<BurtCan>)>>
+      get can_free => _library._can_freePtr;
+  ffi.Pointer<
+          ffi.NativeFunction<ffi.Void Function(ffi.Pointer<NativeCanMessage>)>>
+      get can_message_free => _library._can_message_freePtr;
 }
 
 final class BurtCan extends ffi.Opaque {}
 
-final class CanMessage extends ffi.Struct {
+final class NativeCanMessage extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> buffer;
 
   @ffi.Uint16()
