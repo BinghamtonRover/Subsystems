@@ -1,6 +1,6 @@
 import "package:burt_network/burt_network.dart";
 
-import "collection.dart";
+import "package:subsystems/subsystems.dart";
 
 /// A UDP server to connect to the dashboard.
 /// 
@@ -12,6 +12,6 @@ class SubsystemsServer extends ServerSocket {
 
 	@override
 	void onMessage(WrappedMessage wrapper) {
-		collection.can.sendMessage(wrapper);
+		collection.can.sendWrapper(wrapper);
 	}
 }

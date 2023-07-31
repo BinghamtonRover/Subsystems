@@ -50,6 +50,14 @@ packages:
       url: "https://github.com/BinghamtonRover/Dart-Networking.git"
     source: git
     version: "1.0.0"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      sha256: b8db3080e59b2503ca9e7922c3df2072cf13992354d5e944074ffa836fba43b7
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   collection:
     dependency: transitive
     description:
@@ -90,6 +98,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.8"
+  ffi:
+    dependency: "direct main"
+    description:
+      name: ffi
+      sha256: ed5337a5660c506388a9f012be0288fb38b49020ce2b45fe1f8b8323fe429f99
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
+  ffigen:
+    dependency: "direct dev"
+    description:
+      name: ffigen
+      sha256: "3a80687577e7e51ba915114742f389a128e8aa241c52ce69a0f70aecb8e14365"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.1"
   file:
     dependency: transitive
     description:
@@ -242,6 +266,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   shelf:
     dependency: transitive
     description:
@@ -410,5 +442,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  yaml_edit:
+    dependency: transitive
+    description:
+      name: yaml_edit
+      sha256: "1579d4a0340a83cf9e4d580ea51a16329c916973bffd5bd4b45e911b25d46bfd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
 sdks:
-  dart: ">=3.0.5 <3.2.0"
+  dart: ">=3.0.0 <3.2.0"
