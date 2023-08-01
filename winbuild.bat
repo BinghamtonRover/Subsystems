@@ -1,5 +1,8 @@
 @echo off
 
+rem Clean
+if exist build @rmdir /s /q build
+
 rem Check if CMake is not on the path
 where cmake 1>NUL 2>NUL
 if errorlevel 1 (

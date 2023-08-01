@@ -12,8 +12,7 @@ add_library(serialport SHARED
   "${SOURCE_PATH}/windows.c"
 )
 
-#target_compile_options(serialport PRIVATE
-#  -std=c99 -Wall -Wextra -pedantic -Wmissing-prototypes -Wshadow)
+# Windows
 target_compile_definitions(serialport PRIVATE LIBSERIALPORT_MSBUILD)
 target_include_directories(serialport PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}"

@@ -1,13 +1,15 @@
-// ignore_for_file: avoid_print
 import "dart:typed_data";
 import "package:subsystems/subsystems.dart";
+import "package:burt_network/logging.dart";
+
+const port = "COM11";
 
 void main() async {
 	final device = SerialDevice(
-		portName: "COM11", 
-		readInterval: const Duration(seconds: 1),
+		portName: port, 
+		readInterval: const Duration(milliseconds: 100),
 	);
 	device.open();
-	device.stream.listen(print);
+	device.stream.listen((data) => logger.info("Received: $data"));
 	device.write(Uint8List.fromList([1, 2, 3]));
 }
