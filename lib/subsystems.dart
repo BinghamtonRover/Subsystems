@@ -5,6 +5,7 @@ import "src/server.dart";
 
 export "src/can/service.dart";
 export "src/server.dart";
+export "src/serial/serial.dart";
 
 /// Contains all the resources needed by the subsystems program.
 class SubsystemsCollection {
