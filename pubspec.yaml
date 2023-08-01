@@ -11,6 +11,7 @@ dependencies:
   burt_network: 
     git: https://github.com/BinghamtonRover/Dart-Networking.git
   ffi: ^2.0.2
+  libserialport: ^0.3.0+1
 
 dev_dependencies:
   ffigen: ^9.0.1
