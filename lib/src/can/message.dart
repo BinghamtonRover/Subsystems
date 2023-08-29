@@ -17,7 +17,7 @@ class CanMessage implements Finalizable {
   /// Guarantees that native resources are freed.
   /// 
   /// NOTE: This does not call free native resources allocated by Dart. Use [dispose] for that.
-  static final _finalizer = NativeFinalizer(nativeLib.addresses.can_message_free.cast());
+  static final _finalizer = NativeFinalizer(nativeLib.addresses.NativeCanMessage_free.cast());
   /// The pointer to the [NativeCanMessage] struct backing this object.
   final Pointer<NativeCanMessage> pointer;
 
@@ -31,7 +31,7 @@ class CanMessage implements Finalizable {
   int get id => _isDisposed ? throw StateError("Message is disposed") : pointer.ref.id;
 
   /// Allows you to access a native `char*` as a [Uint8List].
-  List<int> get data => _isDisposed ? throw StateError("Message is disposed") : pointer.ref.buffer.asTypedList(length);
+  List<int> get data => _isDisposed ? throw StateError("Message is disposed") : pointer.ref.data.asTypedList(length);
 
   bool _isDisposed = false;
 
@@ -40,7 +40,7 @@ class CanMessage implements Finalizable {
     final pointer = calloc<NativeCanMessage>();
     final buffer = data.toNativeBuffer();
     pointer.ref.id = id;
-    pointer.ref.buffer = buffer;
+    pointer.ref.data = buffer.cast();
     pointer.ref.length = data.length;
     return CanMessage.fromPointer(pointer, isNative: false);
   }
@@ -53,9 +53,9 @@ class CanMessage implements Finalizable {
   /// Frees the [CanMessage] struct that was natively allocated.
   void dispose() {
     if (isNative) {
-      nativeLib.can_message_free(pointer);
+      nativeLib.NativeCanMessage_free(pointer);
     } else {
-      calloc.free(pointer.ref.buffer);
+      calloc.free(pointer.ref.data);
       calloc.free(pointer);
     }
     _finalizer.detach(this);
