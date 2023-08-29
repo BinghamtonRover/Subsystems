@@ -52,7 +52,7 @@ class CanFFI implements CanSocket {
   void _stopListening() => _timer?.cancel();
 
   @override
-  Stream<CanMessage> get incomingMessages {print("Getting controller: $_controller"); return _controller.stream; }
+  Stream<CanMessage> get incomingMessages => _controller.stream;
 
   /// A timer to check for new messages.
   Timer? _timer;
@@ -88,7 +88,6 @@ class CanFFI implements CanSocket {
       nativeLib.BurtCan_receive(_can, pointer);
       if (pointer.ref.length == 0) return;
       count++;
-      print("Found message $count: ${pointer.ref.length}, ${pointer.ref.data}");
       if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
       final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
