@@ -1,13 +1,14 @@
 import "dart:async";
 import "dart:ffi";
-
-import "package:burt_network/logging.dart";
 import "package:ffi/ffi.dart";
 
-import "ffi.dart";
-import "stub.dart";
+import "package:burt_network/logging.dart";
+import "package:subsystems/src/generated/can_ffi_bindings.dart";
+export "package:subsystems/src/generated/can_ffi_bindings.dart";
+
+import "socket_stub.dart";
 import "message.dart";
-import "interface.dart";
+import "socket_interface.dart";
 
 /// A function that handles a [CanMessage].
 typedef CanHandler = void Function(CanMessage message);
@@ -18,6 +19,11 @@ const canInterface = "can0";
 const canType = BurtCanType.CAN;
 /// The timeout, in seconds, to wait for each message.
 const canTimeout = 1;
+
+/// The native SocketCAN-based library.
+/// 
+/// See `src/can.h` in this repository. Only supported on Linux.
+final nativeLib = CanBindings(DynamicLibrary.open("src/burt_can/burt_can.so"));
 
 /// The CAN interface, backed by the native SocketCAN library on Linux.
 /// 

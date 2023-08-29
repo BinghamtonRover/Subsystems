@@ -1,8 +1,8 @@
 import "dart:io";
 
 import "message.dart";
-import "socket.dart";
-import "stub.dart";
+import "socket_stub.dart";
+import "socket_ffi.dart";
 
 /// A CAN socket that supports reading and writing CAN messages.
 /// 

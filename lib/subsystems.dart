@@ -1,9 +1,8 @@
 import "package:burt_network/logging.dart";
+import "package:subsystems/can.dart";
 
-import "src/can/service.dart";
 import "src/server.dart";
 
-export "src/can/service.dart";
 export "src/server.dart";
 export "src/serial/serial.dart";
 

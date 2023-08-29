@@ -1,7 +1,7 @@
 import "package:burt_network/logging.dart";
 
 import "message.dart";
-import "interface.dart";
+import "socket_interface.dart";
 
 /// An implementation of the CAN interface that does nothing for platforms that don't support it.
 class CanStub implements CanSocket {

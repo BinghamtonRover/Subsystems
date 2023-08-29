@@ -2,7 +2,7 @@ import "dart:ffi";
 import "dart:typed_data";
 import "package:ffi/ffi.dart";
 
-import "ffi.dart";
+import "socket_ffi.dart";
 
 /// A wrapper around a [NativeCanMessage].
 /// 
