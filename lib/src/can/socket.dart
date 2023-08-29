@@ -2,6 +2,7 @@ import "dart:async";
 import "dart:ffi";
 
 import "package:burt_network/logging.dart";
+import "package:ffi/ffi.dart";
 
 import "ffi.dart";
 import "stub.dart";
@@ -10,6 +11,13 @@ import "interface.dart";
 
 /// A function that handles a [CanMessage].
 typedef CanHandler = void Function(CanMessage message);
+
+/// The CAN interface to use.
+const canInterface = "can0";
+/// The CAN type to use -- CAN or CAN FD.
+const canType = BurtCanType.CAN;
+/// The timeout, in seconds, to wait for each message.
+const canTimeout = 1;
 
 /// The CAN interface, backed by the native SocketCAN library on Linux.
 /// 
@@ -30,7 +38,7 @@ class CanFFI implements CanSocket {
   static const readInterval = Duration(milliseconds: 100);
 
   /// The native CAN interface, as a C pointer.
-  final Pointer<BurtCan> _can = nativeLib.can_init();
+  final Pointer<BurtCan> _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
 
   /// Fills [incomingMessages] with new messages by calling [_checkForMessages].
   late final _controller = StreamController<CanMessage>(
@@ -50,19 +58,25 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  void init() { }
+  void init() { 
+    final status = nativeLib.BurtCan_open(_can);
+    if (status != BurtCanStatus.OK) {
+      throw Exception("Got a status: $status");
+    }
+    _startListening(); 
+  }
 
   @override
   void dispose() {
     _stopListening();
-    nativeLib.can_free(_can);
+    nativeLib.BurtCan_free(_can);
     _controller.close();
   }
 
   @override
   void sendMessage({required int id, required List<int> data}) {
     final message = CanMessage(id: id, data: data);
-    nativeLib.can_send(_can, message.pointer);
+    nativeLib.BurtCan_send(_can, message.pointer);
     message.dispose();
   }
 
@@ -70,8 +84,9 @@ class CanFFI implements CanSocket {
   void _checkForMessages(_) {
     int count = 0;
     while (true) {
-      final pointer = nativeLib.can_read(_can);
-      if (pointer == nullptr) return;
+      final pointer = nativeLib.NativeCanMessage_create();
+      nativeLib.BurtCan_receive(_can, pointer);
+      if (pointer.ref.length == 0) return;
       count++;
       if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
       final message = CanMessage.fromPointer(pointer, isNative: true);

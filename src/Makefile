@@ -1,8 +1,7 @@
 all: can serial
 
 can: 
-	g++ -c can.cpp -o can.o
-	gcc -shared can.o -o can.so
+	make -C burt_can shared
 
 clean: 
 	rm -f *.o *.so *.exp *.lib *.obj *.out
