@@ -9,7 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   burt_network: 
-    git: https://github.com/BinghamtonRover/Dart-Networking.git
+    git: https://github.com/BinghamtonRover/Networking.git
   ffi: ^2.0.2
   libserialport: ^0.3.0+1
 

@@ -46,8 +46,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3a5635c146ff2af202972a92385e69cdded8854d"
-      url: "https://github.com/BinghamtonRover/Dart-Networking.git"
+      resolved-ref: "4ec6f79109b2371592690a416c91e9abe025f72a"
+      url: "https://github.com/BinghamtonRover/Networking.git"
     source: git
     version: "1.0.0"
   cli_util:
