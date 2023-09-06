@@ -1,12 +1,8 @@
 import "dart:async";
-import "dart:ffi";
-import "package:ffi/ffi.dart";
 
 import "package:burt_network/logging.dart";
-import "package:subsystems/src/generated/can_ffi_bindings.dart";
-export "package:subsystems/src/generated/can_ffi_bindings.dart";
 
-import "socket_stub.dart";
+import "ffi.dart";
 import "message.dart";
 import "socket_interface.dart";
 
@@ -20,14 +16,7 @@ const canType = BurtCanType.CAN;
 /// The timeout, in seconds, to wait for each message.
 const canTimeout = 1;
 
-/// The native SocketCAN-based library.
-/// 
-/// See `src/can.h` in this repository. Only supported on Linux.
-final nativeLib = CanBindings(DynamicLibrary.open("src/burt_can/burt_can.so"));
-
 /// The CAN interface, backed by the native SocketCAN library on Linux.
-/// 
-/// This class is only supported on Linux. On non-Linux platforms, use [CanStub] instead. 
 /// 
 /// - Access [incomingMessages] to handle messages as they are received
 /// - Call [sendMessage] to send a new [CanMessage]
@@ -65,11 +54,10 @@ class CanFFI implements CanSocket {
 
   @override
   void init() { 
-    final status = nativeLib.BurtCan_open(_can);
-    if (status != BurtCanStatus.OK) {
-      throw Exception("Got a status: $status");
-    }
+    final error = getCanError(nativeLib.BurtCan_open(_can));
+    if (error != null) throw CanException(error);
     _startListening(); 
+    
   }
 
   @override
