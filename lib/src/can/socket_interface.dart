@@ -26,21 +26,21 @@ class CanException implements Exception {
 /// - Use [sendMessage] to send a message to all devices on the bus
 /// - Listen to [incomingMessages] to receive messages from other devices on the bus
 abstract class CanSocket {
-	/// Chooses the right implementation for the platform. Uses a stub on non-Linux platforms.
-	factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
+  /// Chooses the right implementation for the platform. Uses a stub on non-Linux platforms.
+  factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
 
   /// Starts listening for CAN messages.
-	void init() { }
+  void init() { }
 
   /// Disposes of native resources allocated to this object, and stops listening for CAN messages.
-	void dispose() { }
+  void dispose() { }
 
   /// Sends a CAN message with the given ID and data.
-	void sendMessage({required int id, required List<int> data}) {	}
+  void sendMessage({required int id, required List<int> data}) {  }
 
-	/// A stream of incoming CAN messages. Use [Stream.listen] to handle them.
-	/// 
-	/// This stream returns [CanMessage] objects, which are wrappers around native structs, which
-	/// needs to be freed after use. Be sure to call [CanMessage.dispose] when you're done using it.
-	Stream<CanMessage> get incomingMessages;
+  /// A stream of incoming CAN messages. Use [Stream.listen] to handle them.
+  /// 
+  /// This stream returns [CanMessage] objects, which are wrappers around native structs, which
+  /// needs to be freed after use. Be sure to call [CanMessage.dispose] when you're done using it.
+  Stream<CanMessage> get incomingMessages;
 }
