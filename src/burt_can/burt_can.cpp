@@ -33,7 +33,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 	}
 
 	// Define the interface we'll use on the socket
-	strncpy(ifr.ifr_name, interface, strlen(interface));
+	strcpy(ifr.ifr_name, interface);
 	ioctl(handle, SIOCGIFINDEX, &ifr);
 	if (!ifr.ifr_ifindex) {
 		return BurtCanStatus::INTERFACE_PARSE_ERROR;
