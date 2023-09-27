@@ -1,10 +1,13 @@
-all: can serial
+.PHONE: all clean
 
-can: 
+all: burt_can/burt_can.so libserialport.so
+
+burt_can/burt_can.so: burt_can/*.h burt_can/*.cpp burt_can/*.hpp
 	make -C burt_can shared
 
 clean: 
 	rm -f *.o *.so *.exp *.lib *.obj *.out
+	rm -f burt_can/*.so
 	rm -f libserialport/*.so
 	rm -f ../*.so
 
@@ -19,6 +22,6 @@ SerialCommand += -fPIC  # Position-independent code. Useful for shared libraries
 SerialCommand += -std=c99 -Wall -Wextra -pedantic -Wmissing-prototypes -Wshadow  # Misc options
 SerialCommand += -shared -o libserialport.so  # Output to a shared library
 
-serial: 
+libserialport.so: libserialport/serialport.c libserialport/timing.c libserialport/linux.c libserialport/linux_termios.c
 	$(SerialCommand)
 	sudo cp libserialport.so /usr/lib
