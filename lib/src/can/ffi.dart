@@ -11,7 +11,7 @@ export "package:subsystems/src/generated/can_ffi_bindings.dart";
 final nativeLib = CanBindings(DynamicLibrary.open("src/burt_can/burt_can.so"));
 
 /// These values come from the [BurtCanStatus] enum.
-String? getCanError(int value) => switch(value) {
+String? getCanError(int value) => switch (value) {
   1 => null,
   2 => "Could not create socket",
   3 => "Could not parse interface",
@@ -22,5 +22,6 @@ String? getCanError(int value) => switch(value) {
   8 => "Could not switch to CAN FD",
   9 => "Could not write data",
   10 => "Could not read data",
+  11 => "Frame was not fully read",
   _ => throw ArgumentError.value(value, "CanStatus", "Unknown CAN status"),
 };
