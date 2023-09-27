@@ -24,6 +24,7 @@ typedef enum BurtCanStatus {
 	// IO errors
 	WRITE_ERROR = 9,
 	READ_ERROR = 10,
+	FRAME_NOT_FULLY_READ = 11,
 } BurtCanStatus;
 
 typedef struct NativeCanMessage {

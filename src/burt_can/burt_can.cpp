@@ -16,6 +16,10 @@
 
 #include "burt_can.hpp"
 
+void printError() {
+	std::cout << "Error from C code: " << strerror(errno) << std::endl;
+}
+
 burt_can::BurtCan::BurtCan(const char* interface, int32_t readTimeout, BurtCanType mode) :
 	interface(interface),
 	readTimeout(readTimeout),
@@ -29,6 +33,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 	// Open the socket
 	handle = socket(PF_CAN, SOCK_RAW, CAN_RAW);
 	if (handle < 0) {
+		printError();
 		return BurtCanStatus::SOCKET_CREATE_ERROR;
 	}
 
@@ -36,6 +41,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 	strcpy(ifr.ifr_name, interface);
 	ioctl(handle, SIOCGIFINDEX, &ifr);
 	if (!ifr.ifr_ifindex) {
+		printError();
 		return BurtCanStatus::INTERFACE_PARSE_ERROR;
 	}
 
@@ -44,10 +50,13 @@ BurtCanStatus burt_can::BurtCan::open() {
 		int enableFD = 1;
 
 		if (ioctl(handle, SIOCGIFMTU, &ifr) < 0) {
+			printError();
 			return BurtCanStatus::MTU_ERROR;
 		} else if (mtu != CANFD_MTU) {
+			printError();
 			return BurtCanStatus::CANFD_NOT_SUPPORTED;
 		} else if (setsockopt(handle, SOL_CAN_RAW, CAN_RAW_FD_FRAMES, &enableFD, sizeof(enableFD))) {
+			printError();
 			return BurtCanStatus::FD_MISC_ERROR;
 		}
 	}
@@ -62,6 +71,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 
 	// Bind the socket to the address
 	if (bind(handle, (struct sockaddr*) &address, sizeof(address)) < 0) {
+		printError();
 		return BurtCanStatus::BIND_ERROR;
 	}
 	return BurtCanStatus::OK;
@@ -77,25 +87,30 @@ BurtCanStatus burt_can::BurtCan::send(const NativeCanMessage* frame) {
 	if (write(handle, &raw, size) == size) {
 		return BurtCanStatus::OK;
 	} else {
+		printError();
 		return BurtCanStatus::WRITE_ERROR;
 	}
 }
 
 BurtCanStatus burt_can::BurtCan::receive(NativeCanMessage* frame) {
 	can_frame raw;
-	int size = sizeof(raw);
-	if (read(handle, &raw, size) == size) {
+	long bytesRead = read(handle, &raw, sizeof(raw));
+	if (bytesRead < 0) {
+		printError();
+		return BurtCanStatus::READ_ERROR;
+	} else if (bytesRead < (long) sizeof(raw)) {
+		return BurtCanStatus::FRAME_NOT_FULLY_READ;
+	} else {
 		frame->id = raw.can_id;
 		frame->length = raw.len;
 		std::memcpy(frame->data, raw.data, 8);
 		return BurtCanStatus::OK;
-	} else {
-		return BurtCanStatus::READ_ERROR;
 	}
 }
 
 BurtCanStatus burt_can::BurtCan::dispose() {
 	if (close(handle) < 0) {
+		printError();
 		return BurtCanStatus::CLOSE_ERROR;
 	} else {
 		return BurtCanStatus::OK;

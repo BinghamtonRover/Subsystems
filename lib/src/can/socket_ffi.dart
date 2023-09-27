@@ -57,7 +57,7 @@ class CanFFI implements CanSocket {
     final error = getCanError(nativeLib.BurtCan_open(_can));
     if (error != null) throw CanException(error);
     _startListening(); 
-    
+    logger.info("Listening on CAN interface $canInterface");
   }
 
   @override
@@ -79,7 +79,8 @@ class CanFFI implements CanSocket {
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
-      nativeLib.BurtCan_receive(_can, pointer);
+      final error = getCanError(nativeLib.BurtCan_receive(_can, pointer));
+      if (error != null) throw CanException(error);
       if (pointer.ref.length == 0) return;
       count++;
       if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
