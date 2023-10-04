@@ -1,80 +1,65 @@
-import 'dart:convert';
-import 'dart:io';
+import "dart:convert";
+import "dart:io";
 
-final input = "\$GNGGA,000957.00,4205.21462,N,07558.04134,W,1,10,1.00,298.7,M,-34.4,M,,*7C";
+typedef DMS = ({int degrees, int minutes, double seconds});
 
-class TPV {
-  final String type;
-  final int mode;
-  final double latitude;
-  final double longitude;
+const testInput = r"$GNGGA,000957.00,4205.21462,N,07558.04134,W,1,10,1.00,298.7,M,-34.4,M,,*7C";
+const serialPort = "/dev/cu.usbmodem14201";
+
+class TPVSentence {
+  static DMS tpvToDms(double tpv) {
+    // 12045.25 --> 120 deg, 45 min, 15 sec
+    final degrees = tpv ~/ 100;  // eg, 120
+    final decimalMinutes = tpv % 100;  // eg, 45.25
+    final minutes = decimalMinutes.toInt();  // eg, 45
+    final seconds = (decimalMinutes - minutes) * 60;  // eg, 0.25 * 60 = 15
+    return (degrees: degrees, minutes: minutes, seconds: seconds);
+  }
+
+  final DMS latitude;
+  final DMS longitude;
   final double altitude;
 
-  TPV(this.type, this.mode, this.latitude, this.longitude, this.altitude);
-
-  void printCoordinates() {
-    final latValues = decimalMinutesToDMS(latitude);
-    final lonValues = decimalMinutesToDMS(longitude);
-
-    print("Latitude: ${latValues[0]} degrees, ${latValues[1]} minutes, ${latValues[2]} seconds"); 
-    print("Longitude: ${lonValues[0]} degrees, ${lonValues[1]} minutes, ${lonValues[2]} seconds");
-  }
-
-  void printAltitude() {
-    print('Altitude: $altitude meters');
-  }
-  List<double> decimalMinutesToDMS(double decimalMinutes) {
-    final degrees = decimalMinutes ~/ 100;
-    final decimalPart = decimalMinutes % 100;
-    final minutes = decimalPart.toInt();
-    final seconds = (decimalPart - minutes) * 60;
-    
-    return [degrees.toDouble(), minutes.toDouble(), seconds];
-  }
-}
-
-TPV? parseNMEA(String nmeaSentence) {
-  var parts = nmeaSentence.split(',');
-  var lat = (double.tryParse(parts[2]) ?? 0.0);
-  final tag = parts.first;
-  if(tag.endsWith('GGA')) {
-    return TPV(
-      'TPV',
-      int.tryParse(parts[6]) ?? 0, //mode
-      (double.tryParse(parts[2]) ?? 0.0), // latitude
-      (double.tryParse(parts[4]) ?? 0.0), // longitude
-      double.tryParse(parts[9]) ?? 0.0, // altitude
-    );
-
-  } else if(tag.endsWith('RMC')){
-    var parts = nmeaSentence.split(',');
-    var lat = (double.tryParse(parts[2]) ?? 0.0) / 100;
-    return TPV(
-      'TPV',
-      int.tryParse(parts[12]) ?? 0, // mode
-      (double.tryParse(parts[3]) ?? 0.0), // latitude
-      (double.tryParse(parts[5]) ?? 0.0), // longitude
-      double.tryParse(parts[9]) ?? 0.0, // altitude
-    );
-  }
-  return null;
-}
-
-void main() async {
-  var serialPort = '/dev/cu.usbmodem14201';
-
-  //var tpv = parseNMEA(input);
-  //if (tpv != null) {
-  //  tpv.printCoordinates();
-  //  tpv.printAltitude();
-  //}
-
-  var process = await Process.start('cat', [serialPort]);
-  process.stdout.transform(utf8.decoder).transform(LineSplitter()).listen((line) {
-    var tpv = parseNMEA(line);
-    if (tpv != null) {
-      tpv.printCoordinates();
-      tpv.printAltitude();
-    }
+  TPVSentence({
+    required this.latitude, 
+    required this.longitude, 
+    required this.altitude,
   });
+
+  @override
+  String toString() => "Latitude: $latitude, Longitude: $longitude, Altitude: $altitude";
+}
+
+TPVSentence? parseTpv(String nmeaSentence) {
+  final parts = nmeaSentence.split(",");
+  final tag = parts.first;
+  if (tag.endsWith("GGA")) {
+    return TPVSentence(
+      latitude: TPVSentence.tpvToDms(double.tryParse(parts[2]) ?? 0.0), 
+      longitude: TPVSentence.tpvToDms(double.tryParse(parts[4]) ?? 0.0),
+      altitude: double.tryParse(parts[9]) ?? 0.0,
+    );
+
+  } else if (tag.endsWith("RMC")) {
+    return TPVSentence(
+      latitude: TPVSentence.tpvToDms(double.tryParse(parts[3]) ?? 0.0), 
+      longitude: TPVSentence.tpvToDms(double.tryParse(parts[5]) ?? 0.0),
+      altitude: double.tryParse(parts[9]) ?? 0.0,
+    );
+  } else {
+    return null;
+  }
+}
+
+void main(List<String> args) async {
+  if (args.contains("-t") || args.contains("--test")) {
+    final tpv = parseTpv(testInput);
+    print(tpv);  // ignore: avoid_print
+  } else {
+    final process = await Process.start("cat", [serialPort]);
+    process.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen((line) {
+      final tpv = parseTpv(line);
+      if (tpv != null) print(tpv);  // ignore: avoid_print
+    });
+  }
 }
