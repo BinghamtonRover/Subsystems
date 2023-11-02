@@ -21,6 +21,9 @@ export "src/can/socket_interface.dart";
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
 const Map<int, String> dataCanIDs = {1234: "ScienceData"};
 
+///?
+const Map<int, String> commandUdpIDs = {4567: "RoverPosition"} 
+
 /// Maps [WrappedMessage.name] to CAN IDs for command messages.
 const Map<String, int> commandCanIDs = {"ScienceCommand": 0x1234};
 
