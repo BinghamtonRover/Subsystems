@@ -5,6 +5,7 @@ import "src/server.dart";
 import "src/serial/gps.dart";
 
 export "src/server.dart";
+export "src/serial/imu.dart";
 export "src/serial/serial.dart";
 export "src/serial/gps.dart";
 
@@ -19,6 +20,7 @@ class SubsystemsCollection {
 
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
+		BurtLogger.level = LogLevel.debug;
 		logger.debug("Running in debug mode...");
 		await can.init();
 		await server.init();

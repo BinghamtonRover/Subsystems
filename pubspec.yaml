@@ -12,6 +12,7 @@ dependencies:
     git: https://github.com/BinghamtonRover/Networking.git
   ffi: ^2.0.2
   libserialport: ^0.3.0+1
+  osc: ^1.0.0
 
 dev_dependencies:
   ffigen: ^9.0.1
