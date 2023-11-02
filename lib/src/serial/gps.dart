@@ -68,10 +68,7 @@ class GpsReader {
     gpsCoordinates.longitude = coords.longitude;
     gpsCoordinates.altitude = coords.altitude;
 
-    // Protobuf nesnesini byte array'e dönüştür
     List<int> bytes = roverPosition.writeToBuffer();
-
-    // sendWrapper fonksiyonu ile gönder
     collection.server.sendMessage(roverPosition);
     }
 }
