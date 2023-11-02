@@ -1,4 +1,6 @@
-void main(List<String> args) {
-  final reader = GpsReader();
-  reader.init(args);
+import "package:subsystems/subsystems.dart";
+
+void main() async {
+  final reader = GpsReader(verbose: true);
+  await reader.init();
 }
