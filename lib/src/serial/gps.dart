@@ -58,6 +58,7 @@ class GpsReader {
 
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
   Future<void> init() async {
+    logger.info("Reading GPS on port $serialPort");
     cat = await Process.start("cat", [serialPort]);
     cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
   }

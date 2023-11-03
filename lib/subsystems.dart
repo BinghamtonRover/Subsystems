@@ -30,6 +30,7 @@ class SubsystemsCollection {
 	Future<void> dispose() async {
 		can.dispose();
 		await server.dispose();
+		gps.dispose();
 		logger.info("Subsystems disposed");
 	}
 }

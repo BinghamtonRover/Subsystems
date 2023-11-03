@@ -17,7 +17,7 @@
 #include "burt_can.hpp"
 
 void printError() {
-	std::cout << "Error from C code: " << strerror(errno) << std::endl;
+	std::cout << "Error from C code (" << errno << "): " << strerror(errno) << std::endl;
 }
 
 burt_can::BurtCan::BurtCan(const char* interface, int32_t readTimeout, BurtCanType mode) :
@@ -96,6 +96,7 @@ BurtCanStatus burt_can::BurtCan::receive(NativeCanMessage* frame) {
 	can_frame raw;
 	long bytesRead = read(handle, &raw, sizeof(raw));
 	if (bytesRead < 0) {
+		if (errno == 11) return BurtCanStatus::OK;
 		printError();
 		return BurtCanStatus::READ_ERROR;
 	} else if (bytesRead < (long) sizeof(raw)) {
