@@ -76,7 +76,7 @@ BurtCanStatus burt_can::BurtCan::send(const NativeCanMessage* frame) {
 	int size = sizeof(raw);
 	if (write(handle, &raw, size) == size) {
 		return BurtCanStatus::OK;
-	} else {
+	} else {		
 		return BurtCanStatus::WRITE_ERROR;
 	}
 }
@@ -84,13 +84,17 @@ BurtCanStatus burt_can::BurtCan::send(const NativeCanMessage* frame) {
 BurtCanStatus burt_can::BurtCan::receive(NativeCanMessage* frame) {
 	can_frame raw;
 	int size = sizeof(raw);
-	if (read(handle, &raw, size) == size) {
+	int bytesRead = read(handle, &raw, size);
+	if (byetsRead == 0) { 
+		return BurtCanStatus::OK; 
+	} else if (bytesRead == size) {
 		frame->id = raw.can_id;
 		frame->length = raw.len;
 		std::memcpy(frame->data, raw.data, 8);
 		return BurtCanStatus::OK;
 	} else {
-		return BurtCanStatus::READ_ERROR;
+		frame->length = 0;
+		return BurtCanStatus::OK;
 	}
 }
 

@@ -70,7 +70,8 @@ class CanFFI implements CanSocket {
   @override
   void sendMessage({required int id, required List<int> data}) {
     final message = CanMessage(id: id, data: data);
-    nativeLib.BurtCan_send(_can, message.pointer);
+    final error = getCanError(nativeLib.BurtCan_send(_can, message.pointer));
+    if (error != null) throw CanException(error);
     message.dispose();
   }
 
@@ -79,7 +80,8 @@ class CanFFI implements CanSocket {
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
-      nativeLib.BurtCan_receive(_can, pointer);
+      final error = getCanError(nativeLib.BurtCan_receive(_can, pointer));
+      if (error != null) throw CanException(error);
       if (pointer.ref.length == 0) return;
       count++;
       if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
