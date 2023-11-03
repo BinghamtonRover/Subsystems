@@ -35,7 +35,9 @@ BurtCanStatus BurtCan_close(BurtCan* pointer) {
 }
 
 NativeCanMessage* NativeCanMessage_create() {
-  return new NativeCanMessage;
+  NativeCanMessage* pointer = new NativeCanMessage();
+  pointer->data = new uint8_t[8];
+  return pointer;
 }
 
 void NativeCanMessage_free(NativeCanMessage* pointer) {
