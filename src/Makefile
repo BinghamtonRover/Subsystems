@@ -7,6 +7,7 @@ clean:
 	rm -f *.o *.so *.exp *.lib *.obj *.out
 	rm -f libserialport/*.so
 	rm -f ../*.so
+	make -C burt_can clean
 
 SerialCommand = gcc
 SerialCommand += libserialport/serialport.c
