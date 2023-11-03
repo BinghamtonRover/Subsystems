@@ -2,9 +2,11 @@ import "package:burt_network/logging.dart";
 import "package:subsystems/can.dart";
 
 import "src/server.dart";
+import "src/serial/gps.dart";
 
 export "src/server.dart";
 export "src/serial/serial.dart";
+export "src/serial/gps.dart";
 
 /// Contains all the resources needed by the subsystems program.
 class SubsystemsCollection {
@@ -12,12 +14,15 @@ class SubsystemsCollection {
 	final can = CanService();
 	/// The UDP server.
 	final server = SubsystemsServer(port: 8001);
+	/// The GPS reader.
+	final gps = GpsReader();
 
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
 		logger.debug("Running in debug mode...");
 		can.init();
 		await server.init();
+		await gps.init();
 		logger.info("Subsystems initialized");
 	}
 

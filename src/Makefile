@@ -10,6 +10,7 @@ clean:
 	rm -f burt_can/*.so
 	rm -f libserialport/*.so
 	rm -f ../*.so
+	make -C burt_can clean
 
 SerialCommand = gcc
 SerialCommand += libserialport/serialport.c

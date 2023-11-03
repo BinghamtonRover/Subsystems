@@ -70,7 +70,8 @@ class CanFFI implements CanSocket {
   @override
   void sendMessage({required int id, required List<int> data}) {
     final message = CanMessage(id: id, data: data);
-    nativeLib.BurtCan_send(_can, message.pointer);
+    final error = getCanError(nativeLib.BurtCan_send(_can, message.pointer));
+    if (error != null) throw CanException(error);
     message.dispose();
   }
 
