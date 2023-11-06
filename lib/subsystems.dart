@@ -20,9 +20,11 @@ class SubsystemsCollection {
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
 		logger.debug("Running in debug mode...");
-		can.init();
-		await server.init();
-		await gps.init();
+		await Future.wait([
+			can.init(),
+			server.init(),
+			gps.init(),
+		]);
 		logger.info("Subsystems initialized");
 	}
 

@@ -31,7 +31,7 @@ class CanFFI implements CanSocket {
   /// 
   /// This should be small enough to catch incoming messages but large enough to
   /// not block other code from runnng.
-  static const readInterval = Duration(milliseconds: 100);
+  static const readInterval = Duration(milliseconds: 2500);
 
   /// The native CAN interface, as a C pointer.
   final Pointer<BurtCan> _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
@@ -54,7 +54,7 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  void init() async { 
+  Future<void> init() async { 
     await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
     final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
     if (result.exitCode != 0) {
@@ -85,12 +85,13 @@ class CanFFI implements CanSocket {
 
   /// Checks for new CAN messages and adds them to the [incomingMessages] stream.
   void _checkForMessages(_) {
+    print("Checking for CAN...");
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
       final error = getCanError(nativeLib.BurtCan_receive(_can, pointer));
       if (error != null) throw CanException(error);
-      if (pointer.ref.length == 0) return;
+      if (pointer.ref.length == 0) break;
       count++;
       if (count % 10 == 0) {
       	logger.warning("Processed $count messages in one callback. Consider decreasing the CAN read interval.");
@@ -98,5 +99,6 @@ class CanFFI implements CanSocket {
     	final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
+    print("DONE. Found $count messages");
   }
 }

@@ -19,10 +19,22 @@ export "src/can/message.dart";
 export "src/can/socket_interface.dart";
 
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
-const Map<int, String> dataCanIDs = {1234: "ScienceData"};
+final Map<int, String> dataCanIDs = {
+	0x13: ElectricalData().messageName,
+	0x14: DriveData().messageName,
+	0x15: ArmData().messageName,
+	0x16: GripperData().messageName,
+	0x17: ScienceData().messageName,
+};
 
 /// Maps [WrappedMessage.name] to CAN IDs for command messages.
-const Map<String, int> commandCanIDs = {"ScienceCommand": 0x1234};
+final Map<String, int> commandCanIDs = {
+	ArmCommand().messageName: 0x23,
+	GripperCommand().messageName: 0x33,
+	ScienceCommand().messageName: 0x43,
+	DriveCommand().messageName: 0x53,
+	ElectricalCommand().messageName: 0x63,
+};
 
 /// Manages a CAN socket on the subsystems program.
 /// 
@@ -35,8 +47,8 @@ class CanService {
 	late final StreamSubscription<CanMessage> _subscription;
 
 	/// Initializes the CAN library.
-	void init() {
-		can.init();
+	Future<void> init() async {
+		await can.init();
 		_subscription = can.incomingMessages.listen(onMessage);
 	}
 
@@ -48,16 +60,17 @@ class CanService {
 
 	/// Handles an incoming CAN message.
 	void onMessage(CanMessage message) {
-		logger.debug("Received CAN message (${message.id.toRadixString(16)}): ${message.data}");
 		final name = dataCanIDs[message.id];
+		logger.debug("Received CAN message (0x${message.id.toRadixString(16)}): ${message.data}. Name=${name ?? 'None'}");
 		if (name == null) {
-			logger.warning("Unknown CAN ID: ${message.id}");
+			logger.warning("Unknown CAN ID: 0x${message.id.toRadixString(16)}");
 			return; 
 		}
 		// We must copy the data since we'll be disposing the pointer.
 		final copy = List<int>.from(message.data);
 		final wrapper = WrappedMessage(name: name, data: copy);
 		collection.server.sendWrapper(wrapper);
+		print("Sent ${wrapper}");
 		message.dispose();
 	}
 
@@ -68,6 +81,6 @@ class CanService {
 			logger.warning("Received unknown WrappedMessage: ${wrapper.name}");
 			return;
 		}
-		can.sendMessage(id: id, data: wrapper.data);
+		// can.sendMessage(id: id, data: wrapper.data);
 	}
 }
