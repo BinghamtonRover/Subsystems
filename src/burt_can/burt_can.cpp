@@ -81,6 +81,7 @@ BurtCanStatus burt_can::BurtCan::send(const NativeCanMessage* frame) {
 	// Copy the CanFrame to a can_frame and send it.
 	can_frame raw;
 	raw.can_id = frame->id;
+	raw.can_id |= CAN_EFF_FLAG;
 	raw.len = frame->length;
 	std::memcpy(raw.data, frame->data, 8);
 	int size = sizeof(raw);

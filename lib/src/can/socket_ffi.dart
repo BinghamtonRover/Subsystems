@@ -84,8 +84,10 @@ class CanFFI implements CanSocket {
       if (error != null) throw CanException(error);
       if (pointer.ref.length == 0) return;
       count++;
-      if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
-      final message = CanMessage.fromPointer(pointer, isNative: true);
+      if (count % 10 == 0) {
+      	logger.warning("Processed $count messages in one callback. Consider decreasing the CAN read interval.");
+      }
+    	final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
   }
