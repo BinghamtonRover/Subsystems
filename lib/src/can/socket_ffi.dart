@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:io";
 
 import "package:burt_network/logging.dart";
 
@@ -53,7 +54,14 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  void init() { 
+  void init() async { 
+    await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
+    final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
+    if (result.exitCode != 0) {
+      logger.critical("Could not start the CAN bus");
+      logger.critical("Output: ${result.stderr}");
+      exit(1);
+    }
     final error = getCanError(nativeLib.BurtCan_open(_can));
     if (error != null) throw CanException(error);
     _startListening(); 

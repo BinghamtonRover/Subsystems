@@ -103,7 +103,9 @@ BurtCanStatus burt_can::BurtCan::receive(NativeCanMessage* frame) {
 	} else if (bytesRead < (long) sizeof(raw)) {
 		return BurtCanStatus::FRAME_NOT_FULLY_READ;
 	} else {
-		frame->id = raw.can_id;
+		// First bit is the EFF flag. Remove it before parsing
+		uint32_t id = (raw.can_id << 1) >> 1;
+		frame->id = id;
 		frame->length = raw.len;
 		std::memcpy(frame->data, raw.data, 8);
 		return BurtCanStatus::OK;
