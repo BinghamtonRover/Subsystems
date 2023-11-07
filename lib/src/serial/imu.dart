@@ -5,25 +5,25 @@ import "package:subsystems/subsystems.dart";
 import "package:burt_network/logging.dart";
 
 class ImuReader {
-	final String port;
+  final String port;
   final SerialDevice serial;
-	ImuReader(this.port) : serial = SerialDevice(portName: port, readInterval: Duration(milliseconds: 500));
+  ImuReader(this.port) : serial = SerialDevice(portName: port, readInterval: Duration(milliseconds: 500));
 
-	void parseOsc(List <int> data) {
-		try {
+  void parseOsc(List <int> data) {
+    try {
       final message = OSCMessage.fromBytes(data.sublist(20));
       logger.info("Received: $message");		
-		} catch (error) { 
+    } catch (error) { 
       final rawLine = utf8.decode(data.sublist(20));
       logger.warning("Received $rawLine");
     }
-	}
+  }
 
-	void init() {
+  void init() {
     serial.stream.listen(parseOsc);
-	}
+  }
 
-	void dispose() {
-		logger.info("ImuReader disposed");
-	}
+  void dispose() {
+    logger.info("ImuReader disposed");
+  }
 }
