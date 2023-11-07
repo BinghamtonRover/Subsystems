@@ -5,7 +5,7 @@ import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 /// The port/device file to listen to the GPS on.
-const serialPort = "/dev/ttyACM0";
+const serialPort = "/dev/rover-gps";
 
 /// Listens to the GPS and sends its output to the Dashboard. 
 /// 

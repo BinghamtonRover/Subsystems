@@ -7,7 +7,7 @@ import "package:subsystems/subsystems.dart";
 import "package:burt_network/burt_network.dart";
 
 /// The serial port that the IMU is conncted to.
-const port = "/dev/ttyACM1";
+const port = "/dev/rover-imu";
 
 extension on double {
   bool isZero([double epsilon = 0.001]) => abs() < epsilon;
