@@ -8,6 +8,6 @@ void main() async {
   await collection.init();
   while (true) {
     collection.can.can.sendMessage(id: 0x303, data: speed);
-    await Future.delayed(Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
   }
 }

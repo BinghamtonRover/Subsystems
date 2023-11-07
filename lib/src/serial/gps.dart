@@ -52,7 +52,7 @@ class GpsReader {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
     final roverPosition = RoverPosition(gps: coordinates);
-    // collection.server.sendMessage(roverPosition);
+    collection.server.sendMessage(roverPosition);
   }
 
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.

@@ -18,6 +18,7 @@ class SubsystemsCollection {
 	final server = SubsystemsServer(port: 8001);
 	/// The GPS reader.
 	final gps = GpsReader();
+  /// The IMU reader.
 	final imu = ImuReader();
 
 	/// Initializes all the resources needed by the subsystems.
