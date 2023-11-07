@@ -1,49 +1,29 @@
 import "dart:convert";
 
-import 'package:osc/osc.dart';
-import "dart:typed_data";
+import "package:osc/osc.dart";
 import "package:subsystems/subsystems.dart";
 import "package:burt_network/logging.dart";
 
-const port = "/dev/ttyACM0";
-
 class ImuReader {
 	final String port;
+  final SerialDevice serial;
+	ImuReader(this.port) : serial = SerialDevice(portName: port, readInterval: Duration(milliseconds: 500));
 
-	ImuReader(this.port);
-
-	void printXYZ(List <int> data){
-
-		data = data.sublist(20);
-		String message = utf8.decode(data, allowMalformed: true);
-
-		logger.info("Received: $data");
-
-		print("Message: ${message}");
-		
+	void parseOsc(List <int> data) {
 		try {
-
-		final message = OSCMessage.fromBytes(data);
-		print (message);
-
-		} catch (error) {
-
-		print("Invalid message. Got error: $error");
-
-		}
+      final message = OSCMessage.fromBytes(data.sublist(20));
+      logger.info("Received: $message");		
+		} catch (error) { 
+      final rawLine = utf8.decode(data.sublist(20));
+      logger.warning("Received $rawLine");
+    }
 	}
 
 	void init() {
-		final Stream<List<int>> inputStream;
-		ImuReader(this.inputStream);
-
-		void intit() {
-			inputStream.listen(printXYZ);
-		}
+    serial.stream.listen(parseOsc);
 	}
-	void dispose() {
-		ImuReader.dispose();
-		logger.info("ImuReader disposed");
 
+	void dispose() {
+		logger.info("ImuReader disposed");
 	}
 }
