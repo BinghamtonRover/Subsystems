@@ -10,6 +10,7 @@
 
 #include <cstring>
 #include <stdio.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
@@ -17,7 +18,7 @@
 #include "burt_can.hpp"
 
 void printError() {
-	std::cout << "Error from C code: " << strerror(errno) << std::endl;
+	std::cout << "Error from C code (" << errno << "): " << strerror(errno) << std::endl;
 }
 
 burt_can::BurtCan::BurtCan(const char* interface, int32_t readTimeout, BurtCanType mode) :
@@ -32,6 +33,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 
 	// Open the socket
 	handle = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+	fcntl(handle, F_SETFL, SOCK_NONBLOCK);
 	if (handle < 0) {
 		printError();
 		return BurtCanStatus::SOCKET_CREATE_ERROR;
@@ -81,6 +83,7 @@ BurtCanStatus burt_can::BurtCan::send(const NativeCanMessage* frame) {
 	// Copy the CanFrame to a can_frame and send it.
 	can_frame raw;
 	raw.can_id = frame->id;
+	raw.can_id |= CAN_EFF_FLAG;
 	raw.len = frame->length;
 	std::memcpy(raw.data, frame->data, 8);
 	int size = sizeof(raw);
@@ -96,12 +99,15 @@ BurtCanStatus burt_can::BurtCan::receive(NativeCanMessage* frame) {
 	can_frame raw;
 	long bytesRead = read(handle, &raw, sizeof(raw));
 	if (bytesRead < 0) {
+		if (errno == 11) return BurtCanStatus::OK;
 		printError();
 		return BurtCanStatus::READ_ERROR;
 	} else if (bytesRead < (long) sizeof(raw)) {
 		return BurtCanStatus::FRAME_NOT_FULLY_READ;
 	} else {
-		frame->id = raw.can_id;
+		// First bit is the EFF flag. Remove it before parsing
+		uint32_t id = (raw.can_id << 1) >> 1;
+		frame->id = id;
 		frame->length = raw.len;
 		std::memcpy(frame->data, raw.data, 8);
 		return BurtCanStatus::OK;

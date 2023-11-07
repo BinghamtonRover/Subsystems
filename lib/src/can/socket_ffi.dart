@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:io";
 
 import "package:burt_network/logging.dart";
 
@@ -53,7 +54,14 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  void init() { 
+  Future<void> init() async { 
+    await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
+    final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
+    if (result.exitCode != 0) {
+      logger.critical("Could not start the CAN bus");
+      logger.critical("Output: ${result.stderr}");
+      exit(1);
+    }
     final error = getCanError(nativeLib.BurtCan_open(_can));
     if (error != null) throw CanException(error);
     _startListening(); 
@@ -70,7 +78,8 @@ class CanFFI implements CanSocket {
   @override
   void sendMessage({required int id, required List<int> data}) {
     final message = CanMessage(id: id, data: data);
-    nativeLib.BurtCan_send(_can, message.pointer);
+    final error = getCanError(nativeLib.BurtCan_send(_can, message.pointer));
+    if (error != null) throw CanException(error);
     message.dispose();
   }
 
@@ -81,10 +90,12 @@ class CanFFI implements CanSocket {
       final pointer = nativeLib.NativeCanMessage_create();
       final error = getCanError(nativeLib.BurtCan_receive(_can, pointer));
       if (error != null) throw CanException(error);
-      if (pointer.ref.length == 0) return;
+      if (pointer.ref.length == 0) break;
       count++;
-      if (count == 10) logger.warning("Processed over 10 CAN messages in one callback. Consider decreasing the CAN read interval.");
-      final message = CanMessage.fromPointer(pointer, isNative: true);
+      if (count % 10 == 0) {
+      	logger.warning("Processed $count messages in one callback. Consider decreasing the CAN read interval.");
+      }
+    	final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
   }

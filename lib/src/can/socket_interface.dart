@@ -30,7 +30,7 @@ abstract class CanSocket {
   factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
 
   /// Starts listening for CAN messages.
-  void init() { }
+  Future<void> init();
 
   /// Disposes of native resources allocated to this object, and stops listening for CAN messages.
   void dispose() { }
