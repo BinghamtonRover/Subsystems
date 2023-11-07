@@ -70,7 +70,6 @@ class CanService {
 		final copy = List<int>.from(message.data);
 		final wrapper = WrappedMessage(name: name, data: copy);
 		collection.server.sendWrapper(wrapper);
-		print("Sent ${wrapper}");
 		message.dispose();
 	}
 
@@ -81,6 +80,6 @@ class CanService {
 			logger.warning("Received unknown WrappedMessage: ${wrapper.name}");
 			return;
 		}
-		// can.sendMessage(id: id, data: wrapper.data);
+		can.sendMessage(id: id, data: wrapper.data);
 	}
 }

@@ -10,6 +10,7 @@
 
 #include <cstring>
 #include <stdio.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
@@ -32,6 +33,7 @@ BurtCanStatus burt_can::BurtCan::open() {
 
 	// Open the socket
 	handle = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+	fcntl(handle, F_SETFL, SOCK_NONBLOCK);
 	if (handle < 0) {
 		printError();
 		return BurtCanStatus::SOCKET_CREATE_ERROR;

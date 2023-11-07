@@ -31,7 +31,7 @@ class CanFFI implements CanSocket {
   /// 
   /// This should be small enough to catch incoming messages but large enough to
   /// not block other code from runnng.
-  static const readInterval = Duration(milliseconds: 2500);
+  static const readInterval = Duration(milliseconds: 100);
 
   /// The native CAN interface, as a C pointer.
   final Pointer<BurtCan> _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
@@ -85,7 +85,6 @@ class CanFFI implements CanSocket {
 
   /// Checks for new CAN messages and adds them to the [incomingMessages] stream.
   void _checkForMessages(_) {
-    print("Checking for CAN...");
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
@@ -99,6 +98,5 @@ class CanFFI implements CanSocket {
     	final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
-    print("DONE. Found $count messages");
   }
 }
