@@ -3,6 +3,7 @@ import "package:subsystems/can.dart";
 
 import "src/server.dart";
 import "src/serial/gps.dart";
+import "src/serial/imu.dart";
 
 export "src/server.dart";
 export "src/serial/imu.dart";
@@ -17,14 +18,15 @@ class SubsystemsCollection {
 	final server = SubsystemsServer(port: 8001);
 	/// The GPS reader.
 	final gps = GpsReader();
+	final imu = ImuReader();
 
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
-		BurtLogger.level = LogLevel.debug;
 		logger.debug("Running in debug mode...");
 		await can.init();
 		await server.init();
 		await gps.init();
+		await imu.init();
 		logger.info("Subsystems initialized");
 	}
 

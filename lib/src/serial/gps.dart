@@ -51,9 +51,8 @@ class GpsReader {
   void handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
-    logger.debug("GPS Read: $coordinates");
     final roverPosition = RoverPosition(gps: coordinates);
-    collection.server.sendMessage(roverPosition);
+    // collection.server.sendMessage(roverPosition);
   }
 
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
