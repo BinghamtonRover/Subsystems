@@ -8,7 +8,7 @@ export "package:subsystems/src/generated/can_ffi_bindings.dart";
 /// The native SocketCAN-based library.
 /// 
 /// See `src/can.h` in this repository. Only supported on Linux.
-final nativeLib = CanBindings(DynamicLibrary.open("/home/pi/rover/SubsystemsPi/Subsystems/src/burt_can/burt_can.so"));
+final nativeLib = CanBindings(DynamicLibrary.open("burt_can.so"));
 
 /// These values come from the [BurtCanStatus] enum.
 String? getCanError(int value) => switch (value) {
