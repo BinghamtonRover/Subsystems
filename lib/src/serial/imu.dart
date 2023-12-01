@@ -33,7 +33,7 @@ class ImuReader {
       );
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
       if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) {
-        logger.warning("Got invalid orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
+        logger.warning("Got invalid orientation from IMU", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
         return;
       }
       logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
@@ -41,15 +41,19 @@ class ImuReader {
       collection.server.sendMessage(position);
     } catch (error) { 
       final rawLine = utf8.decode(data.sublist(20), allowMalformed: true);
-      logger.debug("Got invalid line from IMU: $rawLine");
+      logger.debug("Got invalid line from IMU", body: rawLine);
     }
   }
 
   /// Starts listening to the IMU.
   Future<void> init() async {
-    serial.open();
-    subscription = serial.stream.listen(handleOsc);
-    logger.info("Reading IMU on port $port");
+    try {
+      serial.open();
+      subscription = serial.stream.listen(handleOsc);
+      logger.info("Reading IMU on port $port");
+    } catch (error) {
+      logger.critical("Could not open IMU", body: "Port $port, Error: $error");
+    }
   }
 
   /// Stops listening to the serial port.

@@ -24,11 +24,15 @@ class SubsystemsCollection {
 	/// Initializes all the resources needed by the subsystems.
 	Future<void> init() async {
 		logger.debug("Running in debug mode...");
-		await can.init();
 		await server.init();
-		await gps.init();
-		await imu.init();
-		logger.info("Subsystems initialized");
+    try {
+      await can.init();
+      await gps.init();
+      await imu.init();
+      logger.info("Subsystems initialized");
+    } catch (error) {
+      logger.critical("Unexpected error when initializing Subsystems", body: error.toString());
+    }
 	}
 
 	/// Disposes all the resources needed by the subsystems.
@@ -42,3 +46,5 @@ class SubsystemsCollection {
 
 /// The collection of all the subsystem's resources.
 final collection = SubsystemsCollection();
+/// A logger that prints to the terminal and sends a UDP message.
+final logger = BurtLogger(collection.server);

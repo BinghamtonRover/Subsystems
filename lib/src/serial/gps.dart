@@ -4,6 +4,8 @@ import "dart:io";
 import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
+// TODO: Detect No Fix, stopped responding
+
 /// The port/device file to listen to the GPS on.
 const serialPort = "/dev/rover-gps";
 
@@ -45,12 +47,16 @@ class GpsReader {
   }
 
   /// The `cat` process that's reading from the GPS.
-  Process? cat;
+  late Process cat;
 
   /// Parses a line of NMEA output and sends the GPS coordinates to the dashboard.
   void handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
+    if (coordinates.latitude == 0 || coordinates.longitude == 0 || coordinates.altitude == 0) {
+      logger.warning("Got invalid GPS coordinates", body: coordinates.toString());
+      return;
+    }
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
   }
@@ -58,10 +64,16 @@ class GpsReader {
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
   Future<void> init() async {
     logger.info("Reading GPS on port $serialPort");
-    cat = await Process.start("cat", [serialPort]);
-    cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+    try {
+      cat = await Process.start("cat", [serialPort]);
+      cat.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+    } on ProcessException catch (error) {
+      logger.critical("Could not open GPS", body: "Port $serialPort, Error: ${error.message}");
+    } catch (error) {
+      logger.critical("Unknown error", body: error.toString());
+    }
   }
 
   /// Closes the [cat] process to stop listening to the GPS.
-  void dispose() => cat?.kill();
+  void dispose() => cat.kill();
 }
