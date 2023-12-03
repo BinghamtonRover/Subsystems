@@ -51,6 +51,10 @@ class GpsReader {
   void handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
+    if (coordinates.latitude == 0 || coordinates.longitude == 0 || coordinates.altitude == 0) {
+      logger.warning("Got invalid GPS coordinates", body: coordinates.toString());
+      return;
+    }
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
   }
@@ -58,8 +62,14 @@ class GpsReader {
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
   Future<void> init() async {
     logger.info("Reading GPS on port $serialPort");
-    cat = await Process.start("cat", [serialPort]);
-    cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+    try {
+      cat = await Process.start("cat", [serialPort]);
+      cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+    } on ProcessException catch (error) {
+      logger.critical("Could not open GPS", body: "Port $serialPort, Error: ${error.message}");
+    } catch (error) {
+      logger.critical("Unknown error", body: error.toString());
+    }
   }
 
   /// Closes the [cat] process to stop listening to the GPS.

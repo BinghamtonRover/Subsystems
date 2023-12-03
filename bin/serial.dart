@@ -4,6 +4,8 @@ import "package:burt_network/logging.dart";
 
 const port = "COM11";
 
+final logger = BurtLogger();
+
 void main() async {
 	final device = SerialDevice(
 		portName: port, 

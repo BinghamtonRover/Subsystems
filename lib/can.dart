@@ -9,7 +9,6 @@ library;
 import "dart:async";
 
 import "package:burt_network/generated.dart";
-import "package:burt_network/logging.dart";
 import "package:subsystems/subsystems.dart";
 
 import "src/can/message.dart";
@@ -44,7 +43,7 @@ class CanService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
 	final can = CanSocket();
 
-	late final StreamSubscription<CanMessage> _subscription;
+	StreamSubscription<CanMessage>? _subscription;
 
 	/// Initializes the CAN library.
 	Future<void> init() async {
@@ -54,7 +53,7 @@ class CanService {
 
 	/// Disposes the native CAN library and any resources it holds.
 	void dispose() {
-		_subscription.cancel();
+		_subscription?.cancel();
 		can.dispose();
 	}
 
@@ -63,7 +62,7 @@ class CanService {
 		final name = dataCanIDs[message.id];
 		logger.debug("Received CAN message (0x${message.id.toRadixString(16)}): ${message.data}. Name=${name ?? 'None'}");
 		if (name == null) {
-			logger.warning("Unknown CAN ID: 0x${message.id.toRadixString(16)}");
+			logger.warning("Received CAN message with unknown ID", body: "ID=0x${message.id.toRadixString(16)}");
 			return; 
 		}
 		// We must copy the data since we'll be disposing the pointer.
@@ -77,7 +76,7 @@ class CanService {
 	void sendWrapper(WrappedMessage wrapper) {
 		final id = commandCanIDs[wrapper.name];
 		if (id == null) {
-			logger.warning("Received unknown WrappedMessage: ${wrapper.name}");
+			logger.warning("Received unknown WrappedMessage: ${wrapper.name}", body: "Data: ${wrapper.data}");
 			return;
 		}
 		can.sendMessage(id: id, data: wrapper.data);

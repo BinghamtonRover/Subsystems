@@ -43,4 +43,7 @@ abstract class CanSocket {
   /// This stream returns [CanMessage] objects, which are wrappers around native structs, which
   /// needs to be freed after use. Be sure to call [CanMessage.dispose] when you're done using it.
   Stream<CanMessage> get incomingMessages;
+
+  /// Resets the CAN bus. 
+  Future<void> reset();
 }

@@ -1,7 +1,7 @@
 import "dart:async";
 import "dart:io";
 
-import "package:burt_network/logging.dart";
+import "package:subsystems/subsystems.dart";
 
 import "ffi.dart";
 import "message.dart";
@@ -58,28 +58,32 @@ class CanFFI implements CanSocket {
     await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
     final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
     if (result.exitCode != 0) {
-      logger.critical("Could not start the CAN bus");
-      logger.critical("Output: ${result.stderr}");
-      exit(1);
+      logger.critical("Could not start can0", body: "sudo ip link set can0 up type can bitrate 500000 failed:\n${result.stderr}");
+      return;
     }
     final error = getCanError(nativeLib.BurtCan_open(_can));
-    if (error != null) throw CanException(error);
+    if (error != null) {
+      logger.critical("Could not start the CAN bus", body: error);
+      return;
+    }
     _startListening(); 
     logger.info("Listening on CAN interface $canInterface");
   }
 
   @override
-  void dispose() {
+  Future<void> dispose() async {
     _stopListening();
     nativeLib.BurtCan_free(_can);
-    _controller.close();
+    await _controller.close();
+    final process = await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
+    if (process.exitCode != 0) logger.critical("Could not take down can0", body: "'sudo ip link set can0 down' failed: ${process.stderr}");
   }
 
   @override
   void sendMessage({required int id, required List<int> data}) {
     final message = CanMessage(id: id, data: data);
     final error = getCanError(nativeLib.BurtCan_send(_can, message.pointer));
-    if (error != null) throw CanException(error);
+    if (error != null) logger.warning("Could not send CAN message", body: "ID=$id, Data=$data, Error: $error");
     message.dispose();
   }
 
@@ -89,14 +93,20 @@ class CanFFI implements CanSocket {
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
       final error = getCanError(nativeLib.BurtCan_receive(_can, pointer));
-      if (error != null) throw CanException(error);
+      if (error != null) logger.warning("Could not read the CAN bus", body: error);
       if (pointer.ref.length == 0) break;
       count++;
       if (count % 10 == 0) {
-      	logger.warning("Processed $count messages in one callback. Consider decreasing the CAN read interval.");
+      	logger.warning("CAN Buffer is full", body: "Processed $count messages in one callback. Consider decreasing the CAN read interval.");
       }
     	final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
+  }
+
+  @override
+  Future<void> reset() async {
+    await dispose();
+    await init();
   }
 }
