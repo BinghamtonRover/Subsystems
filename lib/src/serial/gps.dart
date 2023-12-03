@@ -4,8 +4,6 @@ import "dart:io";
 import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
-// TODO: Detect No Fix, stopped responding
-
 /// The port/device file to listen to the GPS on.
 const serialPort = "/dev/rover-gps";
 
@@ -47,7 +45,7 @@ class GpsReader {
   }
 
   /// The `cat` process that's reading from the GPS.
-  late Process cat;
+  Process? cat;
 
   /// Parses a line of NMEA output and sends the GPS coordinates to the dashboard.
   void handleLine(String line) {
@@ -66,7 +64,7 @@ class GpsReader {
     logger.info("Reading GPS on port $serialPort");
     try {
       cat = await Process.start("cat", [serialPort]);
-      cat.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+      cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
     } on ProcessException catch (error) {
       logger.critical("Could not open GPS", body: "Port $serialPort, Error: ${error.message}");
     } catch (error) {
@@ -75,5 +73,5 @@ class GpsReader {
   }
 
   /// Closes the [cat] process to stop listening to the GPS.
-  void dispose() => cat.kill();
+  void dispose() => cat?.kill();
 }

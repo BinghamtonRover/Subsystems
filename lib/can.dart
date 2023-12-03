@@ -43,7 +43,7 @@ class CanService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
 	final can = CanSocket();
 
-	late final StreamSubscription<CanMessage> _subscription;
+	StreamSubscription<CanMessage>? _subscription;
 
 	/// Initializes the CAN library.
 	Future<void> init() async {
@@ -53,7 +53,7 @@ class CanService {
 
 	/// Disposes the native CAN library and any resources it holds.
 	void dispose() {
-		_subscription.cancel();
+		_subscription?.cancel();
 		can.dispose();
 	}
 

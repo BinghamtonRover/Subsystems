@@ -1,5 +1,4 @@
 import "package:burt_network/logging.dart";
-import "package:burt_network/generated.dart";
 import "package:subsystems/can.dart";
 
 import "src/server.dart";
@@ -48,4 +47,4 @@ class SubsystemsCollection {
 /// The collection of all the subsystem's resources.
 final collection = SubsystemsCollection();
 /// A logger that prints to the terminal and sends a UDP message.
-final logger = BurtLogger(socket: collection.server, device: Device.SUBSYSTEMS);
+final logger = BurtLogger(socket: collection.server);

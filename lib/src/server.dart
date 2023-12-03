@@ -10,6 +10,15 @@ class SubsystemsServer extends ServerSocket {
 	/// Creates a Subsystems server on the given port.
 	SubsystemsServer({required super.port}) : super(device: Device.SUBSYSTEMS);
 
+  @override
+  void updateSettings(UpdateSetting settings) {
+    super.updateSettings(settings);
+    if (settings.status == RoverStatus.RESTART) {
+      collection.dispose();
+      collection.init();
+    }
+  }
+
 	@override
 	void onMessage(WrappedMessage wrapper) {
 		collection.can.sendWrapper(wrapper);
