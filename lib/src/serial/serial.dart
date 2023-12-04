@@ -28,7 +28,7 @@ class SerialDevice {
 	/// A timer to periodically read from the port (see [_readBytes]).
 	Timer? _timer;
 	/// The controller for [stream].
-	final _controller = StreamController<Uint8List>();
+	final _controller = StreamController<Uint8List>.broadcast();
 
 	/// Manages a connection to a serial device. See [allPorts].
 	SerialDevice({
