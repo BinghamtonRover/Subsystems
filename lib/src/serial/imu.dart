@@ -57,8 +57,8 @@ class ImuReader {
   }
 
   /// Stops listening to the serial port.
-  void dispose() {
-    subscription?.cancel();
+  Future<void> dispose() async {
+    await subscription?.cancel();
     serial.dispose();
   }
 }
