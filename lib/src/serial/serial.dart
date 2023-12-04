@@ -56,6 +56,7 @@ class SerialDevice {
       _controller.add(bytes);
 		} catch (error) {
       logger.critical("Could not read $portName", body: error.toString());
+      dispose();
 		}
 	}
 

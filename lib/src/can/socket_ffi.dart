@@ -79,7 +79,6 @@ class CanFFI implements CanSocket {
   Future<void> dispose() async {
     _stopListening();
     if (_can != null) nativeLib.BurtCan_free(_can!);
-    await _controller.close();
     final process = await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
     if (process.exitCode != 0) {
       logger.critical("Could not take down can0", body: "'sudo ip link set can0 down' failed: ${process.stderr}");
