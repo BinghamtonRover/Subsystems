@@ -33,7 +33,7 @@ class ImuReader {
       );
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
       if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) {
-        logger.warning("Got invalid orientation from IMU", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
+        logger.trace("Got invalid orientation", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
         return;
       }
       logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
