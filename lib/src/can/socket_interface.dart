@@ -33,7 +33,7 @@ abstract class CanSocket {
   Future<void> init();
 
   /// Disposes of native resources allocated to this object, and stops listening for CAN messages.
-  void dispose() { }
+  Future<void> dispose() async { }
 
   /// Sends a CAN message with the given ID and data.
   void sendMessage({required int id, required List<int> data}) {  }

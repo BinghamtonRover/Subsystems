@@ -37,7 +37,7 @@ class SubsystemsCollection {
 
 	/// Disposes all the resources needed by the subsystems.
 	Future<void> dispose() async {
-		can.dispose();
+		await can.dispose();
 		await server.dispose();
 		gps.dispose();
 		logger.info("Subsystems disposed");

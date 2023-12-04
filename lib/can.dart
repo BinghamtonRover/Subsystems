@@ -52,9 +52,9 @@ class CanService {
 	}
 
 	/// Disposes the native CAN library and any resources it holds.
-	void dispose() {
-		_subscription?.cancel();
-		can.dispose();
+	Future<void> dispose() async {
+		await _subscription?.cancel();
+		await can.dispose();
 	}
 
 	/// Handles an incoming CAN message.

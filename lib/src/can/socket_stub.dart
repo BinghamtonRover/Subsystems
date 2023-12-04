@@ -14,7 +14,7 @@ class CanStub implements CanSocket {
   }
 
 	@override
-	void dispose() { }
+	Future<void> dispose() async { }
 
 	@override
 	void sendMessage({required int id, required List<int> data}) {	}
