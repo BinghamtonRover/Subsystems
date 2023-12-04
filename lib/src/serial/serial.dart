@@ -2,6 +2,8 @@ import "dart:async";
 import "dart:typed_data";
 import "package:libserialport/libserialport.dart";
 
+import "package:subsystems/subsystems.dart";
+
 /// A wrapper around the `package:libserialport` library.
 /// 
 /// - Check [allPorts] for a list of all available ports.
@@ -22,7 +24,7 @@ class SerialDevice {
 	final Duration readInterval;
 
 	/// The `package:libserialport` port object for reading and writing.
-	late final SerialPort _port;
+	SerialPort? _port;
 	/// A timer to periodically read from the port (see [_readBytes]).
 	late final Timer _timer;
 	/// The controller for [stream].
@@ -35,12 +37,12 @@ class SerialDevice {
 	});
 
 	/// Whether the port is open (ie, the device is connected).
-	bool get isOpen => _port.isOpen;
+	bool get isOpen => _port?.isOpen ?? false;
 
 	/// Opens the port and begins reading from it.
 	void open() {
 		_port = SerialPort(portName);
-		if (!_port.openReadWrite()) {
+		if (!_port!.openReadWrite()) {
 			throw SerialPortUnavailable(portName);
 		}
 		_timer = Timer.periodic(readInterval, _readBytes);
@@ -50,7 +52,7 @@ class SerialDevice {
 	void _readBytes(_) {
 		final Uint8List bytes;
 		try {
-			bytes = _port.read(_port.bytesAvailable);
+			bytes = _port!.read(_port!.bytesAvailable);
 		} catch (error) {
 			throw SerialReadException(port: portName, error: error);
 		}
@@ -63,12 +65,20 @@ class SerialDevice {
 	/// This port cannot be re-opened. You must use a new [SerialDevice] and call [open] on that.
 	void dispose() {
 		_timer.cancel();
-		_port.close();
-		_port.dispose();
+		_port?.close();
+		_port?.dispose();
+    _port = null;
 	}
 
 	/// Writes data to the port.
-	void write(Uint8List data) => _port.write(data);
+	void write(Uint8List data) {
+    if (_port == null) {
+      logger.error("Could not send to $portName", body: "Port is not opened");
+    } else {
+      _port?.write(data);
+    }
+  }
+
 	/// Reads data from the port.
 	Stream<Uint8List> get stream => _controller.stream;
 }
