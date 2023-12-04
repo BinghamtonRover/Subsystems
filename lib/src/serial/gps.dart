@@ -52,7 +52,7 @@ class GpsReader {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
     if (coordinates.latitude == 0 || coordinates.longitude == 0 || coordinates.altitude == 0) {
-      logger.warning("Got invalid GPS coordinates", body: coordinates.toString());
+      // No fix
       return;
     }
     final roverPosition = RoverPosition(gps: coordinates);
