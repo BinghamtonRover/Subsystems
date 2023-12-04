@@ -1,6 +1,6 @@
 .PHONE: all clean
 
-all: burt_can/burt_can.so libserialport.so
+all: burt_can/burt_can.so libserialport.so install
 
 burt_can/burt_can.so: burt_can/*.h burt_can/*.cpp burt_can/*.hpp
 	make -C burt_can shared
@@ -26,3 +26,7 @@ SerialCommand += -shared -o libserialport.so  # Output to a shared library
 libserialport.so: libserialport/serialport.c libserialport/timing.c libserialport/linux.c libserialport/linux_termios.c
 	$(SerialCommand)
 	sudo cp libserialport.so /usr/lib
+
+install: burt_can/burt_can.so libserialport.so
+	sudo cp libserialport.so /usr/lib
+	make -C burt_can install
