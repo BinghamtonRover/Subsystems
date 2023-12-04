@@ -36,6 +36,7 @@ class CanFFI implements CanSocket {
   /// The native CAN interface, as a C pointer.
   final Pointer<BurtCan> _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
 
+  /// Whether there was an error and CAN is not functioning.
   bool hasError = false;
 
   /// Fills [incomingMessages] with new messages by calling [_checkForMessages].
@@ -50,7 +51,7 @@ class CanFFI implements CanSocket {
   void _stopListening() => _timer?.cancel();
 
   @override
-  Stream<CanMessage> get incomingMessages => _controller.stream;
+  Stream<CanMessage> get incomingMessages => _controller.stream.asBroadcastStream();
 
   /// A timer to check for new messages.
   Timer? _timer;
