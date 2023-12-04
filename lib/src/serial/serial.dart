@@ -50,14 +50,13 @@ class SerialDevice {
 
 	/// Reads any data from the port and adds it to the [stream].
 	void _readBytes(_) {
-		final Uint8List bytes;
 		try {
-			bytes = _port!.read(_port!.bytesAvailable);
+      final Uint8List bytes = _port!.read(_port!.bytesAvailable);
+      if (bytes.isEmpty) return;
+      _controller.add(bytes);
 		} catch (error) {
-			throw SerialReadException(port: portName, error: error);
+      logger.critical("Could not read $portName", body: error.toString());
 		}
-		if (bytes.isEmpty) return;
-		_controller.add(bytes);
 	}
 
 	/// Closes the port and frees any allocated resources associated with it.
