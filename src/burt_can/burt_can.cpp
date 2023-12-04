@@ -33,8 +33,12 @@ BurtCanStatus burt_can::BurtCan::open() {
 
 	// Open the socket
 	handle = socket(PF_CAN, SOCK_RAW, CAN_RAW);
-	fcntl(handle, F_SETFL, SOCK_NONBLOCK);
 	if (handle < 0) {
+		printError();
+		return BurtCanStatus::SOCKET_CREATE_ERROR;
+	}
+	int value = fcntl(handle, F_SETFL, SOCK_NONBLOCK);
+	if (value < 0) {
 		printError();
 		return BurtCanStatus::SOCKET_CREATE_ERROR;
 	}
