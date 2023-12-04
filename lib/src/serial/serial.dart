@@ -26,7 +26,7 @@ class SerialDevice {
 	/// The `package:libserialport` port object for reading and writing.
 	SerialPort? _port;
 	/// A timer to periodically read from the port (see [_readBytes]).
-	late final Timer _timer;
+	Timer? _timer;
 	/// The controller for [stream].
 	final _controller = StreamController<Uint8List>();
 
@@ -64,7 +64,7 @@ class SerialDevice {
 	/// 
 	/// This port cannot be re-opened. You must use a new [SerialDevice] and call [open] on that.
 	void dispose() {
-		_timer.cancel();
+		_timer?.cancel();
 		_port?.close();
 		_port?.dispose();
     _port = null;
