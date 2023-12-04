@@ -11,11 +11,12 @@ class SubsystemsServer extends ServerSocket {
 	SubsystemsServer({required super.port}) : super(device: Device.SUBSYSTEMS);
 
   @override
-  void updateSettings(UpdateSetting settings) {
+  Future<void> updateSettings(UpdateSetting settings) async {
     super.updateSettings(settings);
     if (settings.status == RoverStatus.RESTART) {
-      collection.dispose();
-      collection.init();
+      await collection.dispose();
+      await Future<void>.delayed(const Duration(seconds: 1));
+      await collection.init();
     }
   }
 
