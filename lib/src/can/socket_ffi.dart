@@ -36,6 +36,8 @@ class CanFFI implements CanSocket {
   /// The native CAN interface, as a C pointer.
   final Pointer<BurtCan> _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
 
+  bool hasError = false;
+
   /// Fills [incomingMessages] with new messages by calling [_checkForMessages].
   late final _controller = StreamController<CanMessage>(
     onListen: () => _startListening,
@@ -59,10 +61,12 @@ class CanFFI implements CanSocket {
     final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
     if (result.exitCode != 0) {
       logger.critical("Could not start can0", body: "sudo ip link set can0 up type can bitrate 500000 failed:\n${result.stderr}");
+      hasError = true;
       return;
     }
     final error = getCanError(nativeLib.BurtCan_open(_can));
     if (error != null) {
+      hasError = true;
       logger.critical("Could not start the CAN bus", body: error);
       return;
     }
@@ -76,11 +80,15 @@ class CanFFI implements CanSocket {
     nativeLib.BurtCan_free(_can);
     await _controller.close();
     final process = await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
-    if (process.exitCode != 0) logger.critical("Could not take down can0", body: "'sudo ip link set can0 down' failed: ${process.stderr}");
+    if (process.exitCode != 0) {
+      logger.critical("Could not take down can0", body: "'sudo ip link set can0 down' failed: ${process.stderr}");
+    }
+    hasError = false;
   }
 
   @override
   void sendMessage({required int id, required List<int> data}) {
+    if (hasError) return;
     final message = CanMessage(id: id, data: data);
     final error = getCanError(nativeLib.BurtCan_send(_can, message.pointer));
     if (error != null) logger.warning("Could not send CAN message", body: "ID=$id, Data=$data, Error: $error");
@@ -89,6 +97,7 @@ class CanFFI implements CanSocket {
 
   /// Checks for new CAN messages and adds them to the [incomingMessages] stream.
   void _checkForMessages(_) {
+    if (hasError) return;
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
