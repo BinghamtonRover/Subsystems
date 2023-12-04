@@ -40,10 +40,7 @@ class CanFFI implements CanSocket {
   bool hasError = false;
 
   /// Fills [incomingMessages] with new messages by calling [_checkForMessages].
-  late final _controller = StreamController<CanMessage>.broadcast(
-    onListen: () => _startListening,
-    onCancel: () => _stopListening,
-  );
+  late StreamController<CanMessage> _controller;
 
   void _startListening() => _timer = Timer.periodic(readInterval, _checkForMessages);
   void _stopListening() => _timer?.cancel();
@@ -70,6 +67,10 @@ class CanFFI implements CanSocket {
       logger.critical("Could not start the CAN bus", body: error);
       return;
     }
+    _controller = StreamController<CanMessage>.broadcast(
+      onListen: () => _startListening,
+      onCancel: () => _stopListening,
+    );
     _startListening(); 
     logger.info("Listening on CAN interface $canInterface");
   }
