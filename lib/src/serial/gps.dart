@@ -75,10 +75,8 @@ class GpsReader {
     try {
       device.open();
       _subscription = device.stream.listen(handlePacket);
-    } on ProcessException catch (error) {
-      logger.critical("Could not open GPS", body: "Port $serialPort, Error: ${error.message}");
     } catch (error) {
-      logger.critical("Unknown error", body: error.toString());
+      logger.critical("Could not open GPS", body: "Port $serialPort, Error=$error");
     }
   }
 
