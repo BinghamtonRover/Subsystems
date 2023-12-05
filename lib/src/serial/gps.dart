@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:convert";
 import "dart:io";
 
@@ -44,8 +45,10 @@ class GpsReader {
     return degrees + minutes / 60.0;
   }
 
-  /// The `cat` process that's reading from the GPS.
-  Process? cat;
+  /// The serial device representing the GPS.
+  SerialDevice device = SerialDevice(portName: serialPort, readInterval: const Duration(seconds: 1));
+  /// The subscription to the serial port.
+  StreamSubscription<List<int>>? _subscription;
 
   /// Parses a line of NMEA output and sends the GPS coordinates to the dashboard.
   void handleLine(String line) {
@@ -59,12 +62,19 @@ class GpsReader {
     collection.server.sendMessage(roverPosition);
   }
 
+  /// Parses a packet into several NMEA sentences and handles them.
+  void handlePacket(List<int> bytes) {
+    final string = utf8.decode(bytes);
+    final lines = string.split("\n");
+    lines.forEach(handleLine);
+  }
+
   /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
   Future<void> init() async {
     logger.info("Reading GPS on port $serialPort");
     try {
-      cat = await Process.start("cat", [serialPort]);
-      cat!.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen(handleLine);
+      device.open();
+      _subscription = device.stream.listen(handlePacket);
     } on ProcessException catch (error) {
       logger.critical("Could not open GPS", body: "Port $serialPort, Error: ${error.message}");
     } catch (error) {
@@ -72,6 +82,9 @@ class GpsReader {
     }
   }
 
-  /// Closes the [cat] process to stop listening to the GPS.
-  void dispose() => cat?.kill();
+  /// Closes the [device] and stops listening to the GPS.
+  Future<void> dispose() async {
+    await _subscription?.cancel();
+    device.dispose();
+  }
 }

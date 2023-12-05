@@ -40,7 +40,7 @@ class SubsystemsCollection {
 		await can.dispose();
 		await server.dispose();
     await imu.dispose();
-		gps.dispose();
+		await gps.dispose();
 		logger.info("Subsystems disposed");
 	}
 }
