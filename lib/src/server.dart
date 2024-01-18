@@ -23,5 +23,6 @@ class SubsystemsServer extends ServerSocket {
 	@override
 	void onMessage(WrappedMessage wrapper) {
 		collection.can.sendWrapper(wrapper);
+    logger.info("hi");
 	}
 }

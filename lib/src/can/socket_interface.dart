@@ -27,7 +27,8 @@ class CanException implements Exception {
 /// - Listen to [incomingMessages] to receive messages from other devices on the bus
 abstract class CanSocket {
   /// Chooses the right implementation for the platform. Uses a stub on non-Linux platforms.
-  factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
+  factory CanSocket() => Platform.isLinux ? CanStub() : CanStub();
+  // remember to change this back
 
   /// Starts listening for CAN messages.
   Future<void> init();

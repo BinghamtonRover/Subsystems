@@ -60,6 +60,7 @@ class GpsReader {
     }
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
+    collection.server.sendMessage(roverPosition, socketOverride: SocketInfo(port: 8004, address: InternetAddress.loopbackIPv4));
   }
 
   /// Parses a packet into several NMEA sentences and handles them.

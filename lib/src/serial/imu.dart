@@ -1,5 +1,6 @@
 import "dart:async";
 import "dart:convert";
+import "dart:io";
 
 import "package:osc/osc.dart";
 
@@ -39,6 +40,7 @@ class ImuReader {
       logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
       final position = RoverPosition(orientation: orientation);
       collection.server.sendMessage(position);
+      collection.server.sendMessage(position, socketOverride: SocketInfo(port: 8004, address: InternetAddress.loopbackIPv4));
     } catch (error) { 
       final rawLine = utf8.decode(data.sublist(20), allowMalformed: true);
       logger.debug("Got invalid line from IMU", body: rawLine);

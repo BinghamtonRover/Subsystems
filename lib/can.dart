@@ -7,7 +7,9 @@
 library;
 
 import "dart:async";
+import "dart:io";
 
+import "package:burt_network/burt_network.dart";
 import "package:burt_network/generated.dart";
 import "package:subsystems/subsystems.dart";
 
@@ -69,6 +71,9 @@ class CanService {
 		final copy = List<int>.from(message.data);
 		final wrapper = WrappedMessage(name: name, data: copy);
 		collection.server.sendWrapper(wrapper);
+    if (name == DriveData().messageName){
+		  collection.server.sendWrapper(wrapper, socketOverride: SocketInfo(address: InternetAddress.loopbackIPv4, port: 8004));
+    }
 		message.dispose();
 	}
 
