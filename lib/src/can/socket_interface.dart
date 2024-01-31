@@ -7,7 +7,7 @@ import "socket_ffi.dart";
 
 /// An exception that occurred while working with the CAN bus -- see [BurtCanStatus].
 class CanException implements Exception {
-  /// The error that occured, using [getCanError].
+  /// The error that occurred, using [getCanError].
   final String message;
   /// A const constructor
   const CanException(this.message);
@@ -36,7 +36,7 @@ abstract class CanSocket {
   Future<void> dispose() async { }
 
   /// Sends a CAN message with the given ID and data.
-  void sendMessage({required int id, required List<int> data}) {  }
+  void sendMessage({required int id, required List<int> data});
 
   /// A stream of incoming CAN messages. Use [Stream.listen] to handle them.
   /// 
