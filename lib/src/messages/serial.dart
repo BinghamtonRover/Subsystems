@@ -19,13 +19,14 @@ class SerialService extends MessageService {
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
   final List<BurtFirmwareSerial> devices = [
     /* Fill in your devices and ports here, eg: */
-    // BurtFirmwareSerial("/dev/ttyACM0"),
+    BurtFirmwareSerial("/dev/ttyACM0"),
   ];
 
   @override
   Future<void> init() async {
     for (final device in devices) {
       await device.init();
+	print("Device ${device.device} initialized");
       final subscription = device.stream?.listen((data) => _onMessage(data, device));
       if (subscription == null) continue;
       _subscriptions.add(subscription);
@@ -65,6 +66,7 @@ class SerialService extends MessageService {
     final serial = devices.firstWhereOrNull((s) => s.device == device);
     if (serial == null) return false;
     serial.sendBytes(wrapper.data);
+	logger.debug("Sent data over Serial: ${wrapper.name} --> $device");
     return true;
   }
 }

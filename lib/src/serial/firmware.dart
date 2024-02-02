@@ -35,10 +35,11 @@ class BurtFirmwareSerial {
     }
     // Forward data through the [stream].
     _serial!.startListening();
+	device = Device.ARM;
   }
 
   Future<bool> sendHandshake() async {
-    final handshake = Connect(sender: Device.SUBSYSTEMS, receiver: Device.FIRMWARE); 
+    final handshake = Connect(sender: Device.DASHBOARD, receiver: Device.FIRMWARE); 
     _serial!.write(handshake.writeToBuffer());
     await Future<void>.delayed(handshakeDelay);
     final response = _serial!.readBytes(count: 4);
