@@ -25,7 +25,7 @@ class ImuReader {
   void handleOsc(List<int> data) {
     try {
       final message = OSCMessage.fromBytes(data.sublist(20));
-      logger.debug("Received: $message");    
+//      logger.debug("Received: $message");    
       final orientation = Orientation(
         x: message.arguments[0] as double,
         y: message.arguments[1] as double,
@@ -33,15 +33,15 @@ class ImuReader {
       );
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
       if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) {
-        logger.trace("Got invalid orientation", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
+//        logger.trace("Got invalid orientation", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
         return;
       }
-      logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
+//      logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
       final position = RoverPosition(orientation: orientation);
       collection.server.sendMessage(position);
     } catch (error) { 
       final rawLine = utf8.decode(data.sublist(20), allowMalformed: true);
-      logger.debug("Got invalid line from IMU", body: rawLine);
+//      logger.debug("Got invalid line from IMU", body: rawLine);
     }
   }
 
