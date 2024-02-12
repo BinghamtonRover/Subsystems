@@ -62,6 +62,8 @@ class BurtFirmwareSerial {
     return true;
   }
 
+  void sendBytes(List<int> bytes) => _serial?.write(Uint8List.fromList(bytes));
+
   Future<void> dispose() async {
     reset();
     _serial?.dispose();

@@ -71,6 +71,7 @@ class CanService extends MessageService {
 	}
 
 	/// Sends a [WrappedMessage] to the appropriate subsystem, using [commandCanIDs].
+  @override
 	void sendWrapper(WrappedMessage wrapper) {
 		final id = commandCanIDs[wrapper.name];
 		if (id == null) {
