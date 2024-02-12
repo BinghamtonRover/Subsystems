@@ -22,7 +22,7 @@ class SubsystemsServer extends ServerSocket {
 
 	@override
 	void onMessage(WrappedMessage wrapper) {
-    collection.serial.sendWrapper(wrapper);
-		collection.can.sendWrapper(wrapper);
+    if (collection.serial.sendWrapper(wrapper)) return;
+    collection.can.sendWrapper(wrapper);
 	}
 }

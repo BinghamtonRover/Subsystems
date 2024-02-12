@@ -59,11 +59,12 @@ class SerialService extends MessageService {
   }
 
   @override
-  void sendWrapper(WrappedMessage wrapper) {
+  bool sendWrapper(WrappedMessage wrapper) {
     final device = nameToDevice[wrapper.name];
-    if (device == null) return;
+    if (device == null) return false;
     final serial = devices.firstWhereOrNull((s) => s.device == device);
-    if (serial == null) return;
+    if (serial == null) return false;
     serial.sendBytes(wrapper.data);
+    return true;
   }
 }
