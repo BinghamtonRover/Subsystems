@@ -3,10 +3,6 @@ import "dart:io";
 
 import "package:subsystems/subsystems.dart";
 
-import "ffi.dart";
-import "message.dart";
-import "socket_interface.dart";
-
 /// A function that handles a [CanMessage].
 typedef CanHandler = void Function(CanMessage message);
 
@@ -30,7 +26,7 @@ class CanFFI implements CanSocket {
   /// How often to poll CAN messages.
   /// 
   /// This should be small enough to catch incoming messages but large enough to
-  /// not block other code from runnng.
+  /// not block other code from running.
   static const readInterval = Duration(milliseconds: 100);
 
   /// The native CAN interface, as a C pointer.

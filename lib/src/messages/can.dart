@@ -11,11 +11,7 @@ import "dart:async";
 import "package:burt_network/generated.dart";
 import "package:subsystems/subsystems.dart";
 
-import "src/can/message.dart";
-import "src/can/socket_interface.dart";
-
-export "src/can/message.dart";
-export "src/can/socket_interface.dart";
+import "service.dart";
 
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
 final Map<int, String> dataCanIDs = {
@@ -39,19 +35,21 @@ final Map<String, int> commandCanIDs = {
 /// 
 /// When a new message is received, its ID is looked up in [dataCanIDs] and sent over UDP.
 /// When a UDP message is received, its ID is looked up in [commandCanIDs] and sent over CAN.
-class CanService {
+class CanService extends MessageService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
 	final can = CanSocket();
 
 	StreamSubscription<CanMessage>? _subscription;
 
 	/// Initializes the CAN library.
+  @override
 	Future<void> init() async {
 		await can.init();
 		_subscription = can.incomingMessages.listen(onMessage);
 	}
 
 	/// Disposes the native CAN library and any resources it holds.
+  @override
 	Future<void> dispose() async {
 		await _subscription?.cancel();
 		await can.dispose();
