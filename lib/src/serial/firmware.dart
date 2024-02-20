@@ -13,7 +13,7 @@ class BurtFirmwareSerial {
   SerialDevice? _serial;
 
   final String port;
-  BurtFirmwareSerial(this.port);
+  BurtFirmwareSerial(this.port, this.device);
 
   Stream<Uint8List>? get stream => _serial?.stream;
 
@@ -35,7 +35,6 @@ class BurtFirmwareSerial {
     }
     // Forward data through the [stream].
     _serial!.startListening();
-	device = Device.ARM;
   }
 
   Future<bool> sendHandshake() async {
