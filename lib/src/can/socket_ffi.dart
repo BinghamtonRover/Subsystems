@@ -102,9 +102,9 @@ class CanFFI implements CanSocket {
       if (pointer.ref.length == 0) break;
       count++;
       if (count % 10 == 0) {
-      	logger.warning("CAN Buffer is full", body: "Processed $count messages in one callback. Consider decreasing the CAN read interval.");
+	logger.warning("CAN Buffer is full", body: "Processed $count messages in one callback. Consider decreasing the CAN read interval.");
       }
-    	final message = CanMessage.fromPointer(pointer, isNative: true);
+      final message = CanMessage.fromPointer(pointer, isNative: true);
       _controller.add(message);
     }
   }

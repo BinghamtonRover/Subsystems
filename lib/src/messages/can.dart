@@ -58,7 +58,7 @@ class CanService extends MessageService {
 	/// Handles an incoming CAN message.
 	void onMessage(CanMessage message) {
 		final name = dataCanIDs[message.id];
-		logger.debug("Received CAN message (0x${message.id.toRadixString(16)}): ${message.data}. Name=${name ?? 'None'}");
+//		logger.debug("Received CAN message (0x${message.id.toRadixString(16)}): ${message.data}. Name=${name ?? 'None'}");
 		if (name == null) {
 			logger.warning("Received CAN message with unknown ID", body: "ID=0x${message.id.toRadixString(16)}");
 			return; 
