@@ -85,7 +85,7 @@ class CanFFI implements CanSocket {
 
   @override
   void sendMessage({required int id, required List<int> data}) {
-    if (hasError) return;
+    if (hasError || _can == null) return;
     final message = CanMessage(id: id, data: data);
     final error = getCanError(nativeLib.BurtCan_send(_can!, message.pointer));
     if (error != null) logger.warning("Could not send CAN message", body: "ID=$id, Data=$data, Error: $error");

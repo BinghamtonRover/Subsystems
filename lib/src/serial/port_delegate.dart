@@ -41,6 +41,5 @@ class DelegateSerialPort extends SerialPortInterface {
   void dispose() {
     _delegate?.close();
     _delegate?.dispose();
-    _delegate = SerialPort(portName);
   }
 }

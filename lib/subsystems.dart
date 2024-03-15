@@ -40,10 +40,10 @@ class SubsystemsCollection extends Service {
 		await server.init();
     var result = true;
     try {
+      result &= await can.init();
       result &= await serial.init();
       result &= await gps.init();
       result &= await imu.init();
-      result &= await can.init();
       logger.info("Subsystems initialized");
       if (result) {
         logger.warning("The subsystems did not start properly");
