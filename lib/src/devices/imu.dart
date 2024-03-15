@@ -9,7 +9,7 @@ import "package:burt_network/burt_network.dart";
 const imuPort = "/dev/rover-imu";
 
 extension on double {
-  bool isZero([double epsilon = 0.001]) => abs() < epsilon;
+  bool isZero([double epsilon = 0.01]) => abs() < epsilon;
 }
 
 /// A service to read orientation data from the connected IMU.
@@ -28,13 +28,14 @@ class ImuReader extends Service {
   void _handleOsc(List<int> data) {
     try {
       final message = OSCMessage.fromBytes(data.sublist(20));
+      if (message.address != "/euler") return;
       final orientation = Orientation(
         x: message.arguments[0] as double,
         y: message.arguments[1] as double,
         z: message.arguments[2] as double,
       );
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
-      if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) return;
+      if (orientation.x.abs() > 360 || orientation.y.abs() > 360 || orientation.z.abs() > 360) return;
       final position = RoverPosition(orientation: orientation);
       collection.server.sendMessage(position);
     } catch (error) { /* Ignore corrupt data */ }
