@@ -25,7 +25,7 @@ class ImuReader {
   void handleOsc(List<int> data) {
     try {
       final message = OSCMessage.fromBytes(data.sublist(20));
-//      logger.debug("Received: $message");    
+ //     logger.debug("Received: $message");    
       final orientation = Orientation(
         x: message.arguments[0] as double,
         y: message.arguments[1] as double,
@@ -50,6 +50,7 @@ class ImuReader {
     try {
       serial.open();
       subscription = serial.stream.listen(handleOsc);
+	serial.startListening();
       logger.info("Reading IMU on port $port");
     } catch (error) {
       logger.critical("Could not open IMU", body: "Port $port, Error: $error");

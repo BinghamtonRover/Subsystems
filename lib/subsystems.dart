@@ -34,10 +34,10 @@ class SubsystemsCollection {
 		logger.debug("Running in debug mode...");
 		await server.init();
     try {
-      await can.init();
       await serial.init();
       await gps.init();
       await imu.init();
+      await can.init();
       logger.info("Subsystems initialized");
     } catch (error) {
       logger.critical("Unexpected error when initializing Subsystems", body: error.toString());

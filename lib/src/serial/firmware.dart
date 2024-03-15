@@ -13,9 +13,11 @@ class BurtFirmwareSerial {
   SerialDevice? _serial;
 
   final String port;
-  BurtFirmwareSerial(this.port, this.device);
+  BurtFirmwareSerial(this.port);
 
   Stream<Uint8List>? get stream => _serial?.stream;
+
+	bool get isReady => device != Device.FIRMWARE;
 
   Future<void> init() async {
     // Open the port
@@ -23,32 +25,40 @@ class BurtFirmwareSerial {
     try {
       _serial!.open();
     } on SerialPortUnavailable {
-      logger.critical("Could not open Serial port $port");
+      logger.critical("Could not open firmware device on port $port");
       return;
     }
+
     // Execute the handshake
-    reset();
+	if(!reset()) logger.warning("The Teensy on port $port failed to reset");
     if (await sendHandshake()) {
-      logger.info("Connected to the ${device.name} Teensy");
+      logger.info("Connected to the ${device.name} Teensy on port $port");
     } else {
       logger.critical("Could not connect to Teensy", body: "Device on port $port failed the handshake");
     }
+
     // Forward data through the [stream].
     _serial!.startListening();
   }
 
   Future<bool> sendHandshake() async {
-    final handshake = Connect(sender: Device.DASHBOARD, receiver: Device.FIRMWARE); 
+	logger.debug("Sending handshake to port $port...");
+    final handshake = Connect(sender: Device.SUBSYSTEMS, receiver: Device.FIRMWARE); 
     _serial!.write(handshake.writeToBuffer());
     await Future<void>.delayed(handshakeDelay);
     final response = _serial!.readBytes(count: 4);
-    if (response.isEmpty) return false;
+    if (response.isEmpty) {
+	logger.trace("Device did not respond");
+	return false;
+    }
     try {
       final message = Connect.fromBuffer(response);
+      logger.trace("Device responded with: ${message.toProto3Json()}");
       if (message.receiver != Device.SUBSYSTEMS) return false;
       device = message.sender;
       return true;
     } on InvalidProtocolBufferException {
+	logger.trace("Device responded with malformed data: $response");
       return false;
     }
   }
