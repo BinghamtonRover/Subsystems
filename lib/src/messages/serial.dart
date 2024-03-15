@@ -14,7 +14,7 @@ final nameToDevice = <String, Device>{
   ArmCommand().messageName: Device.ARM,
   GripperCommand().messageName: Device.GRIPPER,
   ElectricalCommand().messageName: Device.ELECTRICAL,
-  DriveCommand().messageName: Device.DRIVE,
+  DriveCommand().messageName: Device.ELECTRICAL,
   ScienceCommand().messageName: Device.SCIENCE,
 };
 
