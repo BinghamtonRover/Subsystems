@@ -28,10 +28,13 @@ class SerialService extends MessageService {
     logger.trace("IMU is on: $imuPort");
     final gpsCommand = await Process.run("realpath", ["/dev/rover-gps"]);
     final gpsPort = gpsCommand.stdout.trim();
+	const piPort = "/dev/ttyAMA0";
     logger.trace("GPS is on: $gpsPort");
-    return [
+	logger.trace("All ports: $allPorts");
+    final forbiddenPorts = {imuPort, gpsPort, piPort};
+	return [
       for (final port in allPorts)
-        if (port != imuPort && port != gpsPort)
+	if (!forbiddenPorts.contains(port))
           port,
     ];
   }
@@ -51,6 +54,7 @@ class SerialService extends MessageService {
   Future<bool> init() async {
     devices = await getFirmware();    
     for (final device in devices) {
+	logger.debug("Initializing device: ${device.port}");
       await device.init();
       if (!device.isReady) continue;
       final subscription = device.stream?.listen((data) => _onMessage(data, device));

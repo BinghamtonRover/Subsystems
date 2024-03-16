@@ -47,7 +47,7 @@ class SubsystemsCollection extends MessageService {
       result &= await gps.init();
       result &= await imu.init();
       logger.info("Subsystems initialized");
-      if (result) {
+      if (!result) {
         logger.warning("The subsystems did not start properly");
       }
       isReady = true;
