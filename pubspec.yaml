@@ -10,9 +10,11 @@ environment:
 dependencies:
   burt_network: 
     git: https://github.com/BinghamtonRover/Networking.git
+  collection: ^1.18.0
   ffi: ^2.0.2
   libserialport: ^0.3.0+1
   osc: ^1.0.0
+  protobuf: ^3.1.0
 
 dev_dependencies:
   ffigen: ^10.0.0

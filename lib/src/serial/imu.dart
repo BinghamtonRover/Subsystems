@@ -1,12 +1,11 @@
 import "dart:async";
-import "dart:convert";
 
 import "package:osc/osc.dart";
 
 import "package:subsystems/subsystems.dart";
 import "package:burt_network/burt_network.dart";
 
-/// The serial port that the IMU is conncted to.
+/// The serial port that the IMU is connected to.
 const port = "/dev/rover-imu";
 
 extension on double {
@@ -25,24 +24,16 @@ class ImuReader {
   void handleOsc(List<int> data) {
     try {
       final message = OSCMessage.fromBytes(data.sublist(20));
-//      logger.debug("Received: $message");    
       final orientation = Orientation(
         x: message.arguments[0] as double,
         y: message.arguments[1] as double,
         z: message.arguments[2] as double,
       );
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
-      if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) {
-//        logger.trace("Got invalid orientation", body: "x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
-        return;
-      }
-//      logger.debug("Got orientation: x=${orientation.x}, y=${orientation.y}, z=${orientation.z}");
+      if (orientation.x > 360 || orientation.y > 360 || orientation.z > 360) return;
       final position = RoverPosition(orientation: orientation);
       collection.server.sendMessage(position);
-    } catch (error) { 
-      final rawLine = utf8.decode(data.sublist(20), allowMalformed: true);
-//      logger.debug("Got invalid line from IMU", body: rawLine);
-    }
+    } catch (error) { /* Ignore corrupt data */ }
   }
 
   /// Starts listening to the IMU.
@@ -50,6 +41,7 @@ class ImuReader {
     try {
       serial.open();
       subscription = serial.stream.listen(handleOsc);
+      serial.startListening();
       logger.info("Reading IMU on port $port");
     } catch (error) {
       logger.critical("Could not open IMU", body: "Port $port, Error: $error");

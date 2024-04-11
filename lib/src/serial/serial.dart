@@ -25,7 +25,7 @@ class SerialDevice {
 
 	/// The `package:libserialport` port object for reading and writing.
 	SerialPort? _port;
-	/// A timer to periodically read from the port (see [_readBytes]).
+	/// A timer to periodically read from the port (see [readBytes]).
 	Timer? _timer;
 	/// The controller for [stream].
 	final _controller = StreamController<Uint8List>.broadcast();
@@ -45,11 +45,19 @@ class SerialDevice {
 		if (!_port!.openReadWrite()) {
 			throw SerialPortUnavailable(portName);
 		}
-		_timer = Timer.periodic(readInterval, _readBytes);
 	}
 
+  /// Starts listening to data sent over the serial port via [stream].
+  void startListening() => _timer = Timer.periodic(readInterval, _listenForBytes);
+
+  /// Stops listening to the serial port.
+  void stopListening() => _timer?.cancel();
+
+  /// Reads bytes from the port. If [count] is provided, only reads that number of bytes.
+  Uint8List readBytes({int? count}) => _port!.read(count ?? _port!.bytesAvailable);
+
 	/// Reads any data from the port and adds it to the [stream].
-	void _readBytes(_) {
+	void _listenForBytes(_) {
 		try {
       final Uint8List bytes = _port!.read(_port!.bytesAvailable);
       if (bytes.isEmpty) return;
@@ -64,7 +72,7 @@ class SerialDevice {
 	/// 
 	/// This port cannot be re-opened. You must use a new [SerialDevice] and call [open] on that.
 	void dispose() {
-		_timer?.cancel();
+    _timer?.cancel();
 		_port?.close();
 		_port?.dispose();
     _port = null;
@@ -79,7 +87,7 @@ class SerialDevice {
     }
   }
 
-	/// Reads data from the port.
+	/// All incoming bytes coming from the port.
 	Stream<Uint8List> get stream => _controller.stream;
 }
 

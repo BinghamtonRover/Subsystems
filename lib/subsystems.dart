@@ -1,19 +1,28 @@
 import "package:burt_network/logging.dart";
-import "package:subsystems/can.dart";
 
 import "src/server.dart";
 import "src/serial/gps.dart";
 import "src/serial/imu.dart";
+import "src/messages/can.dart";
+import "src/messages/serial.dart";
 
 export "src/server.dart";
+export "src/serial/firmware.dart";
 export "src/serial/imu.dart";
 export "src/serial/serial.dart";
 export "src/serial/gps.dart";
+export "src/can/ffi.dart";
+export "src/can/message.dart";
+export "src/can/socket_ffi.dart";
+export "src/can/socket_interface.dart";
+export "src/can/socket_stub.dart";
 
 /// Contains all the resources needed by the subsystems program.
 class SubsystemsCollection {
 	/// The CAN bus socket.
 	final can = CanService();
+  /// The Serial service.
+  final serial = SerialService();
 	/// The UDP server.
 	final server = SubsystemsServer(port: 8001);
 	/// The GPS reader.
@@ -26,9 +35,10 @@ class SubsystemsCollection {
 		logger.debug("Running in debug mode...");
 		await server.init();
     try {
-      await can.init();
+      await serial.init();
       await gps.init();
       await imu.init();
+      await can.init();
       logger.info("Subsystems initialized");
     } catch (error) {
       logger.critical("Unexpected error when initializing Subsystems", body: error.toString());
@@ -38,6 +48,7 @@ class SubsystemsCollection {
 	/// Disposes all the resources needed by the subsystems.
 	Future<void> dispose() async {
 		await can.dispose();
+    await serial.dispose();
 		await server.dispose();
     await imu.dispose();
 		await gps.dispose();
