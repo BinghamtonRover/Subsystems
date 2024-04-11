@@ -42,4 +42,3 @@ void process(Uint8List buffer) {
 		logger.debug("Got data: ${data.toProto3Json()}");
 	}
 }
-
