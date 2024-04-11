@@ -41,7 +41,7 @@ class ImuReader {
     try {
       serial.open();
       subscription = serial.stream.listen(handleOsc);
-	serial.startListening();
+      serial.startListening();
       logger.info("Reading IMU on port $port");
     } catch (error) {
       logger.critical("Could not open IMU", body: "Port $port, Error: $error");

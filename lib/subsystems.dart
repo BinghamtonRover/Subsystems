@@ -1,10 +1,10 @@
 import "package:burt_network/logging.dart";
-import "package:subsystems/src/messages/serial.dart";
 
 import "src/server.dart";
 import "src/serial/gps.dart";
 import "src/serial/imu.dart";
 import "src/messages/can.dart";
+import "src/messages/serial.dart";
 
 export "src/server.dart";
 export "src/serial/firmware.dart";
