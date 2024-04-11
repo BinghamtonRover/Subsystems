@@ -21,6 +21,7 @@ export "src/can/socket_stub.dart";
 class SubsystemsCollection {
 	/// The CAN bus socket.
 	final can = CanService();
+  /// The Serial service.
   final serial = SerialService();
 	/// The UDP server.
 	final server = SubsystemsServer(port: 8001);

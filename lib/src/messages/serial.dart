@@ -9,6 +9,7 @@ import "package:subsystems/subsystems.dart";
 
 import "service.dart";
 
+/// Maps command names to [Device]s. 
 final nameToDevice = <String, Device>{
   ArmCommand().messageName: Device.ARM,
   GripperCommand().messageName: Device.GRIPPER,
@@ -17,7 +18,9 @@ final nameToDevice = <String, Device>{
   ScienceCommand().messageName: Device.SCIENCE,
 };
 
+/// A service to send and receive messages to the firmware over serial.
 class SerialService extends MessageService {
+  /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
   static Future<List<BurtFirmwareSerial>> getFirmware() async {
     final imuCommand = await Process.run("realpath", ["/dev/rover-imu"]);
     final imuPort = imuCommand.stdout.trim();
@@ -33,6 +36,8 @@ class SerialService extends MessageService {
   }
 
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
+  
+  /// All the connected devices.
   List<BurtFirmwareSerial> devices = [];
 
   @override

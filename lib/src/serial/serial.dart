@@ -47,14 +47,13 @@ class SerialDevice {
 		}
 	}
 
-  void startListening() {
-		_timer = Timer.periodic(readInterval, _listenForBytes);
-  }
+  /// Starts listening to data sent over the serial port via [stream].
+  void startListening() => _timer = Timer.periodic(readInterval, _listenForBytes);
 
-  void stopListening() {
-    _timer?.cancel();
-  }
+  /// Stops listening to the serial port.
+  void stopListening() => _timer?.cancel();
 
+  /// Reads bytes from the port. If [count] is provided, only reads that number of bytes.
   Uint8List readBytes({int? count}) => _port!.read(count ?? _port!.bytesAvailable);
 
 	/// Reads any data from the port and adds it to the [stream].
@@ -88,7 +87,7 @@ class SerialDevice {
     }
   }
 
-	/// Reads data from the port.
+	/// All incoming bytes coming from the port.
 	Stream<Uint8List> get stream => _controller.stream;
 }
 
