@@ -12,6 +12,7 @@ export "src/server.dart";
 export "src/serial/firmware.dart";
 export "src/serial/imu.dart";
 export "src/serial/serial.dart";
+export "src/serial/port_interface.dart";
 export "src/serial/gps.dart";
 export "src/can/ffi.dart";
 export "src/can/message.dart";

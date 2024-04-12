@@ -27,7 +27,6 @@ analyzer:
 
   exclude: 
     - lib/generated/**.dart
-    - test/**.dart
 
 linter:
   rules:
