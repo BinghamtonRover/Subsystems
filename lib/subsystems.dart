@@ -1,5 +1,6 @@
 import "package:burt_network/logging.dart";
 
+import "src/service.dart";
 import "src/server.dart";
 import "src/serial/gps.dart";
 import "src/serial/imu.dart";
@@ -19,7 +20,7 @@ export "src/can/socket_interface.dart";
 export "src/can/socket_stub.dart";
 
 /// Contains all the resources needed by the subsystems program.
-class SubsystemsCollection {
+class SubsystemsCollection extends Service {
 	/// The CAN bus socket.
 	final can = CanService();
   /// The Serial service.
@@ -31,23 +32,31 @@ class SubsystemsCollection {
   /// The IMU reader.
 	final imu = ImuReader();
 
-	/// Initializes all the resources needed by the subsystems.
-	Future<void> init() async {
+  @override
+	Future<bool> init() async {
 		logger.debug("Running in debug mode...");
+		logger.trace("Running in trace mode...");
 		await server.init();
+    var result = true;
     try {
-      await serial.init();
-      await gps.init();
-      await imu.init();
-      await can.init();
+      result &= await serial.init();
+      result &= await gps.init();
+      result &= await imu.init();
+      result &= await can.init();
       logger.info("Subsystems initialized");
+      if (result) {
+        logger.warning("The subsystems did not start properly");
+      }
+      return true;  // The subsystems should keep running even when something goes wrong.
     } catch (error) {
       logger.critical("Unexpected error when initializing Subsystems", body: error.toString());
+      return false;
     }
 	}
 
-	/// Disposes all the resources needed by the subsystems.
+  @override
 	Future<void> dispose() async {
+    logger.info("Shutting down...");
 		await can.dispose();
     await serial.dispose();
 		await server.dispose();

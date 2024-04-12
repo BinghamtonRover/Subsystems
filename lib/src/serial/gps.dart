@@ -5,7 +5,7 @@ import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 /// The port/device file to listen to the GPS on.
-const serialPort = "/dev/rover-gps";
+const gpsPort = "/dev/rover-gps";
 
 /// Listens to the GPS and sends its output to the Dashboard. 
 /// 
@@ -45,7 +45,7 @@ class GpsReader extends Service {
   }
 
   /// The serial device representing the GPS.
-  SerialDevice device = SerialDevice(portName: serialPort, readInterval: const Duration(seconds: 1));
+  SerialDevice device = SerialDevice(portName: gpsPort, readInterval: const Duration(seconds: 1));
   /// The subscription to the serial port.
   StreamSubscription<List<int>>? _subscription;
 
@@ -69,13 +69,18 @@ class GpsReader extends Service {
   }
 
   @override
-  Future<void> init() async {
-    logger.info("Reading GPS on port $serialPort");
+  Future<bool> init() async {
+    logger.info("Reading GPS on port $gpsPort");
     try {
-      await device.init();
+      if (!await device.init()) {
+        logger.critical("Could not open GPS on port $gpsPort");
+        return false;
+      }
       _subscription = device.stream.listen(_handlePacket);
+      return true;
     } catch (error) {
-      logger.critical("Could not open GPS", body: "Port $serialPort, Error=$error");
+      logger.critical("Could not open GPS", body: "Port $gpsPort, Error=$error");
+      return false;
     }
   }
 

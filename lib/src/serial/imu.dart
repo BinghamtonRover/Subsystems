@@ -6,7 +6,7 @@ import "package:subsystems/subsystems.dart";
 import "package:burt_network/burt_network.dart";
 
 /// The serial port that the IMU is connected to.
-const port = "/dev/rover-imu";
+const imuPort = "/dev/rover-imu";
 
 extension on double {
   bool isZero([double epsilon = 0.001]) => abs() < epsilon;
@@ -15,7 +15,7 @@ extension on double {
 /// A service to read orientation data from the connected IMU.
 class ImuReader extends Service {
   /// The device that reads from the serial port. 
-  final serial = SerialDevice(portName: port, readInterval: const Duration(milliseconds: 10));
+  final serial = SerialDevice(portName: imuPort, readInterval: const Duration(milliseconds: 10));
 
   /// The subscription that will be notified when a new serial packet arrives.
   StreamSubscription<List<int>>? subscription;
@@ -37,14 +37,19 @@ class ImuReader extends Service {
   }
 
   @override
-  Future<void> init() async {
+  Future<bool> init() async {
     try {
-      await serial.init();
+      if (!await serial.init()) {
+        logger.critical("Could not open IMU on port $imuPort");
+        return false;
+      }
       subscription = serial.stream.listen(_handleOsc);
       serial.startListening();
-      logger.info("Reading IMU on port $port");
+      logger.info("Reading IMU on port $imuPort");
+      return true;
     } catch (error) {
-      logger.critical("Could not open IMU", body: "Port $port, Error: $error");
+      logger.critical("Could not open IMU", body: "Port $imuPort, Error: $error");
+      return false;
     }
   }
 

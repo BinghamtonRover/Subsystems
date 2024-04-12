@@ -6,8 +6,9 @@ class CanStub implements CanSocket {
 	CanStub();
 
 	@override
-	Future<void> init() async {
+	Future<bool> init() async {
     logger.warning("Using a mock CAN service");
+    return true;
   }
 
 	@override

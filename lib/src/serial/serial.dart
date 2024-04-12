@@ -1,8 +1,9 @@
 import "dart:async";
 import "dart:typed_data";
-import "package:libserialport/libserialport.dart";
 
 import "package:subsystems/subsystems.dart";
+
+import "port_interface.dart";
 
 /// A wrapper around the `package:libserialport` library.
 /// 
@@ -12,16 +13,12 @@ import "package:subsystems/subsystems.dart";
 /// - Listen to [stream] to get incoming data
 /// - Call [dispose] to close the port
 class SerialDevice extends Service {
-	/// A list of all available ports on the device.
-	static List<String> allPorts = SerialPort.availablePorts;
-
 	/// The port to connect to.
 	final String portName;
 	/// How often to read from the port.
 	final Duration readInterval;
 
-	/// The `package:libserialport` port object for reading and writing.
-	SerialPort? _port;
+	SerialInterface? _port;
   
 	/// A timer to periodically read from the port (see [readBytes]).
 	Timer? _timer;
@@ -39,11 +36,9 @@ class SerialDevice extends Service {
 	bool get isOpen => _port?.isOpen ?? false;
 
   @override
-	Future<void> init() async {
-		_port = SerialPort(portName);
-		if (!_port!.openReadWrite()) {
-			throw SerialPortUnavailable(portName);
-		}
+	Future<bool> init() async {
+		_port = DelegateSerialPort(portName);
+    return _port!.openReadWrite();
 	}
 
   /// Starts listening to data sent over the serial port via [stream].
@@ -70,7 +65,6 @@ class SerialDevice extends Service {
   @override
 	Future<void> dispose() async {
     _timer?.cancel();
-		_port?.close();
 		_port?.dispose();
     _port = null;
 	}
@@ -86,30 +80,4 @@ class SerialDevice extends Service {
 
 	/// All incoming bytes coming from the port.
 	Stream<Uint8List> get stream => _controller.stream;
-}
-
-/// An error that is thrown when a serial port cannot be opened.
-/// 
-/// Use a port from [SerialDevice.allPorts] to avoid this error.
-class SerialPortUnavailable implements Exception {
-	/// The port that did not open.
-	final String port;
-	/// A const constructor.
-	const SerialPortUnavailable(this.port);
-
-	@override
-	String toString() => "Could not open serial port $port";
-}
-
-/// Indicates that some unknown error occurred while reading a serial port.
-class SerialReadException implements Exception { 
-	/// The port that caused the error.
-	final String port;
-	/// The error that occurred.
-	final Object? error;
-	/// A const constructor.
-	const SerialReadException({required this.port, required this.error});
-
-	@override
-	String toString() => "Error reading from port $port: $error";
 }

@@ -41,9 +41,10 @@ class CanService extends MessageService {
 
 	/// Initializes the CAN library.
   @override
-	Future<void> init() async {
-		await can.init();
+	Future<bool> init() async {
+		if (!await can.init()) return false;
 		_subscription = can.incomingMessages.listen(onMessage);
+    return true;
 	}
 
 	/// Disposes the native CAN library and any resources it holds.

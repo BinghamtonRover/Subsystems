@@ -18,8 +18,8 @@ final nameToDevice = <String, Device>{
 
 /// A service to send and receive messages to the firmware over serial.
 class SerialService extends MessageService {
-  /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
-  static Future<List<BurtFirmwareSerial>> getFirmware() async {
+  static Future<List<String>> getPortNames() async {
+    if (!Platform.isLinux) return SerialPort.availablePorts;
     final imuCommand = await Process.run("realpath", ["/dev/rover-imu"]);
     final imuPort = imuCommand.stdout.trim();
     logger.trace("IMU is on: $imuPort");
@@ -29,9 +29,15 @@ class SerialService extends MessageService {
     return [
       for (final port in SerialPort.availablePorts)
         if (port != imuPort && port != gpsPort)
-          BurtFirmwareSerial(port),
+          port,
     ];
   }
+  
+  /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
+  static Future<List<BurtFirmwareSerial>> getFirmware() async => [
+    for (final port in await getPortNames())
+      BurtFirmwareSerial(port),
+  ];
 
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
   
@@ -39,7 +45,7 @@ class SerialService extends MessageService {
   List<BurtFirmwareSerial> devices = [];
 
   @override
-  Future<void> init() async {
+  Future<bool> init() async {
     devices = await getFirmware();    
     for (final device in devices) {
       await device.init();
@@ -48,6 +54,11 @@ class SerialService extends MessageService {
       if (subscription == null) continue;
       _subscriptions.add(subscription);
     }
+    // This service is a backup service for [CanService]
+    // If something went wrong here, the messages will be sent over CAN instead.
+    // In addition, 1 or 2 subsystems may be connected at a time, not all 3.
+    // Therefore, it is not as useful to return false here on an error condition.
+    return true;  
   }
 
   @override

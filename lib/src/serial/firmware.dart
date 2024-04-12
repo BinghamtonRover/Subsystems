@@ -35,26 +35,24 @@ class BurtFirmwareSerial extends Service {
 	bool get isReady => device != Device.FIRMWARE;
 
   @override
-  Future<void> init() async {
+  Future<bool> init() async {
     // Open the port
     _serial = SerialDevice(portName: port, readInterval: readInterval);
-    try {
-      await _serial!.init();
-    } on SerialPortUnavailable {
-      logger.critical("Could not open firmware device on port $port");
-      return;
+    if (!await _serial!.init()) {
+      logger.warning("Could not open firmware device on port $port");
+      return false;
     }
 
     // Execute the handshake
     if (!_reset()) logger.warning("The Teensy on port $port failed to reset");
-    if (await _sendHandshake()) {
-      logger.info("Connected to the ${device.name} Teensy on port $port");
-    } else {
-      logger.critical("Could not connect to Teensy", body: "Device on port $port failed the handshake");
+    if (!await _sendHandshake()) {
+      logger.warning("Could not connect to Teensy", body: "Device on port $port failed the handshake");
+      return false;
     }
 
-    // Forward data through the [stream].
+    logger.info("Connected to the ${device.name} Teensy on port $port");
     _serial!.startListening();
+    return true;
   }
 
   /// Sends the handshake to the device and returns whether it was successful.

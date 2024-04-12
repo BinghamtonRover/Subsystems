@@ -48,20 +48,20 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  Future<void> init() async { 
+  Future<bool> init() async { 
     _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
     await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
     final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
     if (result.exitCode != 0) {
       logger.critical("Could not start can0", body: "sudo ip link set can0 up type can bitrate 500000 failed:\n${result.stderr}");
       hasError = true;
-      return;
+      return false;
     }
     final error = getCanError(nativeLib.BurtCan_open(_can!));
     if (error != null) {
       hasError = true;
       logger.critical("Could not start the CAN bus", body: error);
-      return;
+      return false;
     }
     _controller = StreamController<CanMessage>.broadcast(
       onListen: () => _startListening,
@@ -69,6 +69,7 @@ class CanFFI implements CanSocket {
     );
     _startListening(); 
     logger.info("Listening on CAN interface $canInterface");
+    return true;
   }
 
   @override

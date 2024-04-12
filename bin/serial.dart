@@ -27,7 +27,10 @@ void main(List<String> args) async {
 		portName: port, 
 		readInterval: const Duration(milliseconds: 100),
 	);
-	await device.init();
+	if (!await device.init()) {
+    logger.critical("Could not connect to $port");
+    return;
+  }
 	logger.info("Connected. Listening...");
 	device.stream.listen(process);
 	device.startListening();
