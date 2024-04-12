@@ -2,18 +2,18 @@ import "package:burt_network/logging.dart";
 
 import "src/service.dart";
 import "src/server.dart";
-import "src/serial/gps.dart";
-import "src/serial/imu.dart";
+import "src/devices/gps.dart";
+import "src/devices/imu.dart";
 import "src/messages/can.dart";
 import "src/messages/serial.dart";
 
 export "src/service.dart";
 export "src/server.dart";
-export "src/serial/firmware.dart";
-export "src/serial/imu.dart";
+export "src/devices/firmware.dart";
+export "src/devices/imu.dart";
 export "src/serial/serial.dart";
 export "src/serial/port_interface.dart";
-export "src/serial/gps.dart";
+export "src/devices/gps.dart";
 export "src/can/ffi.dart";
 export "src/can/message.dart";
 export "src/can/socket_ffi.dart";
