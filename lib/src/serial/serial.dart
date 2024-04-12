@@ -7,14 +7,11 @@ import "package:subsystems/subsystems.dart";
 /// A wrapper around the `package:libserialport` library.
 /// 
 /// - Check [allPorts] for a list of all available ports.
-/// - Call [open] to open the port
+/// - Call [init] to open the port
 /// - Use [write] to write bytes to the port. Strings are not supported
 /// - Listen to [stream] to get incoming data
 /// - Call [dispose] to close the port
-/// 
-/// The device can no longer be used after calling [dispose]. Create a new one with
-/// the same port name and call [open] again.
-class SerialDevice {
+class SerialDevice extends Service {
 	/// A list of all available ports on the device.
 	static List<String> allPorts = SerialPort.availablePorts;
 
@@ -25,8 +22,10 @@ class SerialDevice {
 
 	/// The `package:libserialport` port object for reading and writing.
 	SerialPort? _port;
+  
 	/// A timer to periodically read from the port (see [readBytes]).
 	Timer? _timer;
+  
 	/// The controller for [stream].
 	final _controller = StreamController<Uint8List>.broadcast();
 
@@ -39,8 +38,8 @@ class SerialDevice {
 	/// Whether the port is open (ie, the device is connected).
 	bool get isOpen => _port?.isOpen ?? false;
 
-	/// Opens the port and begins reading from it.
-	void open() {
+  @override
+	Future<void> init() async {
 		_port = SerialPort(portName);
 		if (!_port!.openReadWrite()) {
 			throw SerialPortUnavailable(portName);
@@ -68,10 +67,8 @@ class SerialDevice {
 		}
 	}
 
-	/// Closes the port and frees any allocated resources associated with it.
-	/// 
-	/// This port cannot be re-opened. You must use a new [SerialDevice] and call [open] on that.
-	void dispose() {
+  @override
+	Future<void> dispose() async {
     _timer?.cancel();
 		_port?.close();
 		_port?.dispose();

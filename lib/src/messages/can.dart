@@ -11,8 +11,6 @@ import "dart:async";
 import "package:burt_network/generated.dart";
 import "package:subsystems/subsystems.dart";
 
-import "service.dart";
-
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
 final Map<int, String> dataCanIDs = {
 	0x13: ElectricalData().messageName,

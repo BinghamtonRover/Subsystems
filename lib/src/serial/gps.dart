@@ -10,7 +10,7 @@ const serialPort = "/dev/rover-gps";
 /// Listens to the GPS and sends its output to the Dashboard. 
 /// 
 /// Call [init] to start listening and [dispose] to stop.
-class GpsReader {
+class GpsReader extends Service {
   /// Parses an NMEA sentence into a [GpsCoordinates] object.
   /// 
   /// See https://shadyelectronics.com/gps-nmea-sentence-structure.
@@ -50,7 +50,7 @@ class GpsReader {
   StreamSubscription<List<int>>? _subscription;
 
   /// Parses a line of NMEA output and sends the GPS coordinates to the dashboard.
-  void handleLine(String line) {
+  void _handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
     if (coordinates.latitude == 0 || coordinates.longitude == 0 || coordinates.altitude == 0) {
@@ -62,26 +62,26 @@ class GpsReader {
   }
 
   /// Parses a packet into several NMEA sentences and handles them.
-  void handlePacket(List<int> bytes) {
+  void _handlePacket(List<int> bytes) {
     final string = utf8.decode(bytes);
     final lines = string.split("\n");
-    lines.forEach(handleLine);
+    lines.forEach(_handleLine);
   }
 
-  /// Starts reading the GPS (on [serialPort]) through the `cat` Linux program.
+  @override
   Future<void> init() async {
     logger.info("Reading GPS on port $serialPort");
     try {
-      device.open();
-      _subscription = device.stream.listen(handlePacket);
+      await device.init();
+      _subscription = device.stream.listen(_handlePacket);
     } catch (error) {
       logger.critical("Could not open GPS", body: "Port $serialPort, Error=$error");
     }
   }
 
-  /// Closes the [device] and stops listening to the GPS.
+  @override
   Future<void> dispose() async {
     await _subscription?.cancel();
-    device.dispose();
+    await device.dispose();
   }
 }

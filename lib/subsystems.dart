@@ -6,6 +6,7 @@ import "src/serial/imu.dart";
 import "src/messages/can.dart";
 import "src/messages/serial.dart";
 
+export "src/service.dart";
 export "src/server.dart";
 export "src/serial/firmware.dart";
 export "src/serial/imu.dart";

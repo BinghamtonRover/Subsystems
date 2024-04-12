@@ -13,7 +13,7 @@ extension on double {
 }
 
 /// A service to read orientation data from the connected IMU.
-class ImuReader {
+class ImuReader extends Service {
   /// The device that reads from the serial port. 
   final serial = SerialDevice(portName: port, readInterval: const Duration(milliseconds: 10));
 
@@ -21,7 +21,7 @@ class ImuReader {
   StreamSubscription<List<int>>? subscription;
 
   /// Parses an OSC bundle from a list of bytes.
-  void handleOsc(List<int> data) {
+  void _handleOsc(List<int> data) {
     try {
       final message = OSCMessage.fromBytes(data.sublist(20));
       final orientation = Orientation(
@@ -36,11 +36,11 @@ class ImuReader {
     } catch (error) { /* Ignore corrupt data */ }
   }
 
-  /// Starts listening to the IMU.
+  @override
   Future<void> init() async {
     try {
-      serial.open();
-      subscription = serial.stream.listen(handleOsc);
+      await serial.init();
+      subscription = serial.stream.listen(_handleOsc);
       serial.startListening();
       logger.info("Reading IMU on port $port");
     } catch (error) {
@@ -48,9 +48,9 @@ class ImuReader {
     }
   }
 
-  /// Stops listening to the serial port.
+  @override
   Future<void> dispose() async {
     await subscription?.cancel();
-    serial.dispose();
+    await serial.dispose();
   }
 }

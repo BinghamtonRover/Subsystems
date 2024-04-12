@@ -27,7 +27,7 @@ void main(List<String> args) async {
 		portName: port, 
 		readInterval: const Duration(milliseconds: 100),
 	);
-	device.open();
+	await device.init();
 	logger.info("Connected. Listening...");
 	device.stream.listen(process);
 	device.startListening();

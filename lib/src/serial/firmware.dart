@@ -2,6 +2,7 @@ import "dart:typed_data";
 
 import "package:protobuf/protobuf.dart";
 import "package:burt_network/generated.dart";
+
 import "package:subsystems/subsystems.dart";
 
 /// Represents a firmware device connected over Serial.
@@ -9,7 +10,7 @@ import "package:subsystems/subsystems.dart";
 /// This device starts with an unknown [device]. Calling [init] starts a handshake with the device
 /// that identifies it. If the handshake fails, [isReady] will be false. Calling [dispose] will
 /// reset the device and close the connection.
-class BurtFirmwareSerial {
+class BurtFirmwareSerial extends Service {
   /// The interval to read serial data at.
   static const readInterval = Duration(milliseconds: 100);
   /// How long it should take for a firmware device to respond to a handshake.
@@ -33,12 +34,12 @@ class BurtFirmwareSerial {
   /// Whether this device has passed the handshake.
 	bool get isReady => device != Device.FIRMWARE;
 
-  /// Opens the serial port and executes the handshake with the device, then starts listening.
+  @override
   Future<void> init() async {
     // Open the port
     _serial = SerialDevice(portName: port, readInterval: readInterval);
     try {
-      _serial!.open();
+      await _serial!.init();
     } on SerialPortUnavailable {
       logger.critical("Could not open firmware device on port $port");
       return;
@@ -93,8 +94,9 @@ class BurtFirmwareSerial {
   void sendBytes(List<int> bytes) => _serial?.write(Uint8List.fromList(bytes));
 
   /// Resets the device and closes the port.
+  @override
   Future<void> dispose() async {
     if (!_reset()) logger.warning("The $device device on port $port did not reset");
-    _serial?.dispose();
+    await _serial?.dispose();
   }
 }
