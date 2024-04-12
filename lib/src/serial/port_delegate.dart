@@ -4,12 +4,14 @@ import "package:libserialport/libserialport.dart";
 
 import "port_interface.dart";
 
+/// A serial port implementation that delegates to [`package:libserialport`](https://pub.dev/packages/libserialport)
 class DelegateSerialPort extends SerialPortInterface {
 	/// A list of all available ports on the device.
 	static List<String> allPorts = SerialPort.availablePorts;
   
   SerialPort _delegate;
 
+  /// Creates a serial port that delegates to the `libserialport` package.
   DelegateSerialPort(super.portName) : 
     _delegate = SerialPort(portName);
 

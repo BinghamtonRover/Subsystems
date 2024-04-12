@@ -1,7 +1,6 @@
 import "dart:async";
 import "dart:io";
 import "dart:typed_data";
-import "package:libserialport/libserialport.dart";
 
 import "package:collection/collection.dart";
 import "package:burt_network/generated.dart";
@@ -20,8 +19,10 @@ final nameToDevice = <String, Device>{
 
 /// A service to send and receive messages to the firmware over serial.
 class SerialService extends MessageService {
+  /// Gets all the names of all the ports.
   static Future<List<String>> getPortNames() async {
-    if (!Platform.isLinux) return SerialPort.availablePorts;
+    final allPorts = DelegateSerialPort.allPorts;
+    if (!Platform.isLinux) return allPorts;
     final imuCommand = await Process.run("realpath", ["/dev/rover-imu"]);
     final imuPort = imuCommand.stdout.trim();
     logger.trace("IMU is on: $imuPort");
@@ -29,7 +30,7 @@ class SerialService extends MessageService {
     final gpsPort = gpsCommand.stdout.trim();
     logger.trace("GPS is on: $gpsPort");
     return [
-      for (final port in SerialPort.availablePorts)
+      for (final port in allPorts)
         if (port != imuPort && port != gpsPort)
           port,
     ];
