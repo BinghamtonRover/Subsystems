@@ -4,7 +4,7 @@ import "package:test/test.dart";
 import "package:burt_network/logging.dart";
 import "package:subsystems/subsystems.dart";
 
-import "port_fail.dart";
+import "failing_port.dart";
 
 const readInterval = Duration(milliseconds: 100);
 

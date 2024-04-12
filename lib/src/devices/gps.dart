@@ -70,7 +70,6 @@ class GpsReader extends Service {
 
   @override
   Future<bool> init() async {
-    logger.info("Reading GPS on port $gpsPort");
     try {
       if (!await device.init()) {
         logger.critical("Could not open GPS on port $gpsPort");

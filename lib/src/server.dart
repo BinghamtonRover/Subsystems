@@ -21,4 +21,7 @@ class SubsystemsServer extends RoverServer {
     await collection.dispose();
     await collection.init();
   }
+
+  @override
+  Future<void> onShutdown() => collection.dispose();
 }
