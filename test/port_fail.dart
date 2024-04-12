@@ -11,6 +11,6 @@ class FailingSerialPort extends SerialPortInterface {
   @override bool openReadWrite() => throw UnsupportedError("Test port cannot open");
   @override Uint8List read(int count) => throw UnsupportedError("Test port cannot read");
 
-  @override void dispose() => throw UnsupportedError("Test port cannot dispose");
+  @override void dispose() { }
   @override bool write(Uint8List bytes) => throw UnsupportedError("Test port cannot write");
 }

@@ -61,7 +61,7 @@ class BurtFirmwareSerial extends Service {
     final handshake = Connect(sender: Device.SUBSYSTEMS, receiver: Device.FIRMWARE); 
     _serial!.write(handshake.writeToBuffer());
     await Future<void>.delayed(handshakeDelay);
-    final response = _serial!.readBytes(count: 4);
+    final response = _serial!.readBytes(4);
     if (response.isEmpty) {
       logger.trace("Device did not respond");
       return false;
@@ -81,7 +81,7 @@ class BurtFirmwareSerial extends Service {
   /// Sends the reset code and returns whether the device confirmed its reset.
   bool _reset() {
     _serial?.write(resetCode);
-    final response = _serial?.readBytes(count: 4);
+    final response = _serial?.readBytes( 4);
     if (response == null) return false;
     if (response.length != 4 || response.any((x) => x != 1)) return false;
     logger.info("The ${device.name} Teensy has been reset");

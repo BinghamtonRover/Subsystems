@@ -34,7 +34,13 @@ class SerialDevice extends Service {
 	bool get isOpen => _port.isOpen;
 
   @override
-	Future<bool> init() async => _port.openReadWrite();
+	Future<bool> init() async {
+    try {
+      return _port.openReadWrite();
+    } catch (error) {
+      return false;
+    }
+  }
 
   /// Starts listening to data sent over the serial port via [stream].
   void startListening() => _timer = Timer.periodic(readInterval, _listenForBytes);
@@ -43,12 +49,19 @@ class SerialDevice extends Service {
   void stopListening() => _timer?.cancel();
 
   /// Reads bytes from the port. If [count] is provided, only reads that number of bytes.
-  Uint8List readBytes({int? count}) => _port.read(count ?? _port.bytesAvailable);
+  Uint8List readBytes([int? count]) {
+    try {
+      return _port.read(count ?? _port.bytesAvailable);
+    } catch (error) {
+      logger.error("Could not read from serial port $portName:\n  $error");
+      return Uint8List(0);
+    }
+  }
 
 	/// Reads any data from the port and adds it to the [stream].
 	void _listenForBytes(_) {
 		try {
-      final Uint8List bytes = _port.read(_port.bytesAvailable);
+      final Uint8List bytes = readBytes();
       if (bytes.isEmpty) return;
       _controller.add(bytes);
 		} catch (error) {
@@ -61,10 +74,17 @@ class SerialDevice extends Service {
 	Future<void> dispose() async {
     _timer?.cancel();
 		_port.dispose();
+    await _controller.close();
 	}
 
 	/// Writes data to the port.
-	void write(Uint8List data) => _port.write(data);
+	void write(Uint8List data) {
+    try { 
+      _port.write(data);
+    } catch (error) {
+      // Ignore errors when writing
+    }
+  }
 
 	/// All incoming bytes coming from the port.
 	Stream<Uint8List> get stream => _controller.stream;
