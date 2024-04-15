@@ -11,6 +11,7 @@ dependencies:
   burt_network: 
     git: https://github.com/BinghamtonRover/Networking.git
   collection: ^1.18.0
+  csv: ^6.0.0
   ffi: ^2.0.2
   libserialport: ^0.3.0+1
   osc: ^1.0.0
