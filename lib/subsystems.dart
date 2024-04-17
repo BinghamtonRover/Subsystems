@@ -20,23 +20,25 @@ export "src/can/socket_stub.dart";
 
 /// Contains all the resources needed by the subsystems program.
 class SubsystemsCollection extends MessageService {
-	/// The CAN bus socket.
-	final can = CanService();
+  bool isReady = false;
+  
+  /// The CAN bus socket.
+  final can = CanService();
   /// The Serial service.
   final serial = SerialService();
-	/// The UDP server.
-	final server = SubsystemsServer(port: 8001);
-	/// The GPS reader.
-	final gps = GpsReader();
+  /// The UDP server.
+  final server = SubsystemsServer(port: 8001);
+  /// The GPS reader.
+  final gps = GpsReader();
   /// The IMU reader.
-	final imu = ImuReader();
+  final imu = ImuReader();
 
   @override
-	Future<bool> init() async {
+  Future<bool> init() async {
     logger.socket = server;
-		logger.debug("Running in debug mode...");
-		logger.trace("Running in trace mode...");
-		await server.init();
+    logger.debug("Running in debug mode...");
+    logger.trace("Running in trace mode...");
+    await server.init();
     var result = true;
     try {
       result &= await can.init();
@@ -47,27 +49,30 @@ class SubsystemsCollection extends MessageService {
       if (result) {
         logger.warning("The subsystems did not start properly");
       }
+      isReady = true;
       return true;  // The subsystems should keep running even when something goes wrong.
     } catch (error) {
       logger.critical("Unexpected error when initializing Subsystems", body: error.toString());
       return false;
     }
-	}
+  }
 
   @override
-	Future<void> dispose() async {
+  Future<void> dispose() async {
     logger.info("Shutting down...");
     stopHardware();
-		await can.dispose();
+    isReady = false;
+    await can.dispose();
     await serial.dispose();
-		await server.dispose();
+    await server.dispose();
     await imu.dispose();
-		await gps.dispose();
-		logger.info("Subsystems disposed");
-	}
+    await gps.dispose();
+    logger.info("Subsystems disposed");
+  }
 
   @override
   void sendWrapper(WrappedMessage wrapper) {
+    if (!isReady) return;
     if (collection.serial.sendWrapper(wrapper)) return;
     collection.can.sendWrapper(wrapper);
   }
