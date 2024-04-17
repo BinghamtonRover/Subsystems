@@ -1,10 +1,10 @@
 import "dart:async";
 import "dart:io";
 import "dart:typed_data";
-import "package:libserialport/libserialport.dart";
 
 import "package:collection/collection.dart";
-import "package:burt_network/generated.dart";
+
+import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 import "service.dart";
@@ -20,8 +20,10 @@ final nameToDevice = <String, Device>{
 
 /// A service to send and receive messages to the firmware over serial.
 class SerialService extends MessageService {
-  /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
-  static Future<List<BurtFirmwareSerial>> getFirmware() async {
+  /// Gets all the names of all the ports.
+  static Future<List<String>> getPortNames() async {
+    final allPorts = DelegateSerialPort.allPorts;
+    if (!Platform.isLinux) return allPorts;
     final imuCommand = await Process.run("realpath", ["/dev/rover-imu"]);
     final imuPort = imuCommand.stdout.trim();
     logger.trace("IMU is on: $imuPort");
@@ -29,11 +31,17 @@ class SerialService extends MessageService {
     final gpsPort = gpsCommand.stdout.trim();
     logger.trace("GPS is on: $gpsPort");
     return [
-      for (final port in SerialPort.availablePorts)
+      for (final port in allPorts)
         if (port != imuPort && port != gpsPort)
-          BurtFirmwareSerial(port),
+          port,
     ];
   }
+  
+  /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
+  static Future<List<BurtFirmwareSerial>> getFirmware() async => [
+    for (final port in await getPortNames())
+      BurtFirmwareSerial(port: port, logger: logger),
+  ];
 
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
   
@@ -41,7 +49,7 @@ class SerialService extends MessageService {
   List<BurtFirmwareSerial> devices = [];
 
   @override
-  Future<void> init() async {
+  Future<bool> init() async {
     devices = await getFirmware();    
     for (final device in devices) {
       await device.init();
@@ -50,6 +58,11 @@ class SerialService extends MessageService {
       if (subscription == null) continue;
       _subscriptions.add(subscription);
     }
+    // This service is a backup service for [CanService]
+    // If something went wrong here, the messages will be sent over CAN instead.
+    // In addition, 1 or 2 subsystems may be connected at a time, not all 3.
+    // Therefore, it is not as useful to return false here on an error condition.
+    return true;  
   }
 
   @override

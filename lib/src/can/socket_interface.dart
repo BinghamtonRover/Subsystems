@@ -1,5 +1,7 @@
 import "dart:io";
 
+import "package:burt_network/burt_network.dart";
+
 import "ffi.dart";
 import "message.dart";
 import "socket_stub.dart";
@@ -7,7 +9,7 @@ import "socket_ffi.dart";
 
 /// An exception that occurred while working with the CAN bus -- see [BurtCanStatus].
 class CanException implements Exception {
-  /// The error that occured, using [getCanError].
+  /// The error that occurred, using [getCanError].
   final String message;
   /// A const constructor
   const CanException(this.message);
@@ -25,15 +27,9 @@ class CanException implements Exception {
 /// 
 /// - Use [sendMessage] to send a message to all devices on the bus
 /// - Listen to [incomingMessages] to receive messages from other devices on the bus
-abstract class CanSocket {
+abstract class CanSocket extends Service {
   /// Chooses the right implementation for the platform. Uses a stub on non-Linux platforms.
   factory CanSocket() => Platform.isLinux ? CanFFI() : CanStub();
-
-  /// Starts listening for CAN messages.
-  Future<void> init();
-
-  /// Disposes of native resources allocated to this object, and stops listening for CAN messages.
-  Future<void> dispose() async { }
 
   /// Sends a CAN message with the given ID and data.
   void sendMessage({required int id, required List<int> data}) {  }
