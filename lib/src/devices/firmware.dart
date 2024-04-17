@@ -1,8 +1,8 @@
 import "dart:typed_data";
 
 import "package:protobuf/protobuf.dart";
-import "package:burt_network/generated.dart";
 
+import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 /// Represents a firmware device connected over Serial.

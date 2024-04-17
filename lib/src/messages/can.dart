@@ -8,7 +8,7 @@ library;
 
 import "dart:async";
 
-import "package:burt_network/generated.dart";
+import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 import "service.dart";

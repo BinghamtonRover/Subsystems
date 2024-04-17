@@ -1,6 +1,6 @@
 import "dart:io";
 
-import "../service.dart";
+import "package:burt_network/burt_network.dart";
 
 import "ffi.dart";
 import "message.dart";

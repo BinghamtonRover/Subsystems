@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:typed_data";
 
+import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 /// A wrapper around the `package:libserialport` library.

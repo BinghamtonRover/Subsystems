@@ -1,6 +1,4 @@
-import "package:burt_network/generated.dart";
-
-import "../service.dart";
+import "package:burt_network/burt_network.dart";
 
 /// A service to send commands and receive data from a device.
 abstract class MessageService extends Service {

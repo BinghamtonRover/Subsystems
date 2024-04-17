@@ -1,13 +1,11 @@
-import "package:burt_network/logging.dart";
+import "package:burt_network/burt_network.dart";
 
-import "src/service.dart";
 import "src/server.dart";
 import "src/devices/gps.dart";
 import "src/devices/imu.dart";
 import "src/messages/can.dart";
 import "src/messages/serial.dart";
 
-export "src/service.dart";
 export "src/server.dart";
 export "src/devices/firmware.dart";
 export "src/devices/imu.dart";

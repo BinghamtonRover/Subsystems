@@ -1,6 +1,6 @@
 import "dart:typed_data";
 
-import "../service.dart";
+import "package:burt_network/burt_network.dart";
 
 import "port_delegate.dart";
 export "port_delegate.dart";
