@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.2.2
 
 # Add regular dependencies here.
 dependencies:
@@ -12,7 +12,7 @@ dependencies:
     git: https://github.com/BinghamtonRover/Networking.git
   collection: ^1.18.0
   csv: ^6.0.0
-  ffi: ^2.0.2
+  ffi: 2.1.0
   libserialport: ^0.3.0+1
   osc: ^1.0.0
   protobuf: ^3.1.0
