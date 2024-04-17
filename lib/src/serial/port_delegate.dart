@@ -9,31 +9,38 @@ class DelegateSerialPort extends SerialPortInterface {
 	/// A list of all available ports on the device.
 	static List<String> allPorts = SerialPort.availablePorts;
   
-  SerialPort _delegate;
+  SerialPort? _delegate;
 
   /// Creates a serial port that delegates to the `libserialport` package.
-  DelegateSerialPort(super.portName) : 
-    _delegate = SerialPort(portName);
+  DelegateSerialPort(super.portName);
 
   @override
-  bool get isOpen => _delegate.isOpen;
+  bool get isOpen => _delegate?.isOpen ?? false;
   
   @override
-  bool openReadWrite() => _delegate.openReadWrite();
+  bool openReadWrite() {
+    try { 
+      _delegate = SerialPort(portName);
+      _delegate!.openReadWrite();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  @override
+  int get bytesAvailable => _delegate!.bytesAvailable;
   
   @override
-  int get bytesAvailable => _delegate.bytesAvailable;
+  Uint8List read(int count) => _delegate!.read(count);
   
   @override
-  Uint8List read(int count) => _delegate.read(count);
-  
-  @override
-  void write(Uint8List bytes) => _delegate.write(bytes);
+  void write(Uint8List bytes) => _delegate!.write(bytes);
   
   @override
   void dispose() {
-    _delegate.close();
-    _delegate.dispose();
+    _delegate?.close();
+    _delegate?.dispose();
     _delegate = SerialPort(portName);
   }
 }
