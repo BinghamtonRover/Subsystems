@@ -20,6 +20,7 @@ export "src/can/socket_stub.dart";
 
 /// Contains all the resources needed by the subsystems program.
 class SubsystemsCollection extends MessageService {
+  /// Whether the subsystems is fully initialized.
   bool isReady = false;
   
   /// The CAN bus socket.
