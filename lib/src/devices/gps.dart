@@ -45,7 +45,12 @@ class GpsReader extends Service {
   }
 
   /// The serial device representing the GPS.
-  SerialDevice device = SerialDevice(portName: gpsPort, readInterval: const Duration(seconds: 1));
+  final SerialDevice device = SerialDevice(
+    portName: gpsPort, 
+    readInterval: const Duration(seconds: 1),
+    logger: logger,
+  );
+
   /// The subscription to the serial port.
   StreamSubscription<List<int>>? _subscription;
 

@@ -15,7 +15,11 @@ extension on double {
 /// A service to read orientation data from the connected IMU.
 class ImuReader extends Service {
   /// The device that reads from the serial port. 
-  final serial = SerialDevice(portName: imuPort, readInterval: const Duration(milliseconds: 10));
+  final serial = SerialDevice(
+    portName: imuPort, 
+    readInterval: const Duration(milliseconds: 10),
+    logger: logger,
+  );
 
   /// The subscription that will be notified when a new serial packet arrives.
   StreamSubscription<List<int>>? subscription;

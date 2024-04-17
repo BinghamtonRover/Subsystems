@@ -7,11 +7,10 @@ import "src/messages/can.dart";
 import "src/messages/serial.dart";
 
 export "src/server.dart";
-export "src/devices/firmware.dart";
+
 export "src/devices/imu.dart";
-export "src/serial/serial.dart";
-export "src/serial/port_interface.dart";
 export "src/devices/gps.dart";
+
 export "src/can/ffi.dart";
 export "src/can/message.dart";
 export "src/can/socket_ffi.dart";
@@ -33,6 +32,7 @@ class SubsystemsCollection extends Service {
 
   @override
 	Future<bool> init() async {
+    logger.socket = server;
 		logger.debug("Running in debug mode...");
 		logger.trace("Running in trace mode...");
 		await server.init();
@@ -67,5 +67,6 @@ class SubsystemsCollection extends Service {
 
 /// The collection of all the subsystem's resources.
 final collection = SubsystemsCollection();
+
 /// A logger that prints to the terminal and sends a UDP message.
-final logger = BurtLogger(socket: collection.server);
+final logger = BurtLogger();

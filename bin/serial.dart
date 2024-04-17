@@ -1,7 +1,5 @@
 import "dart:typed_data";
-import "package:subsystems/subsystems.dart";
-import "package:burt_network/logging.dart";
-import "package:burt_network/generated.dart";
+import "package:burt_network/burt_network.dart";
 import "package:libserialport/libserialport.dart";
 
 final logger = BurtLogger();
@@ -26,6 +24,7 @@ void main(List<String> args) async {
 	final device = SerialDevice(
 		portName: port, 
 		readInterval: const Duration(milliseconds: 100),
+    logger: logger,
 	);
 	if (!await device.init()) {
     logger.critical("Could not connect to $port");

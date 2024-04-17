@@ -3,7 +3,8 @@ import "dart:io";
 import "dart:typed_data";
 
 import "package:collection/collection.dart";
-import "package:burt_network/generated.dart";
+
+import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
 
 import "service.dart";
@@ -39,7 +40,7 @@ class SerialService extends MessageService {
   /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
   static Future<List<BurtFirmwareSerial>> getFirmware() async => [
     for (final port in await getPortNames())
-      BurtFirmwareSerial(port),
+      BurtFirmwareSerial(port: port, logger: logger),
   ];
 
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
