@@ -18,27 +18,27 @@ class DelegateSerialPort extends SerialPortInterface {
   bool get isOpen => _delegate?.isOpen ?? false;
   
   @override
-  bool openReadWrite() {
+  Future<bool> init() async {
     try { 
       _delegate = SerialPort(portName);
-      _delegate!.openReadWrite();
-      return true;
+      return _delegate!.openReadWrite();
     } catch (error) {
       return false;
     }
   }
 
   @override
-  int get bytesAvailable => _delegate!.bytesAvailable;
+  int get bytesAvailable => _delegate?.bytesAvailable ?? 0;
   
   @override
-  Uint8List read(int count) => _delegate!.read(count);
+  Uint8List read(int count) => _delegate?.read(count) ?? Uint8List.fromList([]);
   
   @override
-  void write(Uint8List bytes) => _delegate!.write(bytes);
+  void write(Uint8List bytes) => _delegate?.write(bytes);
   
   @override
-  void dispose() {
+  Future<void> dispose() async {
+    if (!isOpen) return;
     _delegate?.close();
     _delegate?.dispose();
   }

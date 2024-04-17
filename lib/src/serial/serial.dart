@@ -36,7 +36,7 @@ class SerialDevice extends Service {
   @override
 	Future<bool> init() async {
     try {
-      return _port.openReadWrite();
+      return _port.init();
     } catch (error) {
       return false;
     }
@@ -73,7 +73,7 @@ class SerialDevice extends Service {
   @override
 	Future<void> dispose() async {
     _timer?.cancel();
-		_port.dispose();
+		await _port.dispose();
     await _controller.close();
 	}
 
