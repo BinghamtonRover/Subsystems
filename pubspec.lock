@@ -44,9 +44,11 @@ packages:
   burt_network:
     dependency: "direct main"
     description:
-      path: "../Networking"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: cb34671016cec7e7a08d062545f7407397af57f8
+      url: "https://github.com/BinghamtonRover/Networking.git"
+    source: git
     version: "1.1.0"
   cli_util:
     dependency: transitive
