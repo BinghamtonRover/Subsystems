@@ -12,14 +12,19 @@ class SubsystemsServer extends RoverServer {
 
 	@override
 	void onMessage(WrappedMessage wrapper) {
-    if (collection.serial.sendWrapper(wrapper)) return;
-    collection.can.sendWrapper(wrapper);
+    collection.sendWrapper(wrapper);
 	}
 
   @override
   Future<void> restart() async {
     await collection.dispose();
     await collection.init();
+  }
+
+  @override
+  void onDisconnect() {
+    super.onDisconnect();
+    collection.stopHardware();
   }
 
   @override

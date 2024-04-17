@@ -5,6 +5,7 @@ import "src/devices/gps.dart";
 import "src/devices/imu.dart";
 import "src/messages/can.dart";
 import "src/messages/serial.dart";
+import "src/messages/service.dart";
 
 export "src/server.dart";
 
@@ -18,7 +19,7 @@ export "src/can/socket_interface.dart";
 export "src/can/socket_stub.dart";
 
 /// Contains all the resources needed by the subsystems program.
-class SubsystemsCollection extends Service {
+class SubsystemsCollection extends MessageService {
 	/// The CAN bus socket.
 	final can = CanService();
   /// The Serial service.
@@ -56,6 +57,7 @@ class SubsystemsCollection extends Service {
   @override
 	Future<void> dispose() async {
     logger.info("Shutting down...");
+    stopHardware();
 		await can.dispose();
     await serial.dispose();
 		await server.dispose();
@@ -63,6 +65,25 @@ class SubsystemsCollection extends Service {
 		await gps.dispose();
 		logger.info("Subsystems disposed");
 	}
+
+  @override
+  void sendWrapper(WrappedMessage wrapper) {
+    if (collection.serial.sendWrapper(wrapper)) return;
+    collection.can.sendWrapper(wrapper);
+  }
+
+  /// Stops all the hardware from moving.
+  void stopHardware() {
+    logger.info("Stopping all hardware");
+    final stopDrive = DriveCommand(throttle: 0, setThrottle: true);
+    final stopArm = ArmCommand(stop: true);
+    final stopGripper = GripperCommand(stop: true);
+    final stopScience = ScienceCommand(stop: true);
+    sendMessage(stopDrive);
+    sendMessage(stopArm);
+    sendMessage(stopGripper);
+    sendMessage(stopScience);
+  }
 }
 
 /// The collection of all the subsystem's resources.
