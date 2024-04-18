@@ -15,7 +15,6 @@ import "service.dart";
 
 /// Maps CAN IDs to [WrappedMessage.name] for data messages.
 final Map<int, String> dataCanIDs = {
-	0x13: ElectricalData().messageName,
 	0x14: DriveData().messageName,
 	0x15: ArmData().messageName,
 	0x16: GripperData().messageName,
@@ -28,7 +27,6 @@ final Map<String, int> commandCanIDs = {
 	GripperCommand().messageName: 0x33,
 	ScienceCommand().messageName: 0x43,
 	DriveCommand().messageName: 0x53,
-	ElectricalCommand().messageName: 0x63,
 };
 
 /// Manages a CAN socket on the subsystems program.
