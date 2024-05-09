@@ -1,3 +1,4 @@
+import "dart:io";
 import "dart:typed_data";
 import "package:burt_network/burt_network.dart";
 import "package:libserialport/libserialport.dart";
@@ -45,7 +46,7 @@ void main(List<String> args) async {
     return;
   }
   var port = args.first;
-  // if (!port.startsWith("/dev")) port = "/dev/$port";
+  if (!Platform.isWindows && !port.startsWith("/dev")) port = "/dev/$port";
   if (args.contains("-a") || args.contains("--ascii")) {
     logger.info("Running in ASCII mode");
     ascii = true;
