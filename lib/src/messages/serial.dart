@@ -13,8 +13,7 @@ import "service.dart";
 final nameToDevice = <String, Device>{
   ArmCommand().messageName: Device.ARM,
   GripperCommand().messageName: Device.GRIPPER,
-  ElectricalCommand().messageName: Device.ELECTRICAL,
-  DriveCommand().messageName: Device.ELECTRICAL,
+  DriveCommand().messageName: Device.DRIVE,
   ScienceCommand().messageName: Device.SCIENCE,
 };
 
@@ -79,7 +78,6 @@ class SerialService extends MessageService {
     final name = switch (serial.device) {
       Device.ARM => ArmData().messageName,
       Device.DRIVE => DriveData().messageName,
-      Device.ELECTRICAL => ElectricalData().messageName,
       Device.GRIPPER => GripperData().messageName,
       Device.SCIENCE => ScienceData().messageName,
       _ => null,
