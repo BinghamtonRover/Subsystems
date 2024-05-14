@@ -64,7 +64,7 @@ void process(Uint8List buffer) {
     logger.debug("Got string: $s");	
   } else {
     try {
-      final data = ScienceData.fromBuffer(buffer);
+      final data = DriveData.fromBuffer(buffer);
       logger.debug("Got data: ${data.toProto3Json()}");
     } catch (error) {
       logger.error("Could not decode DriveData: $error\n  Buffer: $buffer");

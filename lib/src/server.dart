@@ -12,6 +12,7 @@ class SubsystemsServer extends RoverServer {
 
 	@override
 	void onMessage(WrappedMessage wrapper) {
+    if (wrapper.name == RoverPosition().messageName) return;
     collection.sendWrapper(wrapper);
 	}
 

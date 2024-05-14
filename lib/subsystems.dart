@@ -75,7 +75,7 @@ class SubsystemsCollection extends MessageService {
   void sendWrapper(WrappedMessage wrapper) {
     if (!isReady) return;
     if (collection.serial.sendWrapper(wrapper)) return;
-    collection.can.sendWrapper(wrapper);
+    // collection.can.sendWrapper(wrapper);
   }
 
   /// Stops all the hardware from moving.
