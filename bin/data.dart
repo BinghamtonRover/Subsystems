@@ -33,12 +33,18 @@ Future<void> main() async {
   final current = SwingingIterator(0, 30, 0.1);
   final motor = SwingingIterator(0, pi, 0.01);
   final motor2 = SwingingIterator(0, 2*pi, 0.05);
+  final roll = SwingingIterator(-45, 45, 1);
+  final pitch = SwingingIterator(-45, 45, 1);
+  final yaw = SwingingIterator(-45, 45, 1);
   while (true) {
     throttle.moveNext();
     voltage.moveNext();
     current.moveNext();
     motor.moveNext();
     motor2.moveNext();
+    roll.moveNext();
+    pitch.moveNext();
+    yaw.moveNext();
     final data = DriveData(
       left: 1, 
       setLeft: true, 
@@ -48,16 +54,27 @@ Future<void> main() async {
       setThrottle: true, 
       batteryVoltage: voltage.current, 
       batteryCurrent: current.current,
+      version: Version(major: 1),
     ); 
     server.sendMessage(data);
     final data2 = ArmData(
       base: MotorData(angle: motor2.current), 
       shoulder: MotorData(angle: motor.current), 
       elbow: MotorData(angle: motor.current),
+      version: Version(major: 1),
     );
     server.sendMessage(data2);
-    final data3 = GripperData(lift: MotorData(angle: motor.current));
+    final data3 = GripperData(lift: MotorData(angle: motor.current), version: Version(major: 1));
     server.sendMessage(data3);
+    final data4 = RoverPosition(
+      orientation: Orientation(
+        x: roll.current,
+        y: pitch.current, 
+        z: yaw.current,
+      ),
+      version: Version(major: 1),
+    );
+    server.sendMessage(data4);
     await Future<void>.delayed(const Duration(milliseconds: 10));
   }
 }

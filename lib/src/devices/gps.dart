@@ -81,6 +81,8 @@ class GpsReader extends Service {
         return false;
       }
       _subscription = device.stream.listen(_handlePacket);
+	device.startListening();
+	logger.info("Reading GPS over port $gpsPort");
       return true;
     } catch (error) {
       logger.critical("Could not open GPS", body: "Port $gpsPort, Error=$error");
