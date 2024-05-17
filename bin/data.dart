@@ -46,8 +46,9 @@ Future<void> main() async {
       setRight: true, 
       throttle: throttle.current, 
       setThrottle: true, 
-      batteryVoltage: voltage.current, 
-      batteryCurrent: current.current,
+      // No longer in DriveData
+      // batteryVoltage: voltage.current, 
+      // batteryCurrent: current.current,
     ); 
     server.sendMessage(data);
     final data2 = ArmData(

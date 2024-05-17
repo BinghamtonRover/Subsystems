@@ -1,3 +1,5 @@
+import "dart:io";
+
 import "package:burt_network/burt_network.dart";
 
 import "package:subsystems/subsystems.dart";
@@ -12,7 +14,42 @@ class SubsystemsServer extends RoverServer {
 
 	@override
 	void onMessage(WrappedMessage wrapper) {
-    collection.sendWrapper(wrapper);
+    if (wrapper.name == DriveData().messageName){
+      final data = DriveData.fromBuffer(wrapper.data); 
+
+      switch (data.status) {
+
+        case RoverStatus.MANUAL:
+          // send udp commands as normal
+          collection.sendWrapper(wrapper);
+
+        case RoverStatus.IDLE: 
+          // ignore all udp commands
+          break;
+
+        case RoverStatus.POWER_OFF:
+          if(Platform.isLinux){
+            collection.stopHardware();
+            // works the same as sudo shutdown now
+            // Process.run("sudo poweroff", [""]); should also work? dart lsp was getting mad at me
+            Process.run("sudo", ["poweroff"]);
+          }
+        
+        case RoverStatus.RESTART:
+          if(Platform.isLinux){
+            collection.stopHardware();
+            Process.run("sudo", ["reboot"]);
+          }
+
+        // case RoverStatus.DISCONNECTED:
+        //   break;  
+
+        // case RoverStatus.AUTONOMOUS:
+        //   // potential autonomany shenanigans
+        //   collection.sendWrapper(wrapper);
+        //   break;
+      }
+    } 
 	}
 
   @override
