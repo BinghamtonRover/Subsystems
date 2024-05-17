@@ -1,6 +1,7 @@
 import "dart:io";
 import "dart:typed_data";
 import "package:burt_network/burt_network.dart";
+import "package:collection/collection.dart";
 import "package:libserialport/libserialport.dart";
 
 final logger = BurtLogger();
@@ -37,12 +38,35 @@ Future<void> listenToFirmware(String port) async {
   device.stream?.listen(process);
 }
 
+typedef ProtoConstructor = Message Function(List<int> data);
+
+ProtoConstructor? getDataConstructor(Device device) => switch (device) {
+  Device.DRIVE => DriveData.fromBuffer,
+  Device.ARM => ArmData.fromBuffer,
+  Device.GRIPPER => GripperData.fromBuffer,
+  Device.SCIENCE => GripperData.fromBuffer,
+  _ => null,
+};
+
+ProtoConstructor? constructor;
+
 void main(List<String> args) async {
   if (args.isEmpty) {
     logger.info("Ports: ${SerialPort.availablePorts}");
     return;
   } else if (args.contains("-h") || args.contains("--help")) {
-    logger.info("Usage: dart run -r :serial [port] [-a | --ascii]");
+    logger.info("Usage: dart run -r :serial [-a | --ascii] [port device]");
+    return;
+  }
+  final deviceName = args.last;
+  final device = Device.values.firstWhereOrNull((d) => d.name.toLowerCase() == deviceName.toLowerCase());
+  if (device == null) {
+    logger.error("Enter a device name as the last argument. Unrecognized device: $deviceName");
+    return;
+  }
+  constructor = getDataConstructor(device);
+  if (constructor == null) {
+    logger.error("Unsupported serial device: $deviceName");
     return;
   }
   var port = args.first;
@@ -64,7 +88,7 @@ void process(Uint8List buffer) {
     logger.debug("Got string: $s");	
   } else {
     try {
-      final data = DriveData.fromBuffer(buffer);
+      final data = constructor!(buffer);
       logger.debug("Got data: ${data.toProto3Json()}");
     } catch (error) {
       logger.error("Could not decode DriveData: $error\n  Buffer: $buffer");
