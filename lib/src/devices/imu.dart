@@ -38,6 +38,7 @@ class ImuReader extends Service {
       if (orientation.x.abs() > 360 || orientation.y.abs() > 360 || orientation.z.abs() > 360) return;
       final position = RoverPosition(orientation: orientation, version: Version(major: 1, minor: 0));
       collection.server.sendMessage(position);
+      collection.server.sendMessage(position, destinationOverride: autonomySocket);
     } catch (error) { /* Ignore corrupt data */ }
   }
 

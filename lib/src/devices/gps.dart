@@ -64,6 +64,7 @@ class GpsReader extends Service {
     }
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
+    collection.server.sendMessage(roverPosition, destinationOverride: autonomySocket);
   }
 
   /// Parses a packet into several NMEA sentences and handles them.

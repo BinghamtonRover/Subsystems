@@ -1,6 +1,13 @@
+import "dart:io";
 import "package:burt_network/burt_network.dart";
 
 import "package:subsystems/subsystems.dart";
+
+/// The autonomy socket, for sending GPS and IMU info to.
+final autonomySocket = SocketInfo(
+  address: InternetAddress("192.168.1.30"),
+  port: 8003,
+);
 
 /// A UDP server to connect to the dashboard.
 /// 
