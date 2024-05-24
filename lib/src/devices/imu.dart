@@ -34,6 +34,7 @@ class ImuReader extends Service {
         y: message.arguments[1] as double,
         z: message.arguments[2] as double,
       );
+	print(orientation.toProto3Json());
       if (orientation.x.isZero() || orientation.y.isZero() || orientation.z.isZero()) return;
       if (orientation.x.abs() > 360 || orientation.y.abs() > 360 || orientation.z.abs() > 360) return;
       final position = RoverPosition(orientation: orientation, version: Version(major: 1, minor: 0));
