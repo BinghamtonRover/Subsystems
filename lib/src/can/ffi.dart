@@ -10,18 +10,23 @@ export "package:subsystems/src/generated/can_ffi_bindings.dart";
 /// See `src/can.h` in this repository. Only supported on Linux.
 final nativeLib = CanBindings(DynamicLibrary.open("burt_can.so"));
 
-/// These values come from the [BurtCanStatus] enum.
-String? getCanError(int value) => switch (value) {
-  1 => null,
-  2 => "Could not create socket",
-  3 => "Could not parse interface",
-  4 => "Could not bind to socket",
-  5 => "Could not close socket",
-  6 => "Invalid MTU",
-  7 => "CAN FD is not supported",
-  8 => "Could not switch to CAN FD",
-  9 => "Could not write data",
-  10 => "Could not read data",
-  11 => "Frame was not fully read",
-  _ => throw ArgumentError.value(value, "CanStatus", "Unknown CAN status"),
-};
+/// Helpful methods on [BurtCanStatus]es.
+extension BurtCanStatusUtils on BurtCanStatus {
+  /// Whether this status represents an error.
+  bool get isError => this != BurtCanStatus.OK;
+  
+  /// Produces a human-readable string for this error condition.
+  String? get error => switch (this) {
+    BurtCanStatus.OK => null,
+    BurtCanStatus.SOCKET_CREATE_ERROR => "Could not create socket",
+    BurtCanStatus.INTERFACE_PARSE_ERROR => "Could not parse interface",
+    BurtCanStatus.BIND_ERROR => "Could not bind to socket",
+    BurtCanStatus.CLOSE_ERROR => "Could not close socket",
+    BurtCanStatus.MTU_ERROR => "Invalid MTU",
+    BurtCanStatus.CANFD_NOT_SUPPORTED => "CAN FD is not supported",
+    BurtCanStatus.FD_MISC_ERROR => "Could not switch to CAN FD",
+    BurtCanStatus.WRITE_ERROR => "Could not write data",
+    BurtCanStatus.READ_ERROR => "Could not read data",
+    BurtCanStatus.FRAME_NOT_FULLY_READ => "Frame was not fully read",
+  };
+}

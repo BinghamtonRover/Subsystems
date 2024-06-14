@@ -9,7 +9,7 @@ import "socket_ffi.dart";
 
 /// An exception that occurred while working with the CAN bus -- see [BurtCanStatus].
 class CanException implements Exception {
-  /// The error that occurred, using [getCanError].
+  /// The error that occurred.
   final String message;
   /// A const constructor
   const CanException(this.message);
