@@ -60,10 +60,10 @@ class CanFFI implements CanSocket {
       hasError = true;
       return false;
     }
-    final error = getCanError(nativeLib.BurtCan_open(_can!));
-    if (error != null) {
+    final status = nativeLib.BurtCan_open(_can!);
+    if (status.isError) {
       hasError = true;
-      logger.critical("Could not start the CAN bus", body: error);
+      logger.critical("Could not start the CAN bus", body: status.error);
       return false;
     }
     _startListening(); 
@@ -86,8 +86,8 @@ class CanFFI implements CanSocket {
   void sendMessage({required int id, required List<int> data}) {
     if (hasError || _can == null) return;
     final message = CanMessage(id: id, data: data);
-    final error = getCanError(nativeLib.BurtCan_send(_can!, message.pointer));
-    if (error != null) logger.warning("Could not send CAN message", body: "ID=$id, Data=$data, Error: $error");
+    final status = nativeLib.BurtCan_send(_can!, message.pointer);
+    if (status.isError) logger.warning("Could not send CAN message", body: "ID=$id, Data=$data, Error: ${status.error}");
     message.dispose();
   }
 
@@ -97,8 +97,8 @@ class CanFFI implements CanSocket {
     int count = 0;
     while (true) {
       final pointer = nativeLib.NativeCanMessage_create();
-      final error = getCanError(nativeLib.BurtCan_receive(_can!, pointer));
-      if (error != null) logger.warning("Could not read the CAN bus", body: error);
+      final status = nativeLib.BurtCan_receive(_can!, pointer);
+      if (status.isError) logger.warning("Could not read the CAN bus", body: status.error);
       if (pointer.ref.length == 0) break;
       count++;
       if (count % 10 == 0) {

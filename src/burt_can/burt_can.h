@@ -3,7 +3,9 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 typedef enum BurtCanType {
 	CAN = 0,
 	CANFD = 1,
@@ -47,6 +49,9 @@ BurtCanStatus BurtCan_close(BurtCan* pointer);
 
 NativeCanMessage* NativeCanMessage_create();
 void NativeCanMessage_free(NativeCanMessage* pointer);
+
+#ifdef __cplusplus
 }
+#endif
 
 #endif 
