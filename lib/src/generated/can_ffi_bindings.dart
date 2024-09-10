@@ -8,7 +8,6 @@ import 'package:ffi/ffi.dart' as pkg_ffi;
 /// Bindings for `src/burt_can`.
 ///
 /// Regenerate bindings with `dart run ffigen --config ffigen-can.yaml -v severe`.
-///
 class CanBindings {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
@@ -27,19 +26,19 @@ class CanBindings {
   ffi.Pointer<BurtCan> BurtCan_create(
     ffi.Pointer<pkg_ffi.Utf8> interface1,
     int readTimeout,
-    int type,
+    BurtCanType type,
   ) {
     return _BurtCan_create(
       interface1,
       readTimeout,
-      type,
+      type.value,
     );
   }
 
   late final _BurtCan_createPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<BurtCan> Function(ffi.Pointer<pkg_ffi.Utf8>, ffi.Int32,
-              ffi.Int32)>>('BurtCan_create');
+              ffi.UnsignedInt)>>('BurtCan_create');
   late final _BurtCan_create = _BurtCan_createPtr.asFunction<
       ffi.Pointer<BurtCan> Function(ffi.Pointer<pkg_ffi.Utf8>, int, int)>();
 
@@ -57,65 +56,65 @@ class CanBindings {
   late final _BurtCan_free =
       _BurtCan_freePtr.asFunction<void Function(ffi.Pointer<BurtCan>)>();
 
-  int BurtCan_open(
+  BurtCanStatus BurtCan_open(
     ffi.Pointer<BurtCan> pointer,
   ) {
-    return _BurtCan_open(
+    return BurtCanStatus.fromValue(_BurtCan_open(
       pointer,
-    );
+    ));
   }
 
-  late final _BurtCan_openPtr =
-      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<BurtCan>)>>(
-          'BurtCan_open');
+  late final _BurtCan_openPtr = _lookup<
+          ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Pointer<BurtCan>)>>(
+      'BurtCan_open');
   late final _BurtCan_open =
       _BurtCan_openPtr.asFunction<int Function(ffi.Pointer<BurtCan>)>();
 
-  int BurtCan_send(
+  BurtCanStatus BurtCan_send(
     ffi.Pointer<BurtCan> pointer,
     ffi.Pointer<NativeCanMessage> message,
   ) {
-    return _BurtCan_send(
+    return BurtCanStatus.fromValue(_BurtCan_send(
       pointer,
       message,
-    );
+    ));
   }
 
   late final _BurtCan_sendPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int32 Function(ffi.Pointer<BurtCan>,
+          ffi.UnsignedInt Function(ffi.Pointer<BurtCan>,
               ffi.Pointer<NativeCanMessage>)>>('BurtCan_send');
   late final _BurtCan_send = _BurtCan_sendPtr.asFunction<
       int Function(ffi.Pointer<BurtCan>, ffi.Pointer<NativeCanMessage>)>();
 
-  int BurtCan_receive(
+  BurtCanStatus BurtCan_receive(
     ffi.Pointer<BurtCan> pointer,
     ffi.Pointer<NativeCanMessage> message,
   ) {
-    return _BurtCan_receive(
+    return BurtCanStatus.fromValue(_BurtCan_receive(
       pointer,
       message,
-    );
+    ));
   }
 
   late final _BurtCan_receivePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int32 Function(ffi.Pointer<BurtCan>,
+          ffi.UnsignedInt Function(ffi.Pointer<BurtCan>,
               ffi.Pointer<NativeCanMessage>)>>('BurtCan_receive');
   late final _BurtCan_receive = _BurtCan_receivePtr.asFunction<
       int Function(ffi.Pointer<BurtCan>, ffi.Pointer<NativeCanMessage>)>();
 
-  int BurtCan_close(
+  BurtCanStatus BurtCan_close(
     ffi.Pointer<BurtCan> pointer,
   ) {
-    return _BurtCan_close(
+    return BurtCanStatus.fromValue(_BurtCan_close(
       pointer,
-    );
+    ));
   }
 
-  late final _BurtCan_closePtr =
-      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<BurtCan>)>>(
-          'BurtCan_close');
+  late final _BurtCan_closePtr = _lookup<
+          ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Pointer<BurtCan>)>>(
+      'BurtCan_close');
   late final _BurtCan_close =
       _BurtCan_closePtr.asFunction<int Function(ffi.Pointer<BurtCan>)>();
 
@@ -156,29 +155,57 @@ class _SymbolAddresses {
       get NativeCanMessage_free => _library._NativeCanMessage_freePtr;
 }
 
-abstract class BurtCanType {
-  static const int CAN = 0;
-  static const int CANFD = 1;
+enum BurtCanType {
+  CAN(0),
+  CANFD(1);
+
+  final int value;
+  const BurtCanType(this.value);
+
+  static BurtCanType fromValue(int value) => switch (value) {
+        0 => CAN,
+        1 => CANFD,
+        _ => throw ArgumentError("Unknown value for BurtCanType: $value"),
+      };
 }
 
 /// No 0 value to ensure we always set a status
-abstract class BurtCanStatus {
-  static const int OK = 1;
+enum BurtCanStatus {
+  OK(1),
 
   /// Errors when opening and closing
-  static const int SOCKET_CREATE_ERROR = 2;
-  static const int INTERFACE_PARSE_ERROR = 3;
-  static const int BIND_ERROR = 4;
-  static const int CLOSE_ERROR = 5;
+  SOCKET_CREATE_ERROR(2),
+  INTERFACE_PARSE_ERROR(3),
+  BIND_ERROR(4),
+  CLOSE_ERROR(5),
 
   /// CANFD errors
-  static const int MTU_ERROR = 6;
-  static const int CANFD_NOT_SUPPORTED = 7;
-  static const int FD_MISC_ERROR = 8;
+  MTU_ERROR(6),
+  CANFD_NOT_SUPPORTED(7),
+  FD_MISC_ERROR(8),
 
   /// IO errors
-  static const int WRITE_ERROR = 9;
-  static const int READ_ERROR = 10;
+  WRITE_ERROR(9),
+  READ_ERROR(10),
+  FRAME_NOT_FULLY_READ(11);
+
+  final int value;
+  const BurtCanStatus(this.value);
+
+  static BurtCanStatus fromValue(int value) => switch (value) {
+        1 => OK,
+        2 => SOCKET_CREATE_ERROR,
+        3 => INTERFACE_PARSE_ERROR,
+        4 => BIND_ERROR,
+        5 => CLOSE_ERROR,
+        6 => MTU_ERROR,
+        7 => CANFD_NOT_SUPPORTED,
+        8 => FD_MISC_ERROR,
+        9 => WRITE_ERROR,
+        10 => READ_ERROR,
+        11 => FRAME_NOT_FULLY_READ,
+        _ => throw ArgumentError("Unknown value for BurtCanStatus: $value"),
+      };
 }
 
 final class NativeCanMessage extends ffi.Struct {

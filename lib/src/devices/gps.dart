@@ -1,5 +1,6 @@
 import "dart:async";
 import "dart:convert";
+import "dart:io";
 
 import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
@@ -7,25 +8,28 @@ import "package:subsystems/subsystems.dart";
 /// The port/device file to listen to the GPS on.
 const gpsPort = "/dev/rover-gps";
 
-/// Listens to the GPS and sends its output to the Dashboard. 
-/// 
+/// The UDP socket on the Autonomy program.
+final autonomySocket = SocketInfo(address: InternetAddress("192.168.1.30"), port: 8001);
+
+/// Listens to the GPS and sends its output to the Dashboard.
+///
 /// Call [init] to start listening and [dispose] to stop.
 class GpsReader extends Service {
   /// Parses an NMEA sentence into a [GpsCoordinates] object.
-  /// 
+  ///
   /// See https://shadyelectronics.com/gps-nmea-sentence-structure.
   static GpsCoordinates? parseNMEA(String nmeaSentence) {
     final parts = nmeaSentence.split(",");
     final tag = parts.first;
     if (tag.endsWith("GGA")) {
       return GpsCoordinates(
-        latitude: _nmeaToDecimal(double.tryParse(parts[2]) ?? 0.0), 
+        latitude: _nmeaToDecimal(double.tryParse(parts[2]) ?? 0.0),
         longitude: _nmeaToDecimal(double.tryParse(parts[4]) ?? 0.0),
         altitude: double.tryParse(parts[9]) ?? 0.0,
       );
     } else if (tag.endsWith("RMC")) {
       return GpsCoordinates(
-        latitude: _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0), 
+        latitude: _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0),
         longitude: _nmeaToDecimal(double.tryParse(parts[5]) ?? 0.0),
       );
     } else if (tag.endsWith("GLL")) {
@@ -46,7 +50,7 @@ class GpsReader extends Service {
 
   /// The serial device representing the GPS.
   final SerialDevice device = SerialDevice(
-    portName: gpsPort, 
+    portName: gpsPort,
     readInterval: const Duration(seconds: 1),
     logger: logger,
   );
@@ -64,6 +68,7 @@ class GpsReader extends Service {
     }
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
+    collection.server.sendMessage(roverPosition, destination: autonomySocket);
   }
 
   /// Parses a packet into several NMEA sentences and handles them.
