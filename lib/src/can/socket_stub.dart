@@ -1,7 +1,7 @@
 import "package:subsystems/subsystems.dart";
 
 /// An implementation of the CAN interface that does nothing for platforms that don't support it.
-class CanStub implements CanSocket {
+class CanStub extends CanSocket {
 	/// Creates a mock CAN interface that does nothing and receives no messages.
 	CanStub();
 

@@ -14,17 +14,17 @@ const canType = BurtCanType.CAN;
 const canTimeout = 1;
 
 /// The CAN interface, backed by the native SocketCAN library on Linux.
-/// 
+///
 /// - Access [incomingMessages] to handle messages as they are received
 /// - Call [sendMessage] to send a new [CanMessage]
 /// - Be sure to call [dispose] when you're done to avoid memory leaks
-/// 
+///
 /// Note that [CanMessage]s are natively allocated and need to be manually disposed of. Since this
 /// class sends them through the [incomingMessages] stream, you are responsible for disposing them
 /// if you listen to it. The stream gives you pointers so you can call [CanMessage.dispose].
-class CanFFI implements CanSocket {
+class CanFFI extends CanSocket {
   /// How often to poll CAN messages.
-  /// 
+  ///
   /// This should be small enough to catch incoming messages but large enough to
   /// not block other code from running.
   static const readInterval = Duration(milliseconds: 100);
@@ -51,7 +51,7 @@ class CanFFI implements CanSocket {
   Timer? _timer;
 
   @override
-  Future<bool> init() async { 
+  Future<bool> init() async {
     _can = nativeLib.BurtCan_create(canInterface.toNativeUtf8(), canTimeout, canType);
     await Process.run("sudo", ["ip", "link", "set", "can0", "down"]);
     final result = await Process.run("sudo", ["ip", "link", "set", "can0", "up", "type", "can", "bitrate", "500000"]);
@@ -66,7 +66,7 @@ class CanFFI implements CanSocket {
       logger.critical("Could not start the CAN bus", body: error);
       return false;
     }
-    _startListening(); 
+    _startListening();
     logger.info("Listening on CAN interface $canInterface");
     return true;
   }

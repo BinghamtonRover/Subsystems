@@ -4,11 +4,11 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: 3.2.2
+  sdk: ^3.2.2
 
 # Add regular dependencies here.
 dependencies:
-  burt_network: 
+  burt_network:
     git: https://github.com/BinghamtonRover/Networking.git
   collection: ^1.18.0
   csv: ^6.0.0
