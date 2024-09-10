@@ -1,6 +1,6 @@
 /// Uses Dart's FFI to interop with native C code to use Linux's SocketCan.
-/// 
-/// - See [CanSocket] for usage. 
+///
+/// - See [CanSocket] for usage.
 /// - See [this page](https://bing-rover.gitbook.io/software-docs/overview/network#firmware-to-onboard-computers-can-bus) for a broad overview of CAN.
 /// - See [this page](https://bing-rover.gitbook.io/software-docs/network-details/can-bus) for an in-depth look into how we use CAN on the rover.
 /// - See also: the [Wikipedia](https://en.wikipedia.org/wiki/CAN_bus) page for CAN bus.
@@ -30,12 +30,12 @@ final Map<String, int> commandCanIDs = {
 };
 
 /// Manages a CAN socket on the subsystems program.
-/// 
+///
 /// When a new message is received, its ID is looked up in [dataCanIDs] and sent over UDP.
 /// When a UDP message is received, its ID is looked up in [commandCanIDs] and sent over CAN.
 class CanService extends MessageService {
 	/// The native CAN library. On non-Linux platforms, this will be a stub that does nothing.
-	final can = CanSocket();
+	final can = CanSocket.forPlatform();
 
 	StreamSubscription<CanMessage>? _subscription;
 
@@ -60,7 +60,7 @@ class CanService extends MessageService {
 //		logger.debug("Received CAN message (0x${message.id.toRadixString(16)}): ${message.data}. Name=${name ?? 'None'}");
 		if (name == null) {
 			logger.warning("Received CAN message with unknown ID", body: "ID=0x${message.id.toRadixString(16)}");
-			return; 
+			return;
 		}
 		// We must copy the data since we'll be disposing the pointer.
 		final copy = List<int>.from(message.data);

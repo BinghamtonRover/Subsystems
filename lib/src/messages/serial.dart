@@ -9,7 +9,7 @@ import "package:subsystems/subsystems.dart";
 
 import "service.dart";
 
-/// Maps command names to [Device]s. 
+/// Maps command names to [Device]s.
 final nameToDevice = <String, Device>{
   ArmCommand().messageName: Device.ARM,
   GripperCommand().messageName: Device.GRIPPER,
@@ -20,25 +20,21 @@ final nameToDevice = <String, Device>{
 /// A service to send and receive messages to the firmware over serial.
 class SerialService extends MessageService {
   /// Gets all the names of all the ports.
-  static Future<List<String>> getPortNames() async {
-    final allPorts = DelegateSerialPort.allPorts;
+  static Future<Iterable<String>> getPortNames() async {
+    final allPorts = DelegateSerialPort.allPorts.toSet();
     if (!Platform.isLinux) return allPorts;
     final imuCommand = await Process.run("realpath", ["/dev/rover-imu"]);
     final imuPort = imuCommand.stdout.trim();
     logger.trace("IMU is on: $imuPort");
     final gpsCommand = await Process.run("realpath", ["/dev/rover-gps"]);
     final gpsPort = gpsCommand.stdout.trim();
-	const piPort = "/dev/ttyAMA0";
+    const piPort = "/dev/ttyAMA0";
     logger.trace("GPS is on: $gpsPort");
-	logger.trace("All ports: $allPorts");
+    logger.trace("All ports: $allPorts");
     final forbiddenPorts = {imuPort, gpsPort, piPort};
-	return [
-      for (final port in allPorts)
-	if (!forbiddenPorts.contains(port))
-          port,
-    ];
+    return allPorts.toSet().difference(forbiddenPorts);
   }
-  
+
   /// Gets all firmware devices attached to the device, ignoring the GPS and IMU ports.
   static Future<List<BurtFirmwareSerial>> getFirmware() async => [
     for (final port in await getPortNames())
@@ -46,15 +42,16 @@ class SerialService extends MessageService {
   ];
 
   final List<StreamSubscription<Uint8List>> _subscriptions = [];
-  
+
   /// All the connected devices.
   List<BurtFirmwareSerial> devices = [];
 
   @override
   Future<bool> init() async {
-    devices = await getFirmware();    
+    devices = await getFirmware();
+    collection.server.messages.listen(sendWrapper);
     for (final device in devices) {
-	logger.debug("Initializing device: ${device.port}");
+      logger.debug("Initializing device: ${device.port}");
       await device.init();
       if (!device.isReady) continue;
       final subscription = device.stream?.listen((data) => _onMessage(data, device));
@@ -63,9 +60,9 @@ class SerialService extends MessageService {
     }
     // This service is a backup service for [CanService]
     // If something went wrong here, the messages will be sent over CAN instead.
-    // In addition, 1 or 2 subsystems may be connected at a time, not all 3.
-    // Therefore, it is not as useful to return false here on an error condition.
-    return true;  
+    // In addition, maybe not all the subsystems are connected, like during testing.
+    // Therefore, it is not useful to return false here on an error condition.
+    return true;
   }
 
   @override

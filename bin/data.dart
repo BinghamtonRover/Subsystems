@@ -1,7 +1,6 @@
 import "dart:math";
 
 import "package:burt_network/burt_network.dart";
-import "package:subsystems/subsystems.dart";
 
 class SwingingIterator implements Iterator<double> {
   final double min;
@@ -26,7 +25,7 @@ class SwingingIterator implements Iterator<double> {
 }
 
 Future<void> main() async {
-  final server = SubsystemsServer(port: 8001);
+  final server = RoverSocket(port: 8001, device: Device.SUBSYSTEMS);
   await server.init();
   final throttle = SwingingIterator(0, 1, 0.01);
   final voltage = SwingingIterator(24, 30, 0.1);
@@ -36,6 +35,8 @@ Future<void> main() async {
   final roll = SwingingIterator(-45, 45, 1);
   final pitch = SwingingIterator(-45, 45, 1);
   final yaw = SwingingIterator(-45, 45, 1);
+  final color = SwingingIterator(0, 1, 0.01);
+  final gps = SwingingIterator(-1, 1, 0.01);
   while (true) {
     throttle.moveNext();
     voltage.moveNext();
@@ -45,32 +46,42 @@ Future<void> main() async {
     roll.moveNext();
     pitch.moveNext();
     yaw.moveNext();
+    color.moveNext();
+    gps.moveNext();
     final data = DriveData(
-      left: 1, 
-      setLeft: true, 
-      right: -1, 
-      setRight: true, 
-      throttle: throttle.current, 
-      setThrottle: true, 
-      batteryVoltage: voltage.current, 
+      left: 1,
+      setLeft: true,
+      right: -1,
+      setRight: true,
+      throttle: throttle.current,
+      setThrottle: true,
+      batteryVoltage: voltage.current,
       batteryCurrent: current.current,
       version: Version(major: 1),
-    ); 
+      color: color.current < 0.25 ? ProtoColor.UNLIT
+        : color.current < 0.5 ? ProtoColor.BLUE
+        : color.current < 0.75 ? ProtoColor.RED
+        : ProtoColor.GREEN,
+    );
     server.sendMessage(data);
     final data2 = ArmData(
-      base: MotorData(angle: motor2.current), 
-      shoulder: MotorData(angle: motor.current), 
+      base: MotorData(angle: motor2.current),
+      shoulder: MotorData(angle: motor.current),
       elbow: MotorData(angle: motor.current),
       version: Version(major: 1),
     );
     server.sendMessage(data2);
-    final data3 = GripperData(lift: MotorData(angle: motor.current), version: Version(major: 1));
+    final data3 = GripperData(lift: MotorData(angle: pi + -1 * 2 * motor.current), version: Version(major: 1));
     server.sendMessage(data3);
     final data4 = RoverPosition(
       orientation: Orientation(
         x: roll.current,
-        y: pitch.current, 
+        y: pitch.current,
         z: yaw.current,
+      ),
+      gps: GpsCoordinates(
+        latitude: gps.current,
+        longitude: gps.current,
       ),
       version: Version(major: 1),
     );
