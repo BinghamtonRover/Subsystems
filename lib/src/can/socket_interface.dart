@@ -2,21 +2,9 @@ import "dart:io";
 
 import "package:burt_network/burt_network.dart";
 
-import "ffi.dart";
 import "message.dart";
 import "socket_stub.dart";
 import "socket_ffi.dart";
-
-/// An exception that occurred while working with the CAN bus -- see [BurtCanStatus].
-class CanException implements Exception {
-  /// The error that occurred, using [getCanError].
-  final String message;
-  /// A const constructor
-  const CanException(this.message);
-
-  @override
-  String toString() => "CAN error: $message";
-}
 
 /// A CAN socket that supports reading and writing CAN messages.
 ///

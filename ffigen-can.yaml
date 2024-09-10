@@ -1,15 +1,15 @@
 # Run with `dart run ffigen --config can-ffigen.yaml -v severe`.
 name: CanBindings
-description: |
+description: |-
   Bindings for `src/burt_can`.
 
   Regenerate bindings with `dart run ffigen --config ffigen-can.yaml -v severe`.
-output: "./lib/src/generated/can_ffi_bindings.dart"
+output: lib/src/generated/can_ffi_bindings.dart
 headers:
   entry-points:
     - 'src/burt_can/burt_can.h'
   include-directives:
-    - 'src/burt_can/burt_can.h'
+    - '**/src/burt_can/burt_can.h'
 comments:
   style: any
   length: full
@@ -22,6 +22,6 @@ type-map:
       'dart-type': 'Utf8'
 
 functions:
-  symbol-address: 
-    include: 
+  symbol-address:
+    include:
       - ".+_free"
