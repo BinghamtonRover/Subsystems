@@ -10,7 +10,7 @@ bool ascii = false;
 Future<void> listenToDevice(String port) async {
   logger.info("Connecting to $port...");
   final device = SerialDevice(
-    portName: port, 
+    portName: port,
     readInterval: const Duration(milliseconds: 100),
     logger: logger,
   );
@@ -26,7 +26,7 @@ Future<void> listenToDevice(String port) async {
 Future<void> listenToFirmware(String port) async {
   logger.info("Connecting to $port...");
   final device = BurtFirmwareSerial(
-    port: port, 
+    port: port,
     logger: logger,
   );
   if (!await device.init()) {
@@ -41,7 +41,7 @@ Future<void> listenToFirmware(String port) async {
     await device.dispose();
     return;
   }
-  device.stream?.listen(processFirmware);
+  device.rawStream.listen(processFirmware);
 }
 
 typedef ProtoConstructor = Message Function(List<int> data);
@@ -88,5 +88,5 @@ void processFirmware(Uint8List buffer) {
 
 void processAscii(Uint8List buffer) {
   final s = String.fromCharCodes(buffer).trim();
-  logger.debug("Got string: $s");	
+  logger.debug("Got string: $s");
 }

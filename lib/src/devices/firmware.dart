@@ -1,5 +1,4 @@
 import "dart:async";
-import "dart:typed_data";
 
 import "package:collection/collection.dart";
 
@@ -25,10 +24,10 @@ final nameToDevice = <String, Device>{
 /// This service relies on the [BurtFirmwareSerial] class defined in `package:burt_network`. That
 /// class takes care of connecting to, identifying, and streaming from a firmware device. This
 /// service is responsible for routing incoming UDP messages to the correct firmware device
-/// ([_sendToSerial]), and forwarding serial messages to the Dashboard ([_sendToDashboard]).
+/// ([_sendToSerial]), and forwarding serial messages to the Dashboard ([RoverSocket.sendWrapper]).
 class FirmwareManager extends Service {
   /// Subscriptions to each of the firmware devices.
-  final List<StreamSubscription<Uint8List>> _subscriptions = [];
+  final List<StreamSubscription<WrappedMessage>> _subscriptions = [];
 
   /// A list of firmware devices attached to the rover.
   List<BurtFirmwareSerial> devices = [];
@@ -42,7 +41,7 @@ class FirmwareManager extends Service {
       logger.debug("Initializing device: ${device.port}");
       result &= await device.init();
       if (!device.isReady) continue;
-      final subscription = device.stream?.listen((data) => _sendToDashboard(data, device));
+      final subscription = device.messages?.listen(collection.server.sendWrapper);
       if (subscription == null) continue;
       _subscriptions.add(subscription);
     }
@@ -57,21 +56,6 @@ class FirmwareManager extends Service {
     for (final device in devices) {
       await device.dispose();
     }
-  }
-
-  void _sendToDashboard(Uint8List data, BurtFirmwareSerial serial) {
-    final name = switch (serial.device) {
-      Device.ARM => ArmData().messageName,
-      Device.DRIVE => DriveData().messageName,
-      Device.GRIPPER => GripperData().messageName,
-      Device.SCIENCE => ScienceData().messageName,
-      _ => null,
-    };
-    if (name == null) {
-      logger.warning("Unrecognized Serial device", body: "Port: ${serial.port}, name: ${serial.device}");
-      return;
-    }
-    collection.server.sendWrapper(WrappedMessage(data: data, name: name));
   }
 
   /// Sends a [WrappedMessage] to the correct Serial device.
