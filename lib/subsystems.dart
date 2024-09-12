@@ -33,17 +33,16 @@ class SubsystemsCollection extends Service {
 
   @override
   Future<bool> init() async {
-    logger.socket = server;
-    logger.debug("Running in debug mode...");
-    logger.trace("Running in trace mode...");
     await server.init();
+    logger.socket = server;
     var result = true;
     try {
       result &= await firmware.init();
       result &= await gps.init();
       result &= await imu.init();
-      logger.info("Subsystems initialized");
-      if (!result) {
+      if (result) {
+        logger.info("Subsystems initialized");
+      } else {
         logger.warning("The subsystems did not start properly");
       }
       isReady = true;
@@ -60,9 +59,10 @@ class SubsystemsCollection extends Service {
     await onDisconnect();
     isReady = false;
     await firmware.dispose();
-    await server.dispose();
     await imu.dispose();
     await gps.dispose();
+    await server.dispose();
+    logger.socket = null;
     logger.info("Subsystems disposed");
   }
 

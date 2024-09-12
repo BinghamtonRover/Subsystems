@@ -7,8 +7,7 @@ import "package:subsystems/subsystems.dart";
 import "package:burt_network/burt_network.dart";
 
 /// The serial port that the IMU is connected to.
-const imuPort = "COM5";
-// const imuPort = "/dev/rover-imu";
+const imuPort = "/dev/rover-imu";
 
 /// The version that we are using for [RoverPosition] data.
 final positionVersion = Version(major: 1, minor: 0);

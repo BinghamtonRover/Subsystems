@@ -15,7 +15,7 @@ Future<Iterable<String>> getPortNames() async {
   if (!Platform.isLinux) return allPorts;
   final imuPort = await getRealPath("/dev/rover-imu");
   final gpsPort = await getRealPath("/dev/rover-gps");
-  final forbiddenPorts = {imuPort, gpsPort};
+  final forbiddenPorts = {imuPort, gpsPort, "/dev/ttyAMA10"};
   return allPorts.toSet().difference(forbiddenPorts);
 }
 
