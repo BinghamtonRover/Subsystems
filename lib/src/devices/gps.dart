@@ -1,6 +1,7 @@
 import "dart:async";
 import "dart:convert";
 import "dart:io";
+import "dart:typed_data";
 
 import "package:burt_network/burt_network.dart";
 import "package:subsystems/subsystems.dart";
@@ -58,11 +59,16 @@ class GpsReader extends Service {
   /// The subscription to the serial port.
   StreamSubscription<List<int>>? _subscription;
 
+  /// The subscription to incoming protobuf messages from the server
+  StreamSubscription<RoverPosition>? _messageSubscription;
+
   /// Parses a line of NMEA output and sends the GPS coordinates to the dashboard.
   void _handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
-    if (coordinates.latitude == 0 || coordinates.longitude == 0 || coordinates.altitude == 0) {
+    if (coordinates.latitude == 0 ||
+        coordinates.longitude == 0 ||
+        coordinates.altitude == 0) {
       // No fix
       return;
     }
@@ -73,21 +79,43 @@ class GpsReader extends Service {
 
   /// Parses a packet into several NMEA sentences and handles them.
   void _handlePacket(List<int> bytes) {
-    final string = utf8.decode(bytes);
-    final lines = string.split("\n");
-    lines.forEach(_handleLine);
+    try {
+      final string = utf8.decode(bytes);
+      final lines = string.split("\n");
+      lines.forEach(_handleLine);
+    } catch (e) {
+      logger.error("Failed to decode NMEA Packet", body: e.toString());
+    }
+  }
+
+  /// Handles incoming position message data and writes necessary data to the
+  /// gps serial device
+  void _handleIncomingMessage(RoverPosition message) {
+    if (!device.isOpen) {
+      return;
+    }
+    if (!message.hasRtkMessage()) {
+      return;
+    }
+
+    device.write(Uint8List.fromList(message.rtkMessage));
   }
 
   @override
   Future<bool> init() async {
+    _messageSubscription = collection.server.messages.onMessage(
+      name: RoverPosition().messageName,
+      constructor: RoverPosition.fromBuffer,
+      callback: _handleIncomingMessage,
+    );
     try {
       if (!await device.init()) {
         logger.critical("Could not open GPS on port $gpsPort");
         return false;
       }
       _subscription = device.stream.listen(_handlePacket);
-	device.startListening();
-	logger.info("Reading GPS over port $gpsPort");
+      device.startListening();
+      logger.info("Reading GPS over port $gpsPort");
       return true;
     } catch (error) {
       logger.critical("Could not open GPS", body: "Port $gpsPort, Error=$error");
@@ -98,6 +126,7 @@ class GpsReader extends Service {
   @override
   Future<void> dispose() async {
     await _subscription?.cancel();
+    await _messageSubscription?.cancel();
     await device.dispose();
   }
 }
