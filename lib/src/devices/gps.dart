@@ -98,7 +98,9 @@ class GpsReader extends Service {
       return;
     }
 
-    device.write(Uint8List.fromList(message.rtkMessage));
+    final rtkMessage = Uint8List.fromList(message.rtkMessage);
+    logger.debug("Writing RTK Message", body: "Writing a ${rtkMessage.lengthInBytes} byte RTCM packet to serial");
+    device.write(rtkMessage);
   }
 
   @override
