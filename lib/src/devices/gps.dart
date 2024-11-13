@@ -11,6 +11,8 @@ const gpsPort = "/dev/rover-gps";
 
 /// The UDP socket on the Autonomy program.
 final autonomySocket = SocketInfo(address: InternetAddress("192.168.1.30"), port: 8001);
+/// The UDP socket for the Base Station program
+final baseStationSocket = SocketInfo(address: InternetAddress("192.168.1.50"), port: 8005);
 
 /// Listens to the GPS and sends its output to the Dashboard.
 ///
@@ -75,6 +77,7 @@ class GpsReader extends Service {
     final roverPosition = RoverPosition(gps: coordinates);
     collection.server.sendMessage(roverPosition);
     collection.server.sendMessage(roverPosition, destination: autonomySocket);
+    collection.server.sendMessage(roverPosition, destination: baseStationSocket);
   }
 
   /// Parses a packet into several NMEA sentences and handles them.
