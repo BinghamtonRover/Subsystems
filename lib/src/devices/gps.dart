@@ -25,15 +25,29 @@ class GpsReader extends Service {
     final parts = nmeaSentence.split(",");
     final tag = parts.first;
     if (tag.endsWith("GGA")) {
+      final quality = int.tryParse(parts[6]);
+      final rtkMode = switch (quality) {
+        4 => RTKMode.RTK_FIXED,
+        5 => RTKMode.RTK_FLOAT,
+        _ => RTKMode.RTK_NONE,
+      };
       return GpsCoordinates(
         latitude: _nmeaToDecimal(double.tryParse(parts[2]) ?? 0.0),
         longitude: _nmeaToDecimal(double.tryParse(parts[4]) ?? 0.0),
         altitude: double.tryParse(parts[9]) ?? 0.0,
+        rtkMode: rtkMode,
       );
     } else if (tag.endsWith("RMC")) {
+      final posMode = parts[12];
+      final rtkMode = switch (posMode) {
+        "F" => RTKMode.RTK_FLOAT,
+        "R" => RTKMode.RTK_FIXED,
+        _ => RTKMode.RTK_NONE,
+      };
       return GpsCoordinates(
         latitude: _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0),
         longitude: _nmeaToDecimal(double.tryParse(parts[5]) ?? 0.0),
+        rtkMode: rtkMode,
       );
     } else if (tag.endsWith("GLL")) {
       return GpsCoordinates(
@@ -54,8 +68,9 @@ class GpsReader extends Service {
   /// The serial device representing the GPS.
   final SerialDevice device = SerialDevice(
     portName: gpsPort,
-    readInterval: const Duration(seconds: 1),
+    readInterval: const Duration(milliseconds: 250),
     logger: logger,
+    baudRate: 38400,
   );
 
   /// The subscription to the serial port.
