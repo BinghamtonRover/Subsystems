@@ -10,9 +10,16 @@ import "package:subsystems/subsystems.dart";
 const gpsPort = "/dev/rover-gps";
 
 /// The UDP socket on the Autonomy program.
-final autonomySocket = SocketInfo(address: InternetAddress("192.168.1.30"), port: 8001);
+final autonomySocket = SocketInfo(
+  address: InternetAddress("192.168.1.30"),
+  port: 8001,
+);
+
 /// The UDP socket for the Base Station program
-final baseStationSocket = SocketInfo(address: InternetAddress("192.168.1.50"), port: 8005);
+final baseStationSocket = SocketInfo(
+  address: InternetAddress("192.168.1.50"),
+  port: 8005,
+);
 
 /// Listens to the GPS and sends its output to the Dashboard.
 ///
@@ -25,6 +32,14 @@ class GpsReader extends Service {
     final parts = nmeaSentence.split(",");
     final tag = parts.first;
     if (tag.endsWith("GGA")) {
+      var latitude = _nmeaToDecimal(double.tryParse(parts[2]) ?? 0);
+      var longitude = _nmeaToDecimal(double.tryParse(parts[4]) ?? 0);
+      if (parts[3] == "S") {
+        latitude *= -1;
+      }
+      if (parts[5] == "W") {
+        longitude *= -1;
+      }
       final quality = int.tryParse(parts[6]);
       final rtkMode = switch (quality) {
         4 => RTKMode.RTK_FIXED,
@@ -32,12 +47,20 @@ class GpsReader extends Service {
         _ => RTKMode.RTK_NONE,
       };
       return GpsCoordinates(
-        latitude: _nmeaToDecimal(double.tryParse(parts[2]) ?? 0.0),
-        longitude: _nmeaToDecimal(double.tryParse(parts[4]) ?? 0.0),
+        latitude: latitude,
+        longitude: longitude,
         altitude: double.tryParse(parts[9]) ?? 0.0,
         rtkMode: rtkMode,
       );
     } else if (tag.endsWith("RMC")) {
+      var latitude = _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0);
+      if (parts[4] == "S") {
+        latitude *= -1;
+      }
+      var longitude = _nmeaToDecimal(double.tryParse(parts[5]) ?? 0.0);
+      if (parts[6] == "W") {
+        longitude *= -1;
+      }
       final posMode = parts[12];
       final rtkMode = switch (posMode) {
         "F" => RTKMode.RTK_FLOAT,
@@ -45,14 +68,22 @@ class GpsReader extends Service {
         _ => RTKMode.RTK_NONE,
       };
       return GpsCoordinates(
-        latitude: _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0),
-        longitude: _nmeaToDecimal(double.tryParse(parts[5]) ?? 0.0),
+        latitude: latitude,
+        longitude: longitude,
         rtkMode: rtkMode,
       );
     } else if (tag.endsWith("GLL")) {
+      var latitude = _nmeaToDecimal(double.tryParse(parts[1]) ?? 0.0);
+      if (parts[2] == "S") {
+        latitude *= -1;
+      }
+      var longitude = _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0);
+      if (parts[4] == "W") {
+        longitude *= -1;
+      }
       return GpsCoordinates(
-        latitude: _nmeaToDecimal(double.tryParse(parts[1]) ?? 0.0),
-        longitude: _nmeaToDecimal(double.tryParse(parts[3]) ?? 0.0),
+        latitude: latitude,
+        longitude: longitude,
       );
     } else {
       return null;
