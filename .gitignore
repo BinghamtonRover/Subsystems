@@ -15,4 +15,4 @@ build/
 
 # This file tells the rover to get its dependencies from local files instead of Git/Pub.
 # GitHub's CI needs to use the Pub versions, so we don't check in this file.
-pubspec_overrides.yaml
+./pubspec_overrides.yaml
