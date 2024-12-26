@@ -65,13 +65,13 @@ Future<void> main() async {
     );
     server.sendMessage(data);
     final data2 = ArmData(
-      base: MotorData(angle: motor2.current),
-      shoulder: MotorData(angle: motor.current),
-      elbow: MotorData(angle: motor.current),
+      base: MotorData(currentAngle: motor2.current),
+      shoulder: MotorData(currentAngle: motor.current),
+      elbow: MotorData(currentAngle: motor.current),
       version: Version(major: 1),
     );
     server.sendMessage(data2);
-    final data3 = GripperData(lift: MotorData(angle: pi + -1 * 2 * motor.current), version: Version(major: 1));
+    final data3 = GripperData(lift: MotorData(currentAngle: pi + -1 * 2 * motor.current), version: Version(major: 1));
     server.sendMessage(data3);
     final data4 = RoverPosition(
       orientation: Orientation(
