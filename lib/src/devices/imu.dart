@@ -1,10 +1,12 @@
 import "dart:async";
-import "dart:typed_data";
 
+import "package:collection/collection.dart";
 import "package:osc/osc.dart";
 
 import "package:subsystems/subsystems.dart";
 import "package:burt_network/burt_network.dart";
+
+import "../osc.dart";
 
 /// The serial port that the IMU is connected to.
 const imuPort = "/dev/rover-imu";
@@ -23,51 +25,46 @@ class ImuReader extends Service {
 
   /// The subscription that will be notified when a new serial packet arrives.
   StreamSubscription<List<int>>? subscription;
+  StreamSubscription<SubsystemsCommand>? _commandSubscription;
 
-  /// Parses an OSC bundle from a list of bytes.
-  void handleOsc(List<int> data) {
-    try {
-      // skip 8 byte "#bundle" + 8 byte timestamp + 4 byte data length
-      final buffer = data.sublist(20);
-      final message = OSCMessage.fromBytes(buffer);
-      if (message.address != "/euler") return;
-      final orientation = Orientation(
-        x: message.arguments[0] as double,
-        y: message.arguments[1] as double,
-        z: message.arguments[2] as double,
-      );
-      final position = RoverPosition(orientation: orientation, version: positionVersion);
-      collection.server.sendMessage(position);
-      collection.server.sendMessage(position, destination: autonomySocket);
-    } catch (error) {
-      /* Ignore corrupt data */
+  /// Handles an incoming [SubsystemsCommand]
+  void handleCommand(SubsystemsCommand command) {
+    if (command.zeroIMU && serial.isOpen) {
+      final message = OSCMessage("/ahrs/zero", arguments: []).toBytes();
+      serial.write(slip.encode(message).toUint8List());
     }
   }
 
-  /// Removes bytes inserted by the SLIP protocol.
-  ///
-  /// This function is here until `package:osc` supports SLIP, mandated by the OSC v1.1 spec.
-  /// See this issue: https://github.com/pq/osc/issues/24
-  /// See: https://en.wikipedia.org/wiki/Serial_Line_Internet_Protocol
-  Uint8List processSlip(List<int> data) {
-    const end = 192;
-    const esc = 219;
-    const escEnd = 220;
-    const escEsc = 221;
-    final newPacket = <int>[];
-    var prevElement = 0;
-    for (final element in data) {
-      if (prevElement == esc && element == escEnd) {
-        newPacket.last = end;  // ESC + ESC_END -> END
-      } else if (prevElement == esc && element == escEsc) {
-        newPacket.last = esc;  // ESC + ESC_ESC -> ESC
-      } else {
-        newPacket.add(element);
+  /// Handles incoming serial bytes
+  void handleSerial(List<int> bytes) {
+    for (final packet in bytes.splitAfter((element) => element == end)) {
+      final message = parseOsc(slip.decode(packet));
+      if (message == null) {
+        continue;
       }
-      prevElement = element;
+      if (message.address == "/button") {
+        handleCommand(SubsystemsCommand(zeroIMU: true));
+      }
+      if (message.address == "/ahrs/zero") {
+        // signal that the zero was received and processed
+        if (serial.isOpen) {
+          final command = OSCMessage("/identify", arguments: []);
+          serial.write(slip.encode(command.toBytes()).toUint8List());
+        }
+        // send a duplicate of a subsystems command as a "handshake"
+        collection.server.sendMessage(SubsystemsCommand(zeroIMU: true));
+      }
+      if (message.address == "/euler") {
+        final orientation = Orientation(
+          x: message.arguments[0] as double,
+          y: message.arguments[1] as double,
+          z: message.arguments[2] as double,
+        );
+        final position = RoverPosition(orientation: orientation, version: positionVersion);
+        collection.server.sendMessage(position);
+        collection.server.sendMessage(position, destination: autonomySocket);
+      }
     }
-    if (newPacket.last == end) newPacket.removeLast();
-    return Uint8List.fromList(newPacket);
   }
 
   @override
@@ -77,7 +74,12 @@ class ImuReader extends Service {
         logger.critical("Could not open IMU on port $imuPort");
         return false;
       }
-      subscription = serial.stream.map(processSlip).listen(handleOsc);
+      subscription = serial.stream.listen(handleSerial);
+      _commandSubscription = collection.server.messages.onMessage(
+        name: SubsystemsCommand().messageName,
+        constructor: SubsystemsCommand.fromBuffer,
+        callback: handleCommand,
+      );
       serial.startListening();
       logger.info("Reading IMU on port $imuPort");
       return true;
@@ -90,6 +92,7 @@ class ImuReader extends Service {
   @override
   Future<void> dispose() async {
     await subscription?.cancel();
+    await _commandSubscription?.cancel();
     await serial.dispose();
   }
 }
