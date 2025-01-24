@@ -114,9 +114,10 @@ class GpsReader extends Service {
   void _handleLine(String line) {
     final coordinates = parseNMEA(line);
     if (coordinates == null) return;
-    if (coordinates.latitude == 0 ||
-        coordinates.longitude == 0 ||
-        coordinates.altitude == 0) {
+    if (coordinates.latitude == 0
+      || coordinates.longitude == 0
+      || coordinates.altitude == 0
+    ) {
       // No fix
       return;
     }
@@ -140,15 +141,12 @@ class GpsReader extends Service {
   /// Handles incoming position message data and writes necessary data to the
   /// gps serial device
   void _handleIncomingMessage(RoverPosition message) {
-    if (!device.isOpen) {
-      return;
-    }
-    if (!message.hasRtkMessage()) {
+    if (!device.isOpen || !message.hasRtkMessage()) {
       return;
     }
 
     final rtkMessage = Uint8List.fromList(message.rtkMessage);
-    logger.debug("Writing RTK Message", body: "Writing a ${rtkMessage.lengthInBytes} byte RTCM packet to serial");
+    logger.debug("Writing RTK Message", body: "Writing a ${rtkMessage.lengthInBytes}-byte RTCM packet to serial");
     device.write(rtkMessage);
   }
 
