@@ -30,14 +30,15 @@ class ImuReader extends Service {
   /// Handles an incoming [SubsystemsCommand]
   void handleCommand(SubsystemsCommand command) {
     if (command.zeroIMU && serial.isOpen) {
-      serial.write(encodeSlip(OSCMessage("/ahrs/zero", arguments: []).toBytes()));
+      final message = OSCMessage("/ahrs/zero", arguments: []).toBytes();
+      serial.write(slip.encode(message).toUint8List());
     }
   }
 
   /// Handles incoming serial bytes
   void handleSerial(List<int> bytes) {
     for (final packet in bytes.splitAfter((element) => element == end)) {
-      final message = parseOsc(decodeSlip(packet));
+      final message = parseOsc(slip.decode(packet));
       if (message == null) {
         continue;
       }
@@ -47,7 +48,8 @@ class ImuReader extends Service {
       if (message.address == "/ahrs/zero") {
         // signal that the zero was received and processed
         if (serial.isOpen) {
-          serial.write(encodeSlip(OSCMessage("/identify", arguments: []).toBytes()));
+          final command = OSCMessage("/identify", arguments: []);
+          serial.write(slip.encode(command.toBytes()).toUint8List());
         }
         // send a duplicate of a subsystems command as a "handshake"
         collection.server.sendMessage(SubsystemsCommand(zeroIMU: true));

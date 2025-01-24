@@ -39,44 +39,63 @@ OSCMessage? parseOsc(List<int> data) {
   }
 }
 
-/// Adds bytes as specified the SLIP protocol.
+/// This [SLIP](https://en.wikipedia.org/wiki/Serial_Line_Internet_Protocol) codec.
 ///
-/// This function is here until `package:osc` supports SLIP, mandated by the OSC v1.1 spec.
+/// This converter is here until `package:osc` supports SLIP, mandated by the OSC v1.1 spec.
 /// See this issue: https://github.com/pq/osc/issues/24
-/// See: https://en.wikipedia.org/wiki/Serial_Line_Internet_Protocol
-Uint8List encodeSlip(List<int> data) {
-  final newPacket = <int>[];
-  for (final element in data) {
-    if (element == end) {
-      newPacket.addAll([esc, escEnd]);
-    } else if (element == esc) {
-      newPacket.addAll([esc, escEsc]);
-    } else {
-      newPacket.add(element);
+class SlipCodec extends Codec<List<int>, List<int>> {
+  @override
+  SlipEncoder get encoder => SlipEncoder();
+
+  @override
+  SlipDecoder get decoder => SlipDecoder();
+}
+
+/// Adds bytes as specified the SLIP protocol.
+class SlipEncoder extends Converter<List<int>, List<int>> {
+  @override
+  List<int> convert(List<int> input) {
+    final newPacket = <int>[];
+    for (final element in input) {
+      if (element == end) {
+        newPacket.addAll([esc, escEnd]);
+      } else if (element == esc) {
+        newPacket.addAll([esc, escEsc]);
+      } else {
+        newPacket.add(element);
+      }
     }
+    newPacket.add(end);
+    return newPacket;
   }
-  newPacket.add(end);
-  return Uint8List.fromList(newPacket);
 }
 
 /// Removes bytes inserted by the SLIP protocol.
-///
-/// This function is here until `package:osc` supports SLIP, mandated by the OSC v1.1 spec.
-/// See this issue: https://github.com/pq/osc/issues/24
-/// See: https://en.wikipedia.org/wiki/Serial_Line_Internet_Protocol
-Uint8List decodeSlip(List<int> data) {
-  final newPacket = <int>[];
-  var prevElement = 0;
-  for (final element in data) {
-    if (prevElement == esc && element == escEnd) {
-      newPacket.last = end;  // ESC + ESC_END -> END
-    } else if (prevElement == esc && element == escEsc) {
-      newPacket.last = esc;  // ESC + ESC_ESC -> ESC
-    } else {
-      newPacket.add(element);
+class SlipDecoder extends Converter<List<int>, List<int>> {
+  @override
+  List<int> convert(List<int> input) {
+    final newPacket = <int>[];
+    var prevElement = 0;
+    for (final element in input) {
+      if (prevElement == esc && element == escEnd) {
+        newPacket.last = end;  // ESC + ESC_END -> END
+      } else if (prevElement == esc && element == escEsc) {
+        newPacket.last = esc;  // ESC + ESC_ESC -> ESC
+      } else {
+        newPacket.add(element);
+      }
+      prevElement = element;
     }
-    prevElement = element;
+    if (newPacket.last == end) newPacket.removeLast();
+    return newPacket;
   }
-  if (newPacket.last == end) newPacket.removeLast();
-  return Uint8List.fromList(newPacket);
 }
+
+/// Helpful methods on lists of bytes.
+extension ListToUint8List on List<int> {
+  /// Converts to a more efficient [Uint8List].
+  Uint8List toUint8List() => Uint8List.fromList(this);
+}
+
+/// The global SLIP codec.
+final slip = SlipCodec();
