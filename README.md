@@ -2,6 +2,9 @@
 
 This repository contains the code for the Subsystems program, which is responsible for sending CAN messages over UDP and vice-versa, integrating the Dashboard with the various subsystems. 
 
+> [!Note]
+> This repository has moved to [our mono-repo](https://github.com/BinghamtonRover/Rover-Code)
+
 ## Running the code
 
 The Dart code loads some shared C libraries at runtime. This means those libraries must be compiled and generated beforehand. These libraries only need to be compiled once on your system, unless they are modified.
