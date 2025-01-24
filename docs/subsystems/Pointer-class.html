@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Pointer class from the subsystems library, for the Dart programming language.">
+  <title>Pointer class - subsystems library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">subsystems</a></li>
+    <li><a href="../subsystems/subsystems-library.html">subsystems.dart</a></li>
+    <li class="self-crumb">Pointer<span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span>&gt;</span> class</li>
+  </ol>
+  <div class="self-name">Pointer</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="subsystems&#47;subsystems-library-sidebar.html"
+    data-below-sidebar="subsystems&#47;Pointer-class-sidebar.html">
+    <div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/dart-lang/sdk/blob/1bf43bfd314768e235f6e5618842469bab6494bd/sdk/lib/ffi/ffi.dart#L42"><span class="material-symbols-outlined">description</span></a></div>
+<h1><span class="kind-class">Pointer&lt;<wbr><span class="type-parameter">T extends NativeType</span>&gt;</span> class 
+    <a href="https://dart.dev/language/class-modifiers#final" class="feature feature-final" title="This class can neither be extended, implemented, nor mixed in.">final</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Represents a pointer into the native C memory. Cannot be extended.</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+  <dt>Implemented types</dt>
+  <dd>
+    <ul class="comma-separated clazz-relationships">
+        <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/SizedNativeType-class.html">SizedNativeType</a></li>
+    </ul>
+  </dd>
+        
+
+
+        
+  <dt>Available extensions</dt>
+  <dd><ul class="comma-separated clazz-relationships">
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunctionPointer.html">NativeFunctionPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a></li>
+      <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a></li>
+      <li><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer.html">Utf8Pointer</a></li>
+      <li><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer.html">Utf16Pointer</a></li>
+  </ul></dd>
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="Pointer.fromAddress" class="callable">
+          <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/Pointer.fromAddress.html">Pointer.fromAddress</a></span><span class="signature">(<span class="parameter" id="fromAddress-param-ptr"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">ptr</span></span>)</span>
+        </dt>
+        <dd>
+          Construction from raw integer.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="address" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  Access to the raw pointer value.
+On 32-bit systems, the upper 32-bits of the result are 0.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The hash code for a Pointer only depends on its address.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="length" class="property">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer/length.html">length</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8-class.html">Utf8</a></span>&gt;</span>,
+        provided by the <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer.html">Utf8Pointer</a> extension</span>
+      </p>
+  The number of UTF-8 code units in this zero-terminated UTF-8 string.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="length" class="property">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer/length.html">length</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16-class.html">Utf16</a></span>&gt;</span>,
+        provided by the <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer.html">Utf16Pointer</a> extension</span>
+      </p>
+  The number of UTF-16 code units in this zero-terminated UTF-16 string.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="ref" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/ref.html">ref</a></span>
+  <span class="signature">&#8596; T</span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  A Dart view of the struct referenced by this pointer.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="ref" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/ref.html">ref</a></span>
+  <span class="signature">&#8596; T</span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  A Dart view of the union referenced by this pointer.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  The integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  The bool at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  The double at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  The float at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  The 8-bit two's complement integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  The 16-bit two's complement integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  The 32-bit two's complement integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  The 64-bit two's complement integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  The pointer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  The 8-bit unsigned integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  The 16-bit unsigned integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  The 32-bit unsigned integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="value" class="property">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/value.html">value</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  The 64-bit unsigned integer at <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/address.html">address</a>.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="asFunction" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunctionPointer/asFunction.html">asFunction</a></span><span class="signature">&lt;<wbr><span class="type-parameter">@<a href="https://api.dart.dev/stable/3.6.1/subsystems/DartRepresentationOf-class.html">DartRepresentationOf</a>(&#39;NF&#39;) DF extends <a href="https://api.dart.dev/stable/3.6.1/dart-core/Function-class.html">Function</a></span>&gt;</span><span class="signature">(<wbr>{<span class="parameter" id="asFunction-param-isLeaf"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isLeaf</span> = <span class="default-value">false</span></span>})
+    <span class="returntype parameter">&#8594; DF</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">NF</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunctionPointer.html">NativeFunctionPointer</a> extension</span>
+      </p>
+  Convert to Dart function, automatically marshalling the arguments and
+return value.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Float64List-class.html">Float64List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Float32List-class.html">Float32List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int8List-class.html">Int8List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int16List-class.html">Int16List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int32List-class.html">Int32List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int64List-class.html">Int64List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint8List-class.html">Uint8List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint16List-class.html">Uint16List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint32List-class.html">Uint32List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="asTypedList" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/asTypedList.html">asTypedList</a></span><span class="signature">(<wbr><span class="parameter" id="asTypedList-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">length</span>, {</span><span class="parameter" id="asTypedList-param-finalizer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>&gt;</span>?</span> <span class="parameter-name">finalizer</span>, </span><span class="parameter" id="asTypedList-param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span>?</span> <span class="parameter-name">token</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint64List-class.html">Uint64List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  Creates a typed list view backed by memory in the address space.
+  
+
+</dd>
+
+        <dt id="cast" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/cast.html">cast</a></span><span class="signature">&lt;<wbr><span class="type-parameter">U extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">U</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Cast Pointer<t> to a Pointer<u>.</u></t>
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account)
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="elementAt" class="callable">
+  <span class="name deprecated"><a class="deprecated" href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/elementAt.html">elementAt</a></span><span class="signature">(<wbr><span class="parameter" id="elementAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  Pointer arithmetic (takes element size into account).
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toDartString" class="callable">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer/toDartString.html">toDartString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDartString-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">length</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8-class.html">Utf8</a></span>&gt;</span>,
+        provided by the <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer.html">Utf8Pointer</a> extension</span>
+      </p>
+  Converts this UTF-8 encoded string to a Dart string.
+  
+
+</dd>
+
+        <dt id="toDartString" class="callable">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer/toDartString.html">toDartString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDartString-param-length"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">length</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16-class.html">Utf16</a></span>&gt;</span>,
+        provided by the <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer.html">Utf16Pointer</a> extension</span>
+      </p>
+  Converts this UTF-16 encoded string to a Dart string.
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer&lt;T&gt;</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator +" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/operator_plus.html">operator +</a></span><span class="signature">(<wbr><span class="parameter" id="+-param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a> after this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer&lt;T&gt;</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <code>T</code> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator -" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/operator_minus.html">operator -</a></span><span class="signature">(<wbr><span class="parameter" id="--param-offset"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  A pointer to the <code>offset</code>th <a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a> before this one.
+  
+
+</dd>
+
+        <dt id="operator ==" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Equality for Pointers only depends on their address.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  The float at <code>address + sizeOf&lt;Float&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  The bool at <code>address + sizeOf&lt;Bool&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  The 64-bit two's complement integer at <code>address + sizeOf&lt;Int64&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  The 16-bit two's complement integer at <code>address + sizeOf&lt;Int16&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  Load a Dart value from this location offset by <code>index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  The 32-bit unsigned integer at <code>address + sizeOf&lt;Uint32&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  The double at <code>address + sizeOf&lt;Double&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  The 8-bit two's complement integer at <code>address + sizeOf&lt;Int8&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  Creates a reference to access the fields of this struct backed by native
+memory at <code>address + sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; T</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  Creates a reference to access the fields of this union backed by native
+memory at <code>address + sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  The 32-bit two's complement integer at <code>address + sizeOf&lt;Int32&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  The 8-bit unsigned integer at <code>address + sizeOf&lt;Uint8&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  The integer at <code>address + sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  The 64-bit unsigned integer at <code>address + sizeOf&lt;Uint64&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/operator_get.html">operator []</a></span><span class="signature">(<wbr><span class="parameter" id="[]-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  The 16-bit unsigned integer at <code>address + sizeOf&lt;Uint16&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a> extension</span>
+      </p>
+  The 16-bit unsigned integer at <code>address + sizeOf&lt;Uint16&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a> extension</span>
+      </p>
+  The 8-bit unsigned integer at <code>address + sizeOf&lt;Uint8&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation">T</span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a> extension</span>
+      </p>
+  Copies the <code>value</code> struct into native memory, starting at
+<code>address * sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a> extension</span>
+      </p>
+  Store a Dart value into this location offset by <code>index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a> extension</span>
+      </p>
+  The 32-bit unsigned integer at <code>address + sizeOf&lt;Uint32&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a> extension</span>
+      </p>
+  The integer at <code>address + sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a> extension</span>
+      </p>
+  The double at <code>address + sizeOf&lt;Double&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a> extension</span>
+      </p>
+  The 32-bit two's complement integer at <code>address + sizeOf&lt;Int32&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a> extension</span>
+      </p>
+  The 64-bit unsigned integer at <code>address + sizeOf&lt;Uint64&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a> extension</span>
+      </p>
+  The float at <code>address + sizeOf&lt;Float&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a> extension</span>
+      </p>
+  The 16-bit two's complement integer at <code>address + sizeOf&lt;Int16&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a> extension</span>
+      </p>
+  The 8-bit two's complement integer at <code>address + sizeOf&lt;Int8&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation">T</span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a> extension</span>
+      </p>
+  Copies the <code>value</code> union into native memory, starting at
+<code>address * sizeOf&lt;T&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a> extension</span>
+      </p>
+  The bool at <code>address + sizeOf&lt;Bool&gt;() * index</code>.
+  
+
+</dd>
+
+        <dt id="operator []=" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer/operator_put.html">operator []=</a></span><span class="signature">(<wbr><span class="parameter" id="[]=-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span><span class="parameter" id="[]=-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+      <p class="from-extension">
+        <span>Available on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>,
+        provided by the <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a> extension</span>
+      </p>
+  The 64-bit two's complement integer at <code>address + sizeOf&lt;Int64&gt;() * index</code>.
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+  <section class="summary offset-anchor" id="static-methods">
+    <h2>Static Methods</h2>
+    <dl class="callables">
+        <dt id="fromFunction" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer/fromFunction.html">fromFunction</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/dart-core/Function-class.html">Function</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="fromFunction-param-f"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Function-class.html">Function</a></span> <span class="parameter-name">f</span>, [</span><span class="parameter" id="fromFunction-param-exceptionalReturn"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">exceptionalReturn</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convert Dart function to a C function pointer, automatically marshalling
+the arguments and return value
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">subsystems</a></li>
+    <li><a href="../subsystems/subsystems-library.html">subsystems</a></li>
+    <li class="self-crumb">Pointer<span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span>&gt;</span> class</li>
+</ol>
+
+    <h5>subsystems library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    subsystems
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

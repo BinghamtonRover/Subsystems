@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the allocate method from the Allocator class, for the Dart programming language.">
+  <title>allocate method - Allocator class - subsystems library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">subsystems</a></li>
+    <li><a href="../../subsystems/subsystems-library.html">subsystems.dart</a></li>
+    <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a></li>
+    <li class="self-crumb">allocate&lt;<wbr><span class="type-parameter">T extends NativeType</span>&gt; abstract method</li>
+  </ol>
+  <div class="self-name">allocate</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="subsystems&#47;Allocator-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+  <div id="external-links" class="btn-group"><a title="View source code" class="source-link" href="https://github.com/dart-lang/sdk/blob/1bf43bfd314768e235f6e5618842469bab6494bd/sdk/lib/ffi/allocation.dart#L86"><span class="material-symbols-outlined">description</span></a></div>
+<h1><span class="kind-method">allocate&lt;<wbr><span class="type-parameter">T extends NativeType</span>&gt;</span> abstract method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<span class="returntype"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+<span class="name ">allocate</span>&lt;<wbr><span class="type-parameter">T extends NativeType</span>&gt;(<wbr><ol class="parameter-list"> <li><span class="parameter" id="allocate-param-byteCount"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span> <span class="parameter-name">byteCount</span>, {</span></li>
+<li><span class="parameter" id="allocate-param-alignment"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">alignment</span>, </span></li>
+</ol>})
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Allocates <code>byteCount</code> bytes of memory on the native heap.</p>
+<p>If <code>alignment</code> is provided, the allocated memory will be at least aligned
+to <code>alignment</code> bytes.</p>
+<p>To allocate a multiple of <code>sizeOf&lt;T&gt;()</code> bytes, call the allocator directly
+as a function: <code>allocator&lt;T&gt;(count)</code> (see <a href="https://api.dart.dev/stable/3.6.1/subsystems/AllocatorAlloc/call.html">AllocatorAlloc.call</a> for
+details).</p>
+<pre class="language-dart"><code class="language-dart">// This allocates two bytes. If you intended two Int32's, this is an
+// error.
+allocator.allocate&lt;Int32&gt;(2);
+
+// This allocates eight bytes, which is enough space for two Int32's.
+// However, this is not the idiomatic way.
+allocator.allocate&lt;Int32&gt;(sizeOf&lt;Int32&gt;() * 2);
+
+// The idiomatic way to allocate space for two Int32 is to call the
+// allocator directly as a function.
+allocator&lt;Int32&gt;(2);
+</code></pre>
+<p>Throws an <a href="https://api.dart.dev/stable/3.6.1/dart-core/ArgumentError-class.html">ArgumentError</a> if the number of bytes or alignment cannot be
+satisfied.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Pointer&lt;T&gt; allocate&lt;T extends NativeType&gt;(int byteCount, {int? alignment});</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">subsystems</a></li>
+    <li><a href="../../subsystems/subsystems-library.html">subsystems</a></li>
+    <li><a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a></li>
+    <li class="self-crumb">allocate&lt;<wbr><span class="type-parameter">T extends NativeType</span>&gt; abstract method</li>
+</ol>
+
+    <h5>Allocator class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    subsystems
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

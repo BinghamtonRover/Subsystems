@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="subsystems library API docs, for the Dart programming language.">
+  <title>subsystems library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">subsystems</a></li>
+    <li class="self-crumb">subsystems.dart</li>
+  </ol>
+  <div class="self-name">subsystems</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar=""
+    data-below-sidebar="subsystems&#47;subsystems-library-sidebar.html">
+  
+    <div>
+      
+
+      <h1>
+        <span class="kind-library">subsystems</span>
+        library 
+ 
+
+      </h1>
+    </div>
+
+    
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+      <dl>
+          <dt id="Abi">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Abi-class.html">Abi</a></span> 
+
+</dt>
+<dd>
+  An application binary interface (ABI).
+</dd>
+
+          <dt id="AbiSpecificInteger">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificInteger-class.html">AbiSpecificInteger</a></span> 
+
+</dt>
+<dd>
+  The supertype of all <a href="https://api.dart.dev/stable/3.6.1/subsystems/Abi-class.html">Abi</a>-specific integer types.
+</dd>
+
+          <dt id="AbiSpecificIntegerMapping">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerMapping-class.html">AbiSpecificIntegerMapping</a></span> 
+
+</dt>
+<dd>
+  Mapping for a subtype of <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificInteger-class.html">AbiSpecificInteger</a>.
+</dd>
+
+          <dt id="Allocator">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a></span> 
+
+</dt>
+<dd>
+  Manages memory on the native heap.
+</dd>
+
+          <dt id="Arena">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a></span> 
+
+</dt>
+<dd>
+  An <a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a> which frees all allocations at the same time.
+</dd>
+
+          <dt id="Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  A fixed-sized array of <code>T</code>s.
+</dd>
+
+          <dt id="Bool">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span> 
+
+</dt>
+<dd>
+  Represents a native bool in C.
+</dd>
+
+          <dt id="BurtCan">
+  <span class="name "><a href="../subsystems/BurtCan-class.html">BurtCan</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="CanBindings">
+  <span class="name "><a href="../subsystems/CanBindings-class.html">CanBindings</a></span> 
+
+</dt>
+<dd>
+  Bindings for <code>src/burt_can</code>.
+</dd>
+
+          <dt id="CanFFI">
+  <span class="name "><a href="../subsystems/CanFFI-class.html">CanFFI</a></span> 
+
+</dt>
+<dd>
+  The CAN interface, backed by the native SocketCAN library on Linux.
+</dd>
+
+          <dt id="CanMessage">
+  <span class="name "><a href="../subsystems/CanMessage-class.html">CanMessage</a></span> 
+
+</dt>
+<dd>
+  A wrapper around a <a href="../subsystems/NativeCanMessage-class.html">NativeCanMessage</a>.
+</dd>
+
+          <dt id="CanSocket">
+  <span class="name "><a href="../subsystems/CanSocket-class.html">CanSocket</a></span> 
+
+</dt>
+<dd>
+  A CAN socket that supports reading and writing CAN messages.
+</dd>
+
+          <dt id="CanStub">
+  <span class="name "><a href="../subsystems/CanStub-class.html">CanStub</a></span> 
+
+</dt>
+<dd>
+  An implementation of the CAN interface that does nothing for platforms that don't support it.
+</dd>
+
+          <dt id="Char">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Char-class.html">Char</a></span> 
+
+</dt>
+<dd>
+  The C <code>char</code> type.
+</dd>
+
+          <dt id="Dart_CObject">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Dart_CObject-class.html">Dart_CObject</a></span> 
+
+</dt>
+<dd>
+  Opaque, not exposing it's members.
+</dd>
+
+          <dt id="DartRepresentationOf">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DartRepresentationOf-class.html">DartRepresentationOf</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="DefaultAsset">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DefaultAsset-class.html">DefaultAsset</a></span> 
+
+</dt>
+<dd>
+  Annotation specifying the default asset ID for the current library.
+</dd>
+
+          <dt id="Double">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span> 
+
+</dt>
+<dd>
+  Represents a native 64 bit double in C.
+</dd>
+
+          <dt id="DynamicLibrary">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DynamicLibrary-class.html">DynamicLibrary</a></span> 
+
+</dt>
+<dd>
+  A dynamically loaded native library.
+</dd>
+
+          <dt id="Finalizable">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Finalizable-class.html">Finalizable</a></span> 
+
+</dt>
+<dd>
+  Marker interface for objects which should not be finalized too soon.
+</dd>
+
+          <dt id="FirmwareManager">
+  <span class="name "><a href="../subsystems/FirmwareManager-class.html">FirmwareManager</a></span> 
+
+</dt>
+<dd>
+  A service to manage all the connected firmware.
+</dd>
+
+          <dt id="Float">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span> 
+
+</dt>
+<dd>
+  Represents a native 32 bit float in C.
+</dd>
+
+          <dt id="GpsReader">
+  <span class="name "><a href="../subsystems/GpsReader-class.html">GpsReader</a></span> 
+
+</dt>
+<dd>
+  Listens to the GPS and sends its output to the Dashboard.
+</dd>
+
+          <dt id="Handle">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Handle-class.html">Handle</a></span> 
+
+</dt>
+<dd>
+  Represents <code>Dart_Handle</code> from <code>dart_api.h</code> in C.
+</dd>
+
+          <dt id="ImuReader">
+  <span class="name "><a href="../subsystems/ImuReader-class.html">ImuReader</a></span> 
+
+</dt>
+<dd>
+  A service to read orientation data from the connected IMU.
+</dd>
+
+          <dt id="Int">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int-class.html">Int</a></span> 
+
+</dt>
+<dd>
+  The C <code>int</code> type.
+</dd>
+
+          <dt id="Int16">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span> 
+
+</dt>
+<dd>
+  Represents a native signed 16 bit integer in C.
+</dd>
+
+          <dt id="Int32">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span> 
+
+</dt>
+<dd>
+  Represents a native signed 32 bit integer in C.
+</dd>
+
+          <dt id="Int64">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span> 
+
+</dt>
+<dd>
+  Represents a native signed 64 bit integer in C.
+</dd>
+
+          <dt id="Int8">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span> 
+
+</dt>
+<dd>
+  Represents a native signed 8 bit integer in C.
+</dd>
+
+          <dt id="IntPtr">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/IntPtr-class.html">IntPtr</a></span> 
+
+</dt>
+<dd>
+  The C <code>intptr_t</code> type.
+</dd>
+
+          <dt id="Long">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Long-class.html">Long</a></span> 
+
+</dt>
+<dd>
+  The C <code>long int</code>, aka. <code>long</code>, type.
+</dd>
+
+          <dt id="LongLong">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/LongLong-class.html">LongLong</a></span> 
+
+</dt>
+<dd>
+  The C <code>long long</code> type.
+</dd>
+
+          <dt id="Native">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Native-class.html">Native</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Annotation binding an external declaration to its native implementation.
+</dd>
+
+          <dt id="NativeApi">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeApi-class.html">NativeApi</a></span> 
+
+</dt>
+<dd>
+  Utilities for accessing the Dart VM API from Dart code or
+from C code via <code>dart_api_dl.h</code>.
+</dd>
+
+          <dt id="NativeCallable">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeCallable-class.html">NativeCallable</a><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/dart-core/Function-class.html">Function</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  A native callable which listens for calls to a native function.
+</dd>
+
+          <dt id="NativeCanMessage">
+  <span class="name "><a href="../subsystems/NativeCanMessage-class.html">NativeCanMessage</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="NativeFinalizer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizer-class.html">NativeFinalizer</a></span> 
+
+</dt>
+<dd>
+  A native finalizer which can be attached to Dart objects.
+</dd>
+
+          <dt id="NativeFunction">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/dart-core/Function-class.html">Function</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Represents a function type in C.
+</dd>
+
+          <dt id="NativeType">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span> 
+
+</dt>
+<dd>
+  <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a>'s subtypes represent a native type in C.
+</dd>
+
+          <dt id="Opaque">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Opaque-class.html">Opaque</a></span> 
+
+</dt>
+<dd>
+  <a href="https://api.dart.dev/stable/3.6.1/subsystems/Opaque-class.html">Opaque</a>'s subtypes represent opaque types in C.
+</dd>
+
+          <dt id="Packed">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Packed-class.html">Packed</a></span> 
+
+</dt>
+<dd>
+  Annotation to specify on <code>Struct</code> subtypes to indicate that its members
+need to be packed.
+</dd>
+
+          <dt id="Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Represents a pointer into the native C memory. Cannot be extended.
+</dd>
+
+          <dt id="Short">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Short-class.html">Short</a></span> 
+
+</dt>
+<dd>
+  The C <code>short</code> type.
+</dd>
+
+          <dt id="SignedChar">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/SignedChar-class.html">SignedChar</a></span> 
+
+</dt>
+<dd>
+  The C <code>signed char</code> type.
+</dd>
+
+          <dt id="Size">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Size-class.html">Size</a></span> 
+
+</dt>
+<dd>
+  The C <code>size_t</code> type.
+</dd>
+
+          <dt id="SizedNativeType">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/SizedNativeType-class.html">SizedNativeType</a></span> 
+
+</dt>
+<dd>
+  A <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a> with a known size.
+</dd>
+
+          <dt id="Struct">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Struct-class.html">Struct</a></span> 
+
+</dt>
+<dd>
+  The supertype of all FFI struct types.
+</dd>
+
+          <dt id="SubsystemsCollection">
+  <span class="name "><a href="../subsystems/SubsystemsCollection-class.html">SubsystemsCollection</a></span> 
+
+</dt>
+<dd>
+  Contains all the resources needed by the subsystems program.
+</dd>
+
+          <dt id="Uint16">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span> 
+
+</dt>
+<dd>
+  Represents a native unsigned 16 bit integer in C.
+</dd>
+
+          <dt id="Uint32">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span> 
+
+</dt>
+<dd>
+  Represents a native unsigned 32 bit integer in C.
+</dd>
+
+          <dt id="Uint64">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span> 
+
+</dt>
+<dd>
+  Represents a native unsigned 64 bit integer in C.
+</dd>
+
+          <dt id="Uint8">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span> 
+
+</dt>
+<dd>
+  Represents a native unsigned 8 bit integer in C.
+</dd>
+
+          <dt id="UintPtr">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UintPtr-class.html">UintPtr</a></span> 
+
+</dt>
+<dd>
+  The C <code>uintptr_t</code> type.
+</dd>
+
+          <dt id="Union">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Union-class.html">Union</a></span> 
+
+</dt>
+<dd>
+  The supertype of all FFI union types.
+</dd>
+
+          <dt id="UnsignedChar">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnsignedChar-class.html">UnsignedChar</a></span> 
+
+</dt>
+<dd>
+  The C <code>unsigned char</code> type.
+</dd>
+
+          <dt id="UnsignedInt">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnsignedInt-class.html">UnsignedInt</a></span> 
+
+</dt>
+<dd>
+  The C <code>unsigned int</code> type.
+</dd>
+
+          <dt id="UnsignedLong">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnsignedLong-class.html">UnsignedLong</a></span> 
+
+</dt>
+<dd>
+  The C <code>unsigned long int</code>, aka. <code>unsigned long</code>, type.
+</dd>
+
+          <dt id="UnsignedLongLong">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnsignedLongLong-class.html">UnsignedLongLong</a></span> 
+
+</dt>
+<dd>
+  The C <code>unsigned long long</code> type.
+</dd>
+
+          <dt id="UnsignedShort">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnsignedShort-class.html">UnsignedShort</a></span> 
+
+</dt>
+<dd>
+  The C <code>unsigned short</code> type.
+</dd>
+
+          <dt id="Utf16">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16-class.html">Utf16</a></span> 
+
+</dt>
+<dd>
+  The contents of a native zero-terminated array of UTF-16 code units.
+</dd>
+
+          <dt id="Utf8">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8-class.html">Utf8</a></span> 
+
+</dt>
+<dd>
+  The contents of a native zero-terminated array of UTF-8 code units.
+</dd>
+
+          <dt id="VarArgs">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/VarArgs-class.html">VarArgs</a><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/dart-core/Record-class.html">Record</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  The types of variadic arguments passed in C.
+</dd>
+
+          <dt id="Void">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span> 
+
+</dt>
+<dd>
+  Represents a void type in C.
+</dd>
+
+          <dt id="WChar">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/WChar-class.html">WChar</a></span> 
+
+</dt>
+<dd>
+  The C <code>wchar_t</code> type.
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+      <dl>
+          <dt id="BurtCanStatus">
+  <span class="name "><a href="../subsystems/BurtCanStatus.html">BurtCanStatus</a></span> 
+
+</dt>
+<dd>
+  No 0 value to ensure we always set a status
+</dd>
+
+          <dt id="BurtCanType">
+  <span class="name "><a href="../subsystems/BurtCanType.html">BurtCanType</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+      </dl>
+    </section>
+
+
+
+    <section class="summary offset-anchor" id="extensions">
+      <h2>Extensions</h2>
+      <dl>
+          <dt id="AbiSpecificIntegerArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerArray.html">AbiSpecificIntegerArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificInteger-class.html">AbiSpecificInteger</a>.
+</dd>
+
+          <dt id="AbiSpecificIntegerPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificIntegerPointer.html">AbiSpecificIntegerPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument
+<a href="https://api.dart.dev/stable/3.6.1/subsystems/AbiSpecificInteger-class.html">AbiSpecificInteger</a>.
+</dd>
+
+          <dt id="AllocatorAlloc">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/AllocatorAlloc.html">AllocatorAlloc</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a> to provide allocation with <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeType-class.html">NativeType</a>.
+</dd>
+
+          <dt id="ArrayAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/ArrayAddress.html">ArrayAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="ArrayArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/ArrayArray.html">ArrayArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>.
+</dd>
+
+          <dt id="BoolAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolAddress.html">BoolAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-core/bool-class.html">bool</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="BoolArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolArray.html">BoolArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a>.
+</dd>
+
+          <dt id="BoolPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/BoolPointer.html">BoolPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Bool-class.html">Bool</a>.
+</dd>
+
+          <dt id="BurtCanStatusUtils">
+  <span class="name "><a href="../subsystems/BurtCanStatusUtils.html">BurtCanStatusUtils</a></span>
+  on <a href="../subsystems/BurtCanStatus.html">BurtCanStatus</a>
+  
+
+</dt>
+<dd>
+  Helpful methods on <a href="../subsystems/BurtCanStatus.html">BurtCanStatus</a>.
+</dd>
+
+          <dt id="DoubleAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoubleAddress.html">DoubleAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-core/double-class.html">double</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="DoubleArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoubleArray.html">DoubleArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a>.
+</dd>
+
+          <dt id="DoublePointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DoublePointer.html">DoublePointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Double-class.html">Double</a>.
+</dd>
+
+          <dt id="DynamicLibraryExtension">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/DynamicLibraryExtension.html">DynamicLibraryExtension</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/DynamicLibrary-class.html">DynamicLibrary</a>
+  
+
+</dt>
+<dd>
+  Method which must not be invoked dynamically.
+</dd>
+
+          <dt id="Float32ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float32ListAddress.html">Float32ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Float32List-class.html">Float32List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Float64ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float64ListAddress.html">Float64ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Float64List-class.html">Float64List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="FloatArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatArray.html">FloatArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a>.
+</dd>
+
+          <dt id="FloatPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/FloatPointer.html">FloatPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Float-class.html">Float</a>.
+</dd>
+
+          <dt id="Int16Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Array.html">Int16Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a>.
+</dd>
+
+          <dt id="Int16ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16ListAddress.html">Int16ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int16List-class.html">Int16List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Int16Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16Pointer.html">Int16Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int16-class.html">Int16</a>.
+</dd>
+
+          <dt id="Int32Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Array.html">Int32Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a>.
+</dd>
+
+          <dt id="Int32ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32ListAddress.html">Int32ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int32List-class.html">Int32List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Int32Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32Pointer.html">Int32Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int32-class.html">Int32</a>.
+</dd>
+
+          <dt id="Int64Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Array.html">Int64Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a>.
+</dd>
+
+          <dt id="Int64ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64ListAddress.html">Int64ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int64List-class.html">Int64List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Int64Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64Pointer.html">Int64Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a>.
+</dd>
+
+          <dt id="Int8Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Array.html">Int8Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a>.
+</dd>
+
+          <dt id="Int8ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8ListAddress.html">Int8ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Int8List-class.html">Int8List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Int8Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8Pointer.html">Int8Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Int8-class.html">Int8</a>.
+</dd>
+
+          <dt id="IntAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/IntAddress.html">IntAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="NativeFunctionPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunctionPointer.html">NativeFunctionPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">NF</span>&gt;</span></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a>.
+</dd>
+
+          <dt id="NativePort">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativePort.html">NativePort</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-isolate/SendPort-class.html">SendPort</a>
+  
+
+</dt>
+<dd>
+  Extension to retrieve the native <code>Dart_Port</code> from a <a href="https://api.dart.dev/stable/3.6.1/dart-isolate/SendPort-class.html">SendPort</a>.
+</dd>
+
+          <dt id="PointerArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerArray.html">PointerArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a>.
+</dd>
+
+          <dt id="PointerPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/PointerPointer.html">PointerPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a>.
+</dd>
+
+          <dt id="StringUtf16Pointer">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/StringUtf16Pointer.html">StringUtf16Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a>
+  
+
+</dt>
+<dd>
+  Extension method for converting a <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a> to a <code>Pointer&lt;Utf16&gt;</code>.
+</dd>
+
+          <dt id="StringUtf8Pointer">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/StringUtf8Pointer.html">StringUtf8Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a>
+  
+
+</dt>
+<dd>
+  Extension method for converting a <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a> to a <code>Pointer&lt;Utf8&gt;</code>.
+</dd>
+
+          <dt id="StructAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructAddress.html">StructAddress</a></span>
+  on T
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="StructArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructArray.html">StructArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Struct-class.html">Struct</a>.
+</dd>
+
+          <dt id="StructPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/StructPointer.html">StructPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Struct-class.html">Struct</a>.
+</dd>
+
+          <dt id="Uint16Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Array.html">Uint16Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a>.
+</dd>
+
+          <dt id="Uint16ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16ListAddress.html">Uint16ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint16List-class.html">Uint16List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Uint16Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16Pointer.html">Uint16Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint16-class.html">Uint16</a>.
+</dd>
+
+          <dt id="Uint32Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Array.html">Uint32Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a>.
+</dd>
+
+          <dt id="Uint32ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32ListAddress.html">Uint32ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint32List-class.html">Uint32List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Uint32Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32Pointer.html">Uint32Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint32-class.html">Uint32</a>.
+</dd>
+
+          <dt id="Uint64Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Array.html">Uint64Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a>.
+</dd>
+
+          <dt id="Uint64ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64ListAddress.html">Uint64ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint64List-class.html">Uint64List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Uint64Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64Pointer.html">Uint64Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint64-class.html">Uint64</a>.
+</dd>
+
+          <dt id="Uint8Array">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Array.html">Uint8Array</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a>.
+</dd>
+
+          <dt id="Uint8ListAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8ListAddress.html">Uint8ListAddress</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/dart-typed_data/Uint8List-class.html">Uint8List</a>
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="Uint8Pointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8Pointer.html">Uint8Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Uint8-class.html">Uint8</a>.
+</dd>
+
+          <dt id="UnionAddress">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionAddress.html">UnionAddress</a></span>
+  on T
+  
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="UnionArray">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionArray.html">UnionArray</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Bounds checking indexing methods on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Array-class.html">Array</a>s of <a href="https://api.dart.dev/stable/3.6.1/subsystems/Union-class.html">Union</a>.
+</dd>
+
+          <dt id="UnionPointer">
+  <span class="name "><a href="https://api.dart.dev/stable/3.6.1/subsystems/UnionPointer.html">UnionPointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a> specialized for the type argument <a href="https://api.dart.dev/stable/3.6.1/subsystems/Union-class.html">Union</a>.
+</dd>
+
+          <dt id="Utf16Pointer">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16Pointer.html">Utf16Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf16-class.html">Utf16</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension method for converting a<code>Pointer&lt;Utf16&gt;</code> to a <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a>.
+</dd>
+
+          <dt id="Utf8Pointer">
+  <span class="name "><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8Pointer.html">Utf8Pointer</a></span>
+  on <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Utf8-class.html">Utf8</a></span>&gt;</span>
+  
+
+</dt>
+<dd>
+  Extension method for converting a<code>Pointer&lt;Utf8&gt;</code> to a <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a>.
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+      <dl class="properties">
+          <dt id="calloc" class="constant">
+    <span class="name "><a href="../subsystems/calloc-constant.html">calloc</a></span>
+  <span class="signature">&#8594; const CallocAllocator</span>
+  
+
+</dt>
+<dd>
+  Manages memory on the native heap.
+  
+
+</dd>
+
+          <dt id="canInterface" class="constant">
+    <span class="name "><a href="../subsystems/canInterface-constant.html">canInterface</a></span>
+  <span class="signature">&#8594; const <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The CAN interface to use.
+  
+
+</dd>
+
+          <dt id="canTimeout" class="constant">
+    <span class="name "><a href="../subsystems/canTimeout-constant.html">canTimeout</a></span>
+  <span class="signature">&#8594; const <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The timeout, in seconds, to wait for each message.
+  
+
+</dd>
+
+          <dt id="canType" class="constant">
+    <span class="name "><a href="../subsystems/canType-constant.html">canType</a></span>
+  <span class="signature">&#8594; const <a href="../subsystems/BurtCanType.html">BurtCanType</a></span>
+  
+
+</dt>
+<dd>
+  The CAN type to use -- CAN or CAN FD.
+  
+
+</dd>
+
+          <dt id="gpsPort" class="constant">
+    <span class="name "><a href="../subsystems/gpsPort-constant.html">gpsPort</a></span>
+  <span class="signature">&#8594; const <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The port/device file to listen to the GPS on.
+  
+
+</dd>
+
+          <dt id="imuPort" class="constant">
+    <span class="name "><a href="../subsystems/imuPort-constant.html">imuPort</a></span>
+  <span class="signature">&#8594; const <a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The serial port that the IMU is connected to.
+  
+
+</dd>
+
+          <dt id="malloc" class="constant">
+    <span class="name "><a href="../subsystems/malloc-constant.html">malloc</a></span>
+  <span class="signature">&#8594; const MallocAllocator</span>
+  
+
+</dt>
+<dd>
+  Manages memory on the native heap.
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+      <dl class="properties">
+          <dt id="autonomySocket" class="property">
+  <span class="name"><a href="../subsystems/autonomySocket.html">autonomySocket</a></span>
+  <span class="signature">&#8594; SocketInfo</span>
+  
+
+</dt>
+<dd>
+  The UDP socket on the Autonomy program.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="baseStationSocket" class="property">
+  <span class="name"><a href="../subsystems/baseStationSocket.html">baseStationSocket</a></span>
+  <span class="signature">&#8594; SocketInfo</span>
+  
+
+</dt>
+<dd>
+  The UDP socket for the Base Station program
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="collection" class="property">
+  <span class="name"><a href="../subsystems/collection.html">collection</a></span>
+  <span class="signature">&#8594; <a href="../subsystems/SubsystemsCollection-class.html">SubsystemsCollection</a></span>
+  
+
+</dt>
+<dd>
+  The collection of all the subsystem's resources.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="logger" class="property">
+  <span class="name"><a href="../subsystems/logger.html">logger</a></span>
+  <span class="signature">&#8594; BurtLogger</span>
+  
+
+</dt>
+<dd>
+  A logger that prints to the terminal and sends a UDP message.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="nameToDevice" class="property">
+  <span class="name"><a href="../subsystems/nameToDevice.html">nameToDevice</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">Device</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Maps command names to <code>Device</code>s.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="nativeLib" class="property">
+  <span class="name"><a href="../subsystems/nativeLib.html">nativeLib</a></span>
+  <span class="signature">&#8594; <a href="../subsystems/CanBindings-class.html">CanBindings</a></span>
+  
+
+</dt>
+<dd>
+  The native SocketCAN-based library.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="nullptr" class="property">
+  <span class="name"><a href="../subsystems/nullptr.html">nullptr</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter">Never</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Represents a pointer into the native C memory corresponding to 'NULL', e.g.
+a pointer with address 0.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="positionVersion" class="property">
+  <span class="name"><a href="../subsystems/positionVersion.html">positionVersion</a></span>
+  <span class="signature">&#8594; Version</span>
+  
+
+</dt>
+<dd>
+  The version that we are using for <code>RoverPosition</code> data.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+          <dt id="zoneArena" class="property">
+  <span class="name"><a href="../subsystems/zoneArena.html">zoneArena</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a></span>
+  
+
+</dt>
+<dd>
+  A zone-specific <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a>.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+      <dl class="callables">
+          <dt id="sizeOf" class="callable">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/sizeOf.html">sizeOf</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.dart.dev/stable/3.6.1/subsystems/SizedNativeType-class.html">SizedNativeType</a></span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.6.1/dart-core/int-class.html">int</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Number of bytes used by native type T.
+  
+
+</dd>
+
+          <dt id="using" class="callable">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/using.html">using</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="using-param-computation"><span class="type-annotation">R</span> <span class="parameter-name">computation</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a></span></span>), [</span><span class="parameter" id="using-param-wrappedAllocator"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a></span> <span class="parameter-name">wrappedAllocator</span> = <span class="default-value">calloc</span></span>])
+    <span class="returntype parameter">&#8594; R</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Runs <code>computation</code> with a new <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a>, and releases all allocations at the
+end.
+  
+
+</dd>
+
+          <dt id="withZoneArena" class="callable">
+  <span class="name"><a href="https://pub.dev/documentation/ffi/2.1.3/ffi/withZoneArena.html">withZoneArena</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="withZoneArena-param-computation"><span class="type-annotation">R</span> <span class="parameter-name">computation</span>(), [</span><span class="parameter" id="withZoneArena-param-wrappedAllocator"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Allocator-class.html">Allocator</a></span> <span class="parameter-name">wrappedAllocator</span> = <span class="default-value">calloc</span></span>])
+    <span class="returntype parameter">&#8594; R</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Creates a zoned <a href="https://pub.dev/documentation/ffi/2.1.3/ffi/Arena-class.html">Arena</a> to manage native resources.
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="typedefs">
+      <h2>Typedefs</h2>
+      <dl>
+          
+  <dt id="CanHandler" class="callable">
+    <span class="name"><a href="../subsystems/CanHandler.html">CanHandler</a></span><span class="signature">
+      <span class="returntype parameter">= void Function<span class="signature">(<span class="parameter" id="param-message"><span class="type-annotation"><a href="../subsystems/CanMessage-class.html">CanMessage</a></span> <span class="parameter-name">message</span></span>)</span></span>
+    </span>
+    
+
+  </dt>
+  <dd>
+    A function that handles a <a href="../subsystems/CanMessage-class.html">CanMessage</a>.
+    
+
+  </dd>
+
+          
+  <dt id="Dart_NativeMessageHandler" class="callable">
+    <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Dart_NativeMessageHandler.html">Dart_NativeMessageHandler</a></span><span class="signature">
+      <span class="returntype parameter">= <a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a> Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Int64-class.html">Int64</a></span>, </span><span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Dart_CObject-class.html">Dart_CObject</a></span>&gt;</span></span></span>)</span></span>
+    </span>
+    
+
+  </dt>
+  <dd>
+    
+    
+
+  </dd>
+
+          
+  <dt id="NativeFinalizerFunction" class="">
+  <span class="name"><a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizerFunction.html">NativeFinalizerFunction</a></span>
+    = <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFunction-class.html">NativeFunction</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a> Function<span class="signature">(<span class="parameter" id="param-token"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Pointer-class.html">Pointer</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.6.1/subsystems/Void-class.html">Void</a></span>&gt;</span></span> <span class="parameter-name">token</span></span>)</span></span>&gt;</span>
+  </span>
+  
+
+</dt>
+<dd>
+  The native function type for <a href="https://api.dart.dev/stable/3.6.1/subsystems/NativeFinalizer-class.html">NativeFinalizer</a>s.
+  
+
+</dd>
+
+
+      </dl>
+    </section>
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">subsystems</a></li>
+    <li class="self-crumb">subsystems.dart</li>
+</ol>
+
+    <h5><span class="package-name">subsystems</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../subsystems/subsystems-library.html">subsystems</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>subsystems library</h5>
+  </div><!--/sidebar-offcanvas-right-->
+</main>
+<footer>
+  <span class="no-break">
+    subsystems
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
